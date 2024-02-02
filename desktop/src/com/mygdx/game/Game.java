@@ -11,6 +11,7 @@ public class Game extends ApplicationAdapter {
 	private SceneManager sceneManager;
 	private EntityManager entityManager;
 	private SpriteBatch batch;
+	private Color color;
 	
 	@Override
 	public void create() {
