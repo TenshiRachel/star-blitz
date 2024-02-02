@@ -1,5 +1,5 @@
 package com.mygdx.game;
 
-public class AIControl {
-
+public interface AIControl extends Movable {
+	public void attack();
 }

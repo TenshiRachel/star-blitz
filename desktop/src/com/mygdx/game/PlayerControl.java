@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
-public class PlayerControl {
-
+public interface PlayerControl extends Movable {
+	public void moveLeft();
+	public void moveRight();
 }
