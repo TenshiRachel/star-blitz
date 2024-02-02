@@ -1,7 +1,7 @@
 ## Star Blitz
 Star Blitz is a game inspired by the retro arcade game Space Invaders. 
 
-This project aims to pply OOP concepts to implement a base Game Engine and build a game on top of it.
+This project aims to apply OOP concepts to implement a base Game Engine and build a game on top of it.
 
 ## Framework
 * Java
