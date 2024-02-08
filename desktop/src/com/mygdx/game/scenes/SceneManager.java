@@ -1,30 +1,40 @@
 package com.mygdx.game.scenes;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.badlogic.gdx.Screen;
+import com.mygdx.game.StarBlitz;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.entities.EntityManager;
-
-public class SceneManager {
-	private List<Scene> scenes;
-	private EntityManager entityManager;
+public class SceneManager implements Screen {
+	public StarBlitz game;
 	
-	public SceneManager(EntityManager entityManager) {
-		scenes = new ArrayList<>();
-		this.entityManager = entityManager;
+	public SceneManager(StarBlitz game) {
+		this.game = game;
 	}
 	
-	public void renderLevel(SpriteBatch batch) {		
-		entityManager.render(batch);
-		entityManager.move();
+	@Override
+	public void show() {
 	}
 	
-	public void transition() {
-		
+	@Override 
+	public void render(float deltatime) {
 	}
 	
+	@Override 
 	public void resize(int width, int height) {
-		
+	}
+	
+	@Override
+	public void pause() {
+	}
+	
+	@Override
+	public void resume() {
+	}
+	
+	@Override
+	public void hide() {
+	}
+	
+	@Override
+	public void dispose() {
 	}
 }

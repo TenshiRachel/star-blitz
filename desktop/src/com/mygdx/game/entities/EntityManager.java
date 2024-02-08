@@ -4,35 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 public class EntityManager {
-	private List<Entity> entities;
+	private Player player;
+	private SpriteBatch batch;
 	
 	public EntityManager() {
-		entities = new ArrayList<>();
 	}
 	
-	public List<Entity> getEntities(){
-		return entities;
+	public Player getPlayer() {
+		return player;
 	}
 	
-	public void setEntities(List<Entity> entities) {
-		this.entities = entities;
+	public void create() {
+		player = new Player(new Vector2(50, 50), 200);
 	}
 	
-	public void addEntity(Entity entity) {
-		entities.add(entity);
-	}
-	
-	public void render(SpriteBatch batch) {
-		for (Entity entity: entities) {
-			entity.draw(batch);
-		}
-	}
-	
-	public void move() {
-		for (Entity entity: entities) {
-			entity.move();
-		}
+	public void renderPlayer(SpriteBatch batch) {
+		player.render(batch);
 	}
 }
