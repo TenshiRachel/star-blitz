@@ -28,4 +28,8 @@ public class BehaviourManager {
 	public void moveRight(Entity entity1) {
 		entity1.setX(entity1.getX() + entity1.getSpeed());
 	}
+	
+	public void handleCollision(Entity entity1, Entity entity2) {
+		
+	}
 }
