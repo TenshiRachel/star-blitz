@@ -1,10 +1,12 @@
 package com.mygdx.game;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.mygdx.game.entities.Player;
 
 public class IOManager {
+	public static IOManager instance;
 	private StarBlitz game;
 	
 	public void setGame(StarBlitz game) {
@@ -13,6 +15,13 @@ public class IOManager {
 	
 	public IOManager() {
 		
+	}
+	
+	public static IOManager getInstance() {
+		if (instance == null) {
+			instance = new IOManager();
+		}
+		return instance;
 	}
 	
 	public void handleInput(Player player) {

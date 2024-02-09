@@ -14,7 +14,7 @@ public class StarBlitz extends Game {
 	public void create() {
 		level = new LevelScene(this);
 		setScreen(level);
-		ioManager = new IOManager();
+		ioManager = IOManager.getInstance();
 		ioManager.setGame(this);
 		behaviourManager = new BehaviourManager();
 	}

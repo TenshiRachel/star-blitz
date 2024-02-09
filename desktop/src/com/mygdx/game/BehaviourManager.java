@@ -2,11 +2,21 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.entities.Entity;
+import com.mygdx.game.entities.EntityManager;
 
 public class BehaviourManager {
+	public static BehaviourManager instance;
 	private Vector2 pos;
+	
 	public BehaviourManager() {
 		
+	}
+	
+	public static BehaviourManager getInstance() {
+		if (instance == null) {
+			instance = new BehaviourManager();
+		}
+		return instance;
 	}
 	
 	public Vector2 getPos() {

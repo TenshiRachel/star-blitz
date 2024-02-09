@@ -1,54 +1,57 @@
 package com.mygdx.game.scenes;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.BehaviourManager;
+import com.mygdx.game.CollisionManager;
+import com.mygdx.game.IOManager;
 import com.mygdx.game.StarBlitz;
+import com.mygdx.game.entities.EntityManager;
 
 public class LevelScene extends SceneManager {
-	private Stage stage;
 	private SpriteBatch batch;
 	private Texture background;
 	
-	public LevelScene(StarBlitz game) {
+	public IOManager ioManager = IOManager.getInstance();
+	public BehaviourManager behaviourManager = BehaviourManager.getInstance();
+	public EntityManager entityManager = EntityManager.getInstance();
+	public CollisionManager collisionManager = CollisionManager.getInstance();
+	
+	public LevelScene(Game game) {
 		super(game);
 		batch = new SpriteBatch();
-		stage = new Stage(new ScreenViewport());
+		entityManager.create();
+		background = new Texture(Gdx.files.internal("background/space.png"));
 	}
 	
 	@Override
 	public void show() {
 		// When scene running
-		background = new Texture(Gdx.files.internal(""));
-		
-		stage.clear();
-		
-		batch.begin();
-		
-		batch.end();
+
 	}
 	
 	@Override
 	public void render(float deltatime) {
 		// On create
-		Gdx.gl.glClearColor(0, 0, 0.1f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		ScreenUtils.clear(0, 0.2f, 0, 0);
 		batch.begin();
 		
 		batch.draw(background, 0, 0, 800, 600);
+		entityManager.renderPlayer(batch);
+		ioManager.handleInput(entityManager.getPlayer());
 		
 		batch.end();
-		
-		stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1/30f));
-		stage.draw();
 	}
 	
 	@Override
 	public void resize(int width, int height) {
-		stage.getViewport().update(width, height, true);
+
 	}
 	
 	@Override

@@ -1,12 +1,13 @@
 package com.mygdx.game.scenes;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.mygdx.game.StarBlitz;
 
 public class SceneManager implements Screen {
-	public StarBlitz game;
+	public Game game;
 	
-	public SceneManager(StarBlitz game) {
+	public SceneManager(Game game) {
 		this.game = game;
 	}
 	
