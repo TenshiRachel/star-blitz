@@ -1,5 +1,7 @@
 package com.mygdx.game.entities;
 
-public class NPC {
+import com.badlogic.gdx.graphics.Color;
 
+public class NPC {
+	private Color color;
 }
