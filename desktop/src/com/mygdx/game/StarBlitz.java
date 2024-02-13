@@ -16,7 +16,7 @@ public class StarBlitz extends Game {
 		setScreen(level);
 		ioManager = IOManager.getInstance();
 		ioManager.setGame(this);
-		behaviourManager = new BehaviourManager();
+		behaviourManager = BehaviourManager.getInstance();
 	}
 	
 	@Override 

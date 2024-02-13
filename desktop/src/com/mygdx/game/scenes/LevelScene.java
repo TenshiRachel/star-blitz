@@ -44,6 +44,7 @@ public class LevelScene extends SceneManager {
 		
 		batch.draw(background, 0, 0, 800, 600);
 		entityManager.renderPlayer(batch);
+		entityManager.renderNPC(batch);
 		ioManager.handleInput(entityManager.getPlayer());
 		
 		batch.end();

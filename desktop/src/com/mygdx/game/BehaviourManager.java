@@ -5,14 +5,14 @@ import com.mygdx.game.entities.Entity;
 import com.mygdx.game.entities.EntityManager;
 
 public class BehaviourManager {
-	public static BehaviourManager instance;
+	private static BehaviourManager instance;
 	private Vector2 pos;
 	
-	public BehaviourManager() {
+	private BehaviourManager() {
 		
 	}
 	
-	public static BehaviourManager getInstance() {
+	public static synchronized BehaviourManager getInstance() {
 		if (instance == null) {
 			instance = new BehaviourManager();
 		}
