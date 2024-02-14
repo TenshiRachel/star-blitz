@@ -2,6 +2,8 @@ package com.mygdx.game.scenes;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -33,6 +35,16 @@ public class LevelScene extends SceneManager {
 	@Override
 	public void show() {
 		// When scene running
+		Gdx.input.setInputProcessor(new InputAdapter() {
+			// Return to menu on esc
+			@Override
+			public boolean keyDown(int keyCode) {
+				if (keyCode == Input.Keys.ESCAPE) {
+					game.setScreen(new MainMenuScene(game));
+				}
+				return true;
+			}
+		});
 
 	}
 	
@@ -43,8 +55,12 @@ public class LevelScene extends SceneManager {
 		batch.begin();
 		
 		batch.draw(background, 0, 0, 800, 600);
+		
+		// Render entities
 		entityManager.renderPlayer(batch);
 		entityManager.renderNPC(batch);
+		
+		// Let IO Manager handle inputs
 		ioManager.handleInput(entityManager.getPlayer());
 		
 		batch.end();
@@ -65,6 +81,7 @@ public class LevelScene extends SceneManager {
 	
 	@Override
 	public void hide() {
+		super.hide();
 	}
 	
 	@Override

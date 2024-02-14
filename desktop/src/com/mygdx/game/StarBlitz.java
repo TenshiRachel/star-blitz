@@ -2,18 +2,18 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
-import com.mygdx.game.scenes.LevelScene;
+import com.mygdx.game.scenes.MainMenuScene;
 
 public class StarBlitz extends Game {
 	private Screen currScreen;
-	private LevelScene level;
+	private MainMenuScene menu;
 	public IOManager ioManager;
 	public BehaviourManager behaviourManager;
 	
 	@Override
 	public void create() {
-		level = new LevelScene(this);
-		setScreen(level);
+		menu = new MainMenuScene(this);
+		setScreen(menu);
 		ioManager = IOManager.getInstance();
 		ioManager.setGame(this);
 		behaviourManager = BehaviourManager.getInstance();
