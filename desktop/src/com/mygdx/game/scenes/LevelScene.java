@@ -19,6 +19,7 @@ import com.mygdx.game.entities.EntityManager;
 public class LevelScene extends SceneManager {
 	private SpriteBatch batch;
 	private Texture background;
+	private Stage stage;
 	
 	public IOManager ioManager = IOManager.getInstance();
 	public BehaviourManager behaviourManager = BehaviourManager.getInstance();
@@ -28,12 +29,15 @@ public class LevelScene extends SceneManager {
 	public LevelScene(Game game) {
 		super(game);
 		batch = new SpriteBatch();
+		stage = new Stage(new ScreenViewport());
 		entityManager.create();
 		background = new Texture(Gdx.files.internal("background/space.png"));
 	}
 	
 	@Override
 	public void show() {
+		stage = new Stage(new ScreenViewport());
+		Gdx.input.setInputProcessor(stage);
 		// When scene running
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			// Return to menu on esc
@@ -54,7 +58,7 @@ public class LevelScene extends SceneManager {
 		ScreenUtils.clear(0, 0.2f, 0, 0);
 		batch.begin();
 		
-		batch.draw(background, 0, 0, 800, 600);
+		batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
 		// Render entities
 		entityManager.renderPlayer(batch);
@@ -62,13 +66,15 @@ public class LevelScene extends SceneManager {
 		
 		// Let IO Manager handle inputs
 		ioManager.handleInput(entityManager.getPlayer());
+		stage.draw();
 		
 		batch.end();
 	}
 	
 	@Override
 	public void resize(int width, int height) {
-
+		// Resize stage
+		stage.getViewport().update(width, height, true);
 	}
 	
 	@Override
@@ -86,5 +92,6 @@ public class LevelScene extends SceneManager {
 	
 	@Override
 	public void dispose() {
+		stage.dispose();
 	}
 }
