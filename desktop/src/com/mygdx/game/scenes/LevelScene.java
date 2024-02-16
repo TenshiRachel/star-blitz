@@ -61,7 +61,7 @@ public class LevelScene extends SceneManager {
 		batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
 		// Spawn entities (Create objects)
-		entityManager.spawnDroplets();
+		entityManager.spawnDroplets(10);
 		
 		// Update entities
 	    entityManager.updateDroplets(deltaTime);
