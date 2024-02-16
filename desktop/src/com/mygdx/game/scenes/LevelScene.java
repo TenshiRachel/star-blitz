@@ -58,7 +58,7 @@ public class LevelScene extends SceneManager {
 		
 		// Render entities
 		entityManager.renderPlayer(batch);
-		entityManager.renderNPC(batch);
+		entityManager.spawnDroplets(batch, 10);
 		
 		// Let IO Manager handle inputs
 		ioManager.handleInput(entityManager.getPlayer());
