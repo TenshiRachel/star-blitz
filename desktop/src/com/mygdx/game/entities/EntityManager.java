@@ -52,7 +52,7 @@ public class EntityManager {
 	public void renderDroplets(SpriteBatch batch){
 		for (int i = 0; i  < DropletList.size(); i++){
 			DropletList.get(i).render(batch);
-			DropletList.remove(i);
+			//DropletList.remove(i);
 		}
 	}
 
