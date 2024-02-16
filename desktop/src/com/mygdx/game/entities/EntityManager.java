@@ -10,10 +10,11 @@ public class EntityManager {
 	private static EntityManager instance;
 	private Player player;
 	private SpriteBatch batch;
-	private List<Entity> Dropletlist;
+	private List<Droplet> DropletList;
 	private Droplet droplet;
 	
 	public EntityManager() {
+		DropletList = new ArrayList<>();
 	}
 	
 	public static EntityManager getInstance() {
@@ -27,23 +28,26 @@ public class EntityManager {
 		return player;
 	}
 	
-	public Droplet getNPC() {
-		return droplet;
+	public List<Droplet> getDropletList() {
+		return DropletList;
 	}
 	
 	public void create() {
 		player = new Player(new Vector2(50, 50), 10, 64, 64);
-		droplet = new Droplet(new Vector2(50,50), 10, 64,64);
 	}
 	
 	public void renderPlayer(SpriteBatch batch) {
 		player.render(batch);
 	}
+	
+	public void spawnDroplets() {
+		droplet = new Droplet(new Vector2(50, 400), 10, 64,64);
+		DropletList.add(droplet);
+	}
 
-	public void spawnDroplets(SpriteBatch batch, int num){
-		for (int i = 0; i  < num; i++){
-			droplet.render(batch);
-			System.out.println(i);
+	public void renderDroplets(SpriteBatch batch){
+		for (int i = 0; i  < DropletList.size(); i++){
+			DropletList.get(i).render(batch);
 		}
 	}
 

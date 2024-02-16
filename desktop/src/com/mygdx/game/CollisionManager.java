@@ -1,10 +1,14 @@
 package com.mygdx.game;
 
+import java.util.List;
+
+import com.mygdx.game.entities.Droplet;
 import com.mygdx.game.entities.EntityManager;
+import com.mygdx.game.entities.Player;
 
 public class CollisionManager {
 	public static CollisionManager instance;
-	public EntityManager entityManager;
+	public EntityManager entityManager = EntityManager.getInstance();
 	
 	public CollisionManager() {
 		
@@ -17,7 +21,25 @@ public class CollisionManager {
 		return instance;
 	}
 	
-	public void collide() {
-		
+	public void collideDroplet(Player player) {
+		List<Droplet> DropletList = entityManager.getDropletList();
+		for (int i = 0; i < DropletList.size(); i++) {
+			Droplet droplet = DropletList.get(i);
+			if (player.isCollide(droplet)) {
+				// Do something game related
+			}
+		}
+	}
+	
+	public void colliderBorder(Player player) {
+		if (player.detectBorder(player, 0, 0, 0, 0)) {
+			BehaviourManager.handleBorder(player, 0, 0, 0, 0);
+		}
+	}
+	
+	public void collideBorder(Player player, float os_left, float os_right, float os_top, float os_bottom) {
+		if (player.detectBorder(player, os_left, os_right, os_top, os_bottom)) {
+			BehaviourManager.handleBorder(player, os_left, os_right, os_top, os_bottom);
+		}
 	}
 }
