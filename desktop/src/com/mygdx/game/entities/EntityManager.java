@@ -43,8 +43,8 @@ public class EntityManager {
 		player.render(batch);
 	}
 	
-	public void spawnDroplets() {
-		if(DropletList.size() < 10)
+	public void spawnDroplets(int numofdrop) {
+		if(DropletList.size() < numofdrop)
 		{
 			droplet = new Droplet(new Vector2(random.nextInt(Gdx.graphics.getWidth()), Gdx.graphics.getHeight()), 2 + random.nextInt(10), 64,64);
 			DropletList.add(droplet);

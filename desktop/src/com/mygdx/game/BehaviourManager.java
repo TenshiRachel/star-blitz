@@ -28,7 +28,7 @@ public class BehaviourManager {
 	}
 	
 	public void updateDroplets(Droplet droplet, float deltaTime) {
-		droplet.setY(droplet.getY() - droplet.getSpeed() * deltaTime);
+		droplet.setY(droplet.getY() - droplet.getSpeed());
 		
 		if (droplet.getY() + droplet.getHeight() < 0) {
 			droplet.setY(Gdx.graphics.getHeight());
