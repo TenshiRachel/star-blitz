@@ -3,6 +3,8 @@ package com.mygdx.game.entities;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -44,7 +46,7 @@ public class EntityManager {
 	public void spawnDroplets() {
 		if(DropletList.size() < 10)
 		{
-			droplet = new Droplet(new Vector2(random.nextInt(600), 400), random.nextInt(8) + 2, 64,64);
+			droplet = new Droplet(new Vector2(random.nextInt(Gdx.graphics.getWidth()), Gdx.graphics.getHeight()), 2 + random.nextInt(10), 64,64);
 			DropletList.add(droplet);
 		}
 	}
@@ -56,5 +58,10 @@ public class EntityManager {
 		}
 	}
 
+	public void updateDroplets(float deltaTime) {
+		for (Droplet droplet : DropletList) {
+			droplet.update(deltaTime);
+		}
+	}
 
 }

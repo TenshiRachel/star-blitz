@@ -53,7 +53,7 @@ public class LevelScene extends SceneManager {
 	}
 	
 	@Override
-	public void render(float deltatime) {
+	public void render(float deltaTime) {
 		// On create
 		ScreenUtils.clear(0, 0.2f, 0, 0);
 		batch.begin();
@@ -62,6 +62,9 @@ public class LevelScene extends SceneManager {
 		
 		// Spawn entities (Create objects)
 		entityManager.spawnDroplets();
+		
+		// Update entities
+	    entityManager.updateDroplets(deltaTime);
 		
 		// Render entities
 		entityManager.renderPlayer(batch);

@@ -1,6 +1,9 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.entities.Droplet;
 import com.mygdx.game.entities.Entity;
 import com.mygdx.game.entities.EntityManager;
 import com.mygdx.game.entities.Player;
@@ -22,6 +25,19 @@ public class BehaviourManager {
 	
 	public Vector2 getPos() {
 		return pos;
+	}
+	
+	public void updateDroplets(Droplet droplet, float deltaTime) {
+		droplet.setY(droplet.getY() - droplet.getSpeed() * deltaTime);
+		
+		if (droplet.getY() + droplet.getHeight() < 0) {
+			droplet.setY(Gdx.graphics.getHeight());
+			droplet.setX(MathUtils.random(0, Gdx.graphics.getWidth() - droplet.getWidth()));
+			
+			if (droplet.getSpeed() < 10) {
+				droplet.setSpeed(Math.min(droplet.getSpeed()+ 2f , 10f));
+			}
+		}
 	}
 	
 	public void moveUp(Entity entity1) {

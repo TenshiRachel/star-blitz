@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.BehaviourManager;
 
 public class Droplet extends Entity{
 	private Texture dropletTexture;
@@ -14,7 +15,7 @@ public class Droplet extends Entity{
 	}
 		
 	public void update(float deltaTime) {
-		
+		BehaviourManager.getInstance().updateDroplets(this, deltaTime);
 	}
 	
 	public void render(SpriteBatch batch) {
