@@ -28,12 +28,16 @@ public class BehaviourManager {
 	}
 	
 	public void updateDroplets(Droplet droplet, float deltaTime) {
+		// Decrease droplet y position based on its speed
 		droplet.setY(droplet.getY() - droplet.getSpeed());
 		
+		// Check if droplet has reached the bottom of the screen
 		if (droplet.getY() + droplet.getHeight() < 0) {
+			// Reset droplet y position to top of screen
 			droplet.setY(Gdx.graphics.getHeight());
+			// Set droplet x position at random, - droplet.getwidth is so that the droplets will not be cut off from the screen
 			droplet.setX(MathUtils.random(0, Gdx.graphics.getWidth() - droplet.getWidth()));
-			
+			// If speed less than 10, + 2
 			if (droplet.getSpeed() < 10) {
 				droplet.setSpeed(Math.min(droplet.getSpeed()+ 2f , 10f));
 			}
@@ -82,21 +86,37 @@ public class BehaviourManager {
 	}
 	
 	public static void handleBorder(Player player, float os_left, float os_right, float os_top, float os_bottom) {
+		
+		// See if yall wanna use this
+		// Screen width and height could be dynamic or constant
+		float screenWidth = Gdx.graphics.getWidth();
+		float screenHeight = Gdx.graphics.getHeight();
+		// Clamping X position within the horizontal bounds
+		float minX = os_left + player.getWidth() / 2;
+	    float maxX = screenWidth - os_right - player.getWidth() / 2;
+	    player.setX(MathUtils.clamp(player.getX(), minX, maxX));
+		// Clamping Y position wiithin the vertical bounds
+	    float minY = os_bottom + player.getHeight() / 2;
+	    float maxY = screenHeight - os_top - player.getHeight() / 2;
+	    player.setY(MathUtils.clamp(player.getY(), minY, maxY));
+		
+		
+		
 		// If at border, set X or Y to edge of border
-		if (player.getX() < player.getWidth() / 2 + os_left) {
-			player.setX((player.getWidth()) / 2 + os_left);
-		}
+		//if (player.getX() < player.getWidth() / 2 + os_left) {
+		//	player.setX((player.getWidth()) / 2 + os_left);
+		//}
 		
-		if (player.getX() > 800 - player.getWidth() / 2 - os_right) {
-			player.setX(800 - player.getWidth() / 2 - os_right);
-		}
+		//if (player.getX() > 800 - player.getWidth() / 2 - os_right) {
+		//	player.setX(800 - player.getWidth() / 2 - os_right);
+		//}
 		
-		if (player.getY() > 600 - player.getHeight() / 2 - os_top) {
-			player.setY(600 - player.getHeight() / 2 - os_top);
-		}
+		//if (player.getY() > 600 - player.getHeight() / 2 - os_top) {
+		//	player.setY(600 - player.getHeight() / 2 - os_top);
+		//}
 		
-		if (player.getY() < player.getHeight() / 2 + os_bottom) {
-			player.setY((player.getHeight() / 2) + os_bottom);
-		}
+		//if (player.getY() < player.getHeight() / 2 + os_bottom) {
+		//	player.setY((player.getHeight() / 2) + os_bottom);
+		//}
 	}
 }

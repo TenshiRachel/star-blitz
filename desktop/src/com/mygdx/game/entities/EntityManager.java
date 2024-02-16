@@ -59,7 +59,9 @@ public class EntityManager {
 	}
 
 	public void updateDroplets(float deltaTime) {
+		// Iterate over all droplets in the dropletlist
 		for (Droplet droplet : DropletList) {
+			// Call the update method on each droplet, passing in deltatime
 			droplet.update(deltaTime);
 		}
 	}
