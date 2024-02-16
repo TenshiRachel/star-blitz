@@ -42,13 +42,17 @@ public class EntityManager {
 	}
 	
 	public void spawnDroplets() {
-		droplet = new Droplet(new Vector2(random.nextInt(600), 400), random.nextInt(10), 64,64);
-		DropletList.add(droplet);
+		if(DropletList.size() < 10)
+		{
+			droplet = new Droplet(new Vector2(random.nextInt(600), 400), random.nextInt(8) + 2, 64,64);
+			DropletList.add(droplet);
+		}
 	}
 
 	public void renderDroplets(SpriteBatch batch){
 		for (int i = 0; i  < DropletList.size(); i++){
 			DropletList.get(i).render(batch);
+			DropletList.remove(i);
 		}
 	}
 
