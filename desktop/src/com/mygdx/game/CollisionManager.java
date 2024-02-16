@@ -31,7 +31,7 @@ public class CollisionManager {
 		}
 	}
 	
-	public void colliderBorder(Player player) {
+	public void collideBorder(Player player) {
 		if (player.detectBorder(player, 0, 0, 0, 0)) {
 			BehaviourManager.handleBorder(player, 0, 0, 0, 0);
 		}

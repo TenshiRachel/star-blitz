@@ -74,7 +74,7 @@ public class LevelScene extends SceneManager {
 		ioManager.handleInput(entityManager.getPlayer());
 		
 		// Collisions
-		collisionManager.collideBorder(entityManager.getPlayer(), 25, 200, 30, 30);
+		collisionManager.collideBorder(entityManager.getPlayer(), -30, 200, 150, -30);
 		collisionManager.collideDroplet(entityManager.getPlayer());
 		
 		stage.draw();

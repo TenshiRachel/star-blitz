@@ -75,7 +75,7 @@ public abstract class Entity implements iCollidable {
 		if (obj1_left < obj2_right) {
 			if (obj2_left < obj1_right) {
 				if (obj1_top > obj2_bottom) {
-					if (obj2_bottom > obj1_bottom) {
+					if (obj2_top > obj1_bottom) {
 						return true;
 					}
 				}
