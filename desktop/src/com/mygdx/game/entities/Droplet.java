@@ -5,12 +5,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-public class NPC extends Entity{
+public class Droplet extends Entity{
 	private Texture npcTexture;
 	private NPCState state; //enum for different states
 	private NPCAttributes attributes; //attributes for health, strength, etc
 	
-	public NPC(Vector2 pos, float speed, float width, float height) {
+	public Droplet(Vector2 pos, float speed, float width, float height) {
 		super(pos.x, pos.y, speed, width, height);
 		this.npcTexture = new Texture(Gdx.files.internal("entities/droplet.png"));
 		this.state = NPCState.IDLE;

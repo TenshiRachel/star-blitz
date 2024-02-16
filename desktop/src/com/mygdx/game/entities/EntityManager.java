@@ -9,7 +9,7 @@ public class EntityManager {
 	private static EntityManager instance;
 	private Player player;
 	private SpriteBatch batch;
-	private NPC npc;
+	private Droplet droplet;
 	
 	public EntityManager() {
 	}
@@ -25,13 +25,13 @@ public class EntityManager {
 		return player;
 	}
 	
-	public NPC getNPC() {
-		return npc;
+	public Droplet getNPC() {
+		return droplet;
 	}
 	
 	public void create() {
 		player = new Player(new Vector2(50, 50), 10, 64, 64);
-		npc = new NPC(new Vector2(50,50), 10, 64,64);
+		droplet = new Droplet(new Vector2(50,50), 10, 64,64);
 	}
 	
 	public void renderPlayer(SpriteBatch batch) {
@@ -39,6 +39,6 @@ public class EntityManager {
 	}
 	
 	public void renderNPC(SpriteBatch batch) {
-		npc.render(batch);
+		droplet.render(batch);
 	}
 }
