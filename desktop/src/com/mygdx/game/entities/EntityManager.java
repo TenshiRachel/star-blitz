@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 public class EntityManager {
@@ -44,7 +45,7 @@ public class EntityManager {
 	}
 	
 	public void spawnDroplets(int numofdrop) {
-		if(DropletList.size() < numofdrop)
+		for (int i = 0; DropletList.size() < MathUtils.random(1, 10); i++)
 		{
 			droplet = new Droplet(new Vector2(random.nextInt(Gdx.graphics.getWidth()), Gdx.graphics.getHeight()), 2 + random.nextInt(10), 64,64);
 			DropletList.add(droplet);

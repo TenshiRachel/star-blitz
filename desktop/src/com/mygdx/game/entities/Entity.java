@@ -1,5 +1,6 @@
 package com.mygdx.game.entities;
 
+import com.badlogic.gdx.Gdx;
 import com.mygdx.game.iCollidable;
 
 public abstract class Entity implements iCollidable {
@@ -96,8 +97,8 @@ public abstract class Entity implements iCollidable {
 		
 		// Check if does not hit border of screen
 		if (left >= 0 + os_left) {
-			if (right <= 800 - os_right) {
-				if (top <= 600 - os_top) {
+			if (right <= Gdx.graphics.getWidth() - os_right) {
+				if (top <= Gdx.graphics.getHeight() - os_top) {
 					if (bottom >= 0 + os_bottom) {
 						return false;
 					}
