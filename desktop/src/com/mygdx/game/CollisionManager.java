@@ -7,10 +7,10 @@ import com.mygdx.game.entities.EntityManager;
 import com.mygdx.game.entities.Player;
 
 public class CollisionManager {
-	private static CollisionManager instance;
-	private EntityManager entityManager = EntityManager.getInstance();
+	public static CollisionManager instance;
+	public EntityManager entityManager = EntityManager.getInstance();
 	
-	private CollisionManager() {
+	public CollisionManager() {
 		
 	}
 	
