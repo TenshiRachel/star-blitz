@@ -44,7 +44,7 @@ public class EntityManager {
 		player.render(batch);
 	}
 	
-	public void spawnDroplets(int numofdrop) {
+	public void spawnDroplets() {
 		for (int i = 0; DropletList.size() < MathUtils.random(1, 10); i++)
 		{
 			droplet = new Droplet(new Vector2(random.nextInt(Gdx.graphics.getWidth()), Gdx.graphics.getHeight()), 2 + random.nextInt(10), 64,64);

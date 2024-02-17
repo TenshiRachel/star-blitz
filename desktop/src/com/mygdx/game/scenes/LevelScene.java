@@ -57,7 +57,7 @@ public class LevelScene extends SceneManager {
 		batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
 		// Spawn entities (Create objects)
-		entityManager.spawnDroplets(10);
+		entityManager.spawnDroplets();
 		
 		// Update entities
 	    entityManager.updateDroplets(deltaTime);
@@ -70,7 +70,7 @@ public class LevelScene extends SceneManager {
 		ioManager.handleInput(entityManager.getPlayer());
 		
 		// Collisions
-		collisionManager.collideBorder(entityManager.getPlayer(), -30, 200, 150, -30);
+		collisionManager.collideBorder(entityManager.getPlayer(), -30, 30, 30, -30);
 		collisionManager.collideDroplet(entityManager.getPlayer());
 		
 		
