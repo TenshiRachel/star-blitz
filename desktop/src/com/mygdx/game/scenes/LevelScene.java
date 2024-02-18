@@ -116,5 +116,7 @@ public class LevelScene extends SceneManager {
 	@Override
 	public void dispose() {
 		font.dispose();
+		batch.dispose();
+		background.dispose();
 	}
 }

@@ -13,7 +13,6 @@ public class BehaviourManager {
 	private Vector2 pos;
 	
 	private BehaviourManager() {
-		
 	}
 	
 	public static synchronized BehaviourManager getInstance() {

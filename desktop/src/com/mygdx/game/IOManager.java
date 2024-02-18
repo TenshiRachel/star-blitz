@@ -6,15 +6,14 @@ import com.badlogic.gdx.Input.Keys;
 import com.mygdx.game.entities.Player;
 
 public class IOManager {
-	public static IOManager instance;
+	private static IOManager instance;
 	private StarBlitz game;
 	
 	public void setGame(StarBlitz game) {
 		this.game = game;
 	}
 	
-	public IOManager() {
-		
+	private IOManager() {
 	}
 	
 	public static IOManager getInstance() {

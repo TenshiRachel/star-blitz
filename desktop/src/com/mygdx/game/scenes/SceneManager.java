@@ -5,7 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.mygdx.game.StarBlitz;
 
 public class SceneManager implements Screen {
-	public Game game;
+	protected Game game;
 	
 	public SceneManager(Game game) {
 		this.game = game;
