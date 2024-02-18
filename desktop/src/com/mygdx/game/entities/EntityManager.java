@@ -37,7 +37,7 @@ public class EntityManager {
 	}
 	
 	public void create() {
-		player = new Player(new Vector2(50, 50), 10, 64, 64);
+		player = new Player(new Vector2(50, 50), 10, 64, 64,0);
 	}
 	
 	public void renderPlayer(SpriteBatch batch) {
