@@ -119,4 +119,9 @@ public class BehaviourManager {
 			player.setY((player.getHeight() / 2) + os_bottom);
 		}
 	}
+	
+	public static void deleteDroplets(Droplet droplet)
+	{
+		droplet.dispose();
+	}
 }

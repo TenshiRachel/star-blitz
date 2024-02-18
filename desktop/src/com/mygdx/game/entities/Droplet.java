@@ -31,6 +31,6 @@ public class Droplet extends Entity{
 	}
 	
 	public void dispose() {
-        dropletTexture.dispose();
+        this.dropletTexture.dispose();
     }
 }
