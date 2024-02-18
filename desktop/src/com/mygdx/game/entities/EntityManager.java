@@ -45,7 +45,7 @@ public class EntityManager {
 	}
 	
 	public void spawnDroplets() {
-		for (int i = 0; DropletList.size() < MathUtils.random(1, 10); i++)
+		for (int i = 0; DropletList.size() < MathUtils.random(1, 5); i++)
 		{
 			droplet = new Droplet(new Vector2(random.nextInt(Gdx.graphics.getWidth()), Gdx.graphics.getHeight()), 2 + random.nextInt(10), 64,64);
 			DropletList.add(droplet);
@@ -55,7 +55,6 @@ public class EntityManager {
 	public void renderDroplets(SpriteBatch batch){
 		for (int i = 0; i  < DropletList.size(); i++){
 			DropletList.get(i).render(batch);
-			//DropletList.remove(i);
 		}
 	}
 

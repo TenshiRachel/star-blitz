@@ -25,13 +25,13 @@ public class IOManager {
 	}
 	
 	public void handleInput(Player player) {
-		if (Gdx.input.isKeyPressed(Keys.W)) {
-			game.behaviourManager.moveUp(player);
-		}
-		
-		if (Gdx.input.isKeyPressed(Keys.S)) {
-			game.behaviourManager.moveDown(player);
-		}
+//		if (Gdx.input.isKeyPressed(Keys.W)) {
+//			game.behaviourManager.moveUp(player);
+//		}
+//		
+//		if (Gdx.input.isKeyPressed(Keys.S)) {
+//			game.behaviourManager.moveDown(player);
+//		}
 		
 		if (Gdx.input.isKeyPressed(Keys.D)) {
 			game.behaviourManager.moveRight(player);

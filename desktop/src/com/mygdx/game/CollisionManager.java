@@ -28,7 +28,6 @@ public class CollisionManager {
 			if (player.isCollide(droplet)) {
 				// Do something game related
 				DropletList.remove(i);
-				//BehaviourManager.deleteDroplets(droplet);
 				player.setScore(player.getScore() + 1);
 				System.err.println(player.getScore());
 			}
