@@ -6,19 +6,29 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.BehaviourManager;
 import com.mygdx.game.CollisionManager;
 import com.mygdx.game.IOManager;
 import com.mygdx.game.StarBlitz;
+import com.mygdx.game.entities.Entity;
 import com.mygdx.game.entities.EntityManager;
+import com.mygdx.game.entities.Player;
 
 public class LevelScene extends SceneManager {
 	private SpriteBatch batch;
 	private Texture background;
+	private String scoreText = "Score: ";
+	private BitmapFont font;
+	private GlyphLayout layout;
+	private int score;
+	
 	
 	public IOManager ioManager = IOManager.getInstance();
 	public BehaviourManager behaviourManager = BehaviourManager.getInstance();
@@ -30,13 +40,16 @@ public class LevelScene extends SceneManager {
 		batch = new SpriteBatch();
 		entityManager.create();
 		background = new Texture(Gdx.files.internal("background/space.png"));
+		font = new BitmapFont();
+		layout = new GlyphLayout();
+		score = 0;
 	}
 	
 	@Override
 	public void show() {
 		// On create
 		Gdx.input.setInputProcessor(new InputAdapter() {
-			// Return to menu on esc
+			// Return to menu upon pressing Escape button 
 			@Override
 			public boolean keyDown(int keyCode) {
 				if (keyCode == Input.Keys.ESCAPE) {
@@ -61,7 +74,14 @@ public class LevelScene extends SceneManager {
 		
 		// Update entities
 	    entityManager.updateDroplets(deltaTime);
-		
+	    
+	    // Show score on top-right hand corner of screen 
+	    score = entityManager.getPlayer().getScore();
+	    scoreText = "Score: " + score;
+	    float x = Gdx.graphics.getWidth() - layout.width - 100;
+	    float y = Gdx.graphics.getHeight() - 100;
+	    font.draw(batch, scoreText, x, y);
+	    
 		// Render entities
 		entityManager.renderPlayer(batch);
 		entityManager.renderDroplets(batch);
@@ -96,5 +116,6 @@ public class LevelScene extends SceneManager {
 	
 	@Override
 	public void dispose() {
+		font.dispose();
 	}
 }
