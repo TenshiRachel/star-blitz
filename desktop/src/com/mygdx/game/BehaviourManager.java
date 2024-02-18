@@ -120,8 +120,4 @@ public class BehaviourManager {
 		}
 	}
 	
-	public static void deleteDroplets(Droplet droplet)
-	{
-		droplet.dispose();
-	}
 }

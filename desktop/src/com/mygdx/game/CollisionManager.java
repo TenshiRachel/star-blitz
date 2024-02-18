@@ -28,7 +28,7 @@ public class CollisionManager {
 			if (player.isCollide(droplet)) {
 				// Do something game related
 				
-				BehaviourManager.deleteDroplets(droplet);
+				DropletList.remove(i);
 			}
 		}
 	}
