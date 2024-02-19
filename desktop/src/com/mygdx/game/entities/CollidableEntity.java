@@ -15,7 +15,7 @@ public class CollidableEntity extends Entity implements iCollidable {
 	
 	@Override 
 	// Detect collision with other entities
-	public boolean isCollide(Entity object) {
+	public boolean isCollide(CollidableEntity object) {
 		// Get border of both entities
 		float obj1_left = this.getX() - (this.getWidth() / 2);
 		float obj2_left = object.getX() - (object.getWidth() / 2);
@@ -42,7 +42,7 @@ public class CollidableEntity extends Entity implements iCollidable {
 	
 	@Override
 	// Detect collision with border
-	public boolean detectBorder(Entity object, float os_left, float os_right, float os_top, float os_bottom) {
+	public boolean detectBorder(CollidableEntity object, float os_left, float os_right, float os_top, float os_bottom) {
 		// Get border of entity
 		float left = object.getX() - (object.getWidth() / 2);
 		float right = object.getX() + (object.getWidth() / 2);

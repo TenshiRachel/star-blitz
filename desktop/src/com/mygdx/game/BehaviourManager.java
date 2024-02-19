@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.entities.CollidableEntity;
 import com.mygdx.game.entities.Droplet;
 import com.mygdx.game.entities.Entity;
 import com.mygdx.game.entities.EntityManager;
@@ -59,7 +60,7 @@ public class BehaviourManager {
 		entity1.setX(entity1.getX() + entity1.getSpeed());
 	}
 	
-	public static void handleCollision(Entity entity1, Entity entity2) {
+	public static void handleCollision(CollidableEntity entity1, CollidableEntity entity2) {
 		// Get pos of both obj
 		float entity1_x = entity1.getX();
 		float entity1_y = entity1.getY();
