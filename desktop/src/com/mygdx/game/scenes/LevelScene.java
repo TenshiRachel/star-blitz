@@ -77,9 +77,12 @@ public class LevelScene extends SceneManager {
 	    // Show score on top-right hand corner of screen 
 	    score = entityManager.getPlayer().getScore();
 	    scoreText = "Score: " + score;
-	    float x = Gdx.graphics.getWidth() - layout.width - 100;
-	    float y = Gdx.graphics.getHeight() - 100;
+	    float x = Gdx.graphics.getWidth() - layout.width - 150;
+	    float y = Gdx.graphics.getHeight() - 50;
+	    
+	    font.setColor(255, 255, 255, 255);
 	    font.draw(batch, scoreText, x, y);
+	    font.getData().setScale(2, 2);
 	    
 		// Render entities
 		entityManager.renderPlayer(batch);

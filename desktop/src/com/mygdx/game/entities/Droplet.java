@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.BehaviourManager;
 
-public class Droplet extends Entity{
+public class Droplet extends CollidableEntity{
 	private Texture dropletTexture;
 	
 	public Droplet(Vector2 pos, float speed, float width, float height) {

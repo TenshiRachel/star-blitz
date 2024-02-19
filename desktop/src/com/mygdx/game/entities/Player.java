@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-public class Player extends Entity {
+public class Player extends CollidableEntity {
 	private Texture player;
 	private int score = 0;
 

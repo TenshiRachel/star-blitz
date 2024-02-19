@@ -22,10 +22,11 @@ public class CollisionManager {
 	
 	public void collideDroplet(Player player) {
 		List<Droplet> DropletList = entityManager.getDropletList();
+		// Loop through droplets and check if they collide with player
 		for (int i = 0; i < DropletList.size(); i++) {
 			Droplet droplet = DropletList.get(i);
 			if (player.isCollide(droplet)) {
-				// Do something game related
+				// Do stuff if collide
 				DropletList.remove(i);
 				player.setScore(player.getScore() + 1);
 				System.err.println(player.getScore());
