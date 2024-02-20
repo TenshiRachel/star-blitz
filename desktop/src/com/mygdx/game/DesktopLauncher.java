@@ -9,6 +9,6 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("star blitz");
-		new Lwjgl3Application(new StarBlitz(), config);
+		new Lwjgl3Application(new MyGame(), config);
 	}
 }

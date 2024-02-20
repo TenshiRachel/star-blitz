@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.mygdx.game.scenes.MainMenuScene;
 
-public class StarBlitz extends Game {
+public class MyGame extends Game {
 	private Screen currScreen;
 	private MainMenuScene menu;
 	public IOManager ioManager;

@@ -16,7 +16,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.BehaviourManager;
 import com.mygdx.game.CollisionManager;
 import com.mygdx.game.IOManager;
-import com.mygdx.game.StarBlitz;
+import com.mygdx.game.MyGame;
 import com.mygdx.game.entities.Entity;
 import com.mygdx.game.entities.EntityManager;
 import com.mygdx.game.entities.Player;

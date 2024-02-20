@@ -7,9 +7,9 @@ import com.mygdx.game.entities.Player;
 
 public class IOManager {
 	private static IOManager instance;
-	private StarBlitz game;
+	private MyGame game;
 	
-	public void setGame(StarBlitz game) {
+	public void setGame(MyGame game) {
 		this.game = game;
 	}
 	

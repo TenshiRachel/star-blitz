@@ -3,7 +3,7 @@ package com.mygdx.game.entities;
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.iCollidable;
 
-public class CollidableEntity extends Entity implements iCollidable {
+public abstract class CollidableEntity extends Entity implements iCollidable {
 
 	public CollidableEntity(float x, float y, float speed, float width, float height) {
 		super(x, y, speed, width, height);
