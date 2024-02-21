@@ -5,8 +5,8 @@ import com.mygdx.game.iCollidable;
 
 public abstract class CollidableEntity extends Entity implements iCollidable {
 
-	public CollidableEntity(float x, float y, float speed, float width, float height) {
-		super(x, y, speed, width, height);
+	public CollidableEntity(float x, float y, float speed, float width, float height, EntityManager instance) {
+		super(x, y, speed, width, height, instance);
 	}
 	
 	public CollidableEntity() {

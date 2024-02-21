@@ -9,8 +9,8 @@ import com.mygdx.game.BehaviourManager;
 public class Droplet extends CollidableEntity{
 	private Texture dropletTexture;
 	
-	public Droplet(Vector2 pos, float speed, float width, float height) {
-		super(pos.x, pos.y, speed, width, height);
+	public Droplet(Vector2 pos, float speed, float width, float height, EntityManager instance) {
+		super(pos.x, pos.y, speed, width, height, instance);
 		this.dropletTexture = new Texture(Gdx.files.internal("entities/droplet.png"));
 	}
 		

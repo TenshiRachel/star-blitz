@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 public class EntityManager {
-	private static EntityManager instance;
+	protected static EntityManager instance;
 	private Player player;
 	private SpriteBatch batch;
 	private List<Droplet> DropletList;
@@ -37,7 +37,7 @@ public class EntityManager {
 	}
 	
 	public void create() {
-		player = new Player(new Vector2(50, 50), 10, 64, 64,0);
+		player = new Player(new Vector2(50, 50), 10, 64, 64,0,getInstance());
 	}
 	
 	public void renderPlayer(SpriteBatch batch) {
@@ -47,7 +47,7 @@ public class EntityManager {
 	public void spawnDroplets() {
 		for (int i = 0; DropletList.size() < MathUtils.random(1, 5); i++)
 		{
-			droplet = new Droplet(new Vector2(random.nextInt(Gdx.graphics.getWidth()), Gdx.graphics.getHeight()), 2 + random.nextInt(10), 64,64);
+			droplet = new Droplet(new Vector2(random.nextInt(Gdx.graphics.getWidth()), Gdx.graphics.getHeight()), 2 + random.nextInt(10), 64,64, getInstance());
 			DropletList.add(droplet);
 		}
 	}

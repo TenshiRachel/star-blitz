@@ -9,8 +9,8 @@ public class Player extends CollidableEntity {
 	private Texture player;
 	private int score = 0;
 
-	public Player(Vector2 pos, float speed, float width, float height, int score) {
-		super(pos.x, pos.y, speed, width, height);
+	public Player(Vector2 pos, float speed, float width, float height, int score, EntityManager instance) {
+		super(pos.x, pos.y, speed, width, height, instance);
 		this.score = score;
 		player = new Texture(Gdx.files.internal("entities/bucket.png"));
 	}
