@@ -6,8 +6,7 @@ import com.mygdx.game.iCollidable;
 public abstract class Entity {
 	private float x, y, speed, width, height;
 	
-	public Entity(float x, float y, float speed, float width, float height, EntityManager instance) {
-		EntityManager.instance = instance;
+	public Entity(float x, float y, float speed, float width, float height) {
 		this.x = x;
 		this.y = y;
 		this.speed = speed;

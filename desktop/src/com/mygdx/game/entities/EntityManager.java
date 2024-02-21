@@ -37,7 +37,7 @@ public class EntityManager {
 	}
 	
 	public void create() {
-		player = new Player(new Vector2(50, 50), 10, 64, 64,0,getInstance());
+		player = new Player(new Vector2(50, 50), 10, 64, 64,0);
 	}
 	
 	public void renderPlayer(SpriteBatch batch) {
@@ -47,7 +47,7 @@ public class EntityManager {
 	public void spawnDroplets() {
 		for (int i = 0; DropletList.size() < MathUtils.random(1, 5); i++)
 		{
-			droplet = new Droplet(new Vector2(random.nextInt(Gdx.graphics.getWidth()), Gdx.graphics.getHeight()), 2 + random.nextInt(10), 64,64, getInstance());
+			droplet = new Droplet(new Vector2(random.nextInt(Gdx.graphics.getWidth()), Gdx.graphics.getHeight()), 2 + random.nextInt(10), 64,64);
 			DropletList.add(droplet);
 		}
 	}
