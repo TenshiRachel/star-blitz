@@ -1,4 +1,4 @@
-package com.mygdx.game.entities;
+package com.mygdx.game.GameEngine.Entities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.GameLayer.Entities.*;
 
 public class EntityManager {
 	protected static EntityManager instance;

@@ -1,4 +1,4 @@
-package com.mygdx.game.scenes;
+package com.mygdx.game.GameLayer.Scenes;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.GameEngine.Scene.SceneManager;
 
 public class MainMenuScene extends SceneManager {
 	private Stage stage;

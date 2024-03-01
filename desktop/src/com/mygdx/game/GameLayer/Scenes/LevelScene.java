@@ -1,4 +1,4 @@
-package com.mygdx.game.scenes;
+package com.mygdx.game.GameLayer.Scenes;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -13,13 +13,14 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.mygdx.game.BehaviourManager;
-import com.mygdx.game.CollisionManager;
-import com.mygdx.game.IOManager;
-import com.mygdx.game.MyGame;
-import com.mygdx.game.entities.Entity;
-import com.mygdx.game.entities.EntityManager;
-import com.mygdx.game.entities.Player;
+import com.mygdx.game.GameEngine.BehaviourManager;
+import com.mygdx.game.GameEngine.IOManager;
+import com.mygdx.game.LifeCycleManager;
+import com.mygdx.game.GameEngine.Collision.CollisionManager;
+import com.mygdx.game.GameEngine.Entities.Entity;
+import com.mygdx.game.GameEngine.Entities.EntityManager;
+import com.mygdx.game.GameEngine.Scene.SceneManager;
+import com.mygdx.game.GameLayer.Entities.Player;
 
 public class LevelScene extends SceneManager {
 	private SpriteBatch batch;

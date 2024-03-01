@@ -1,6 +1,6 @@
-package com.mygdx.game;
+package com.mygdx.game.GameEngine.Collision;
 
-import com.mygdx.game.entities.CollidableEntity;
+import com.mygdx.game.GameEngine.Entities.CollidableEntity;
 
 public interface iCollidable {
 	public boolean isCollide(CollidableEntity object);

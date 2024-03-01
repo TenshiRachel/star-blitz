@@ -1,8 +1,8 @@
-package com.mygdx.game.scenes;
+package com.mygdx.game.GameEngine.Scene;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
-import com.mygdx.game.MyGame;
+import com.mygdx.game.LifeCycleManager;
 
 public abstract class SceneManager implements Screen {
 	protected Game game;

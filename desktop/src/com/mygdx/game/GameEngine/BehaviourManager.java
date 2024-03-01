@@ -1,13 +1,13 @@
-package com.mygdx.game;
+package com.mygdx.game.GameEngine;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.entities.CollidableEntity;
-import com.mygdx.game.entities.Droplet;
-import com.mygdx.game.entities.Entity;
-import com.mygdx.game.entities.EntityManager;
-import com.mygdx.game.entities.Player;
+import com.mygdx.game.GameEngine.Entities.CollidableEntity;
+import com.mygdx.game.GameEngine.Entities.Entity;
+import com.mygdx.game.GameEngine.Entities.EntityManager;
+import com.mygdx.game.GameLayer.Entities.Droplet;
+import com.mygdx.game.GameLayer.Entities.Player;
 
 public class BehaviourManager {
 	private static BehaviourManager instance;

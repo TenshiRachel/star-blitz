@@ -1,10 +1,11 @@
-package com.mygdx.game;
+package com.mygdx.game.GameEngine.Collision;
 
 import java.util.List;
 
-import com.mygdx.game.entities.Droplet;
-import com.mygdx.game.entities.EntityManager;
-import com.mygdx.game.entities.Player;
+import com.mygdx.game.GameEngine.Entities.EntityManager;
+import com.mygdx.game.GameEngine.BehaviourManager;
+import com.mygdx.game.GameLayer.Entities.Player;
+import com.mygdx.game.GameLayer.Entities.Droplet;
 
 public class CollisionManager {
 	private static CollisionManager instance;

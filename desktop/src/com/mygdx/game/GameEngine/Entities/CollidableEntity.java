@@ -1,7 +1,7 @@
-package com.mygdx.game.entities;
+package com.mygdx.game.GameEngine.Entities;
 
 import com.badlogic.gdx.Gdx;
-import com.mygdx.game.iCollidable;
+import com.mygdx.game.GameEngine.Collision.iCollidable;
 
 public abstract class CollidableEntity extends Entity implements iCollidable {
 

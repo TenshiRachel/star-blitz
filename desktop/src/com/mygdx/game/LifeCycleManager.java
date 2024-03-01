@@ -2,9 +2,10 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
-import com.mygdx.game.scenes.MainMenuScene;
+import com.mygdx.game.GameEngine.*;
+import com.mygdx.game.GameLayer.Scenes.*;
 
-public class MyGame extends Game {
+public class LifeCycleManager extends Game {
 	private Screen currScreen;
 	private MainMenuScene menu;
 	public IOManager ioManager;

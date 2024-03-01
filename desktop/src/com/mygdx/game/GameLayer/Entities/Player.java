@@ -1,9 +1,10 @@
-package com.mygdx.game.entities;
+package com.mygdx.game.GameLayer.Entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.GameEngine.Entities.CollidableEntity;
 
 public class Player extends CollidableEntity {
 	private Texture player;

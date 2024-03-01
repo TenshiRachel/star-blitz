@@ -1,15 +1,16 @@
-package com.mygdx.game;
+package com.mygdx.game.GameEngine;
 
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.mygdx.game.entities.Player;
+import com.mygdx.game.LifeCycleManager;
+import com.mygdx.game.GameLayer.Entities.Player;
 
 public class IOManager {
 	private static IOManager instance;
-	private MyGame game;
+	private LifeCycleManager game;
 	
-	public void setGame(MyGame game) {
+	public void setGame(LifeCycleManager game) {
 		this.game = game;
 	}
 	
