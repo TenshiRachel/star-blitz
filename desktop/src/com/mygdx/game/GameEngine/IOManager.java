@@ -5,14 +5,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.mygdx.game.LifeCycleManager;
 import com.mygdx.game.GameLayer.Entities.Player;
+import com.mygdx.game.GameEngine.Entities.EntityManager;
 
 public class IOManager {
 	private static IOManager instance;
 	private LifeCycleManager game;
+	private EntityManager entitymanager = EntityManager.getInstance();
 	
 	public void setGame(LifeCycleManager game) {
 		this.game = game;
 	}
+
 	
 	private IOManager() {
 	}
@@ -43,7 +46,7 @@ public class IOManager {
 
 		if (Gdx.input.isKeyJustPressed(Keys.SPACE))
 		{
-			game.behaviourManager.spawnplayerbullet();
+			entitymanager.spawnPlayerBullet();
 		}
 	}
 }

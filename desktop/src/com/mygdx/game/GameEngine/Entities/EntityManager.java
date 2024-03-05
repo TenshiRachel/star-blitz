@@ -15,14 +15,14 @@ public class EntityManager {
 	private Player player;
 	private SpriteBatch batch;
 	private List<Droplet> DropletList;
-	private List<playerbullet> playerbulletlist;
+	private List<PlayerBullet> playerBulletList;
 	private Droplet droplet;
-	private playerbullet playerbullet;
+	private PlayerBullet playerbullet;
 	Random random = new Random();
 	
 	public EntityManager() {
 		DropletList = new ArrayList<>();
-		playerbulletlist = new ArrayList<>();
+		playerBulletList = new ArrayList<>();
 	}
 	
 	public static EntityManager getInstance() {
@@ -40,13 +40,13 @@ public class EntityManager {
 		return DropletList;
 	}
 
-	public List<playerbullet> getPlayerbulletList()
+	public List<PlayerBullet> getPlayerbulletList()
 	{
-		return playerbulletlist;
+		return playerBulletList;
 	}
 	
 	public void create() {
-		player = new Player(new Vector2(50, 50), 10, 64, 64,0);
+		player = new Player(new Vector2(50, 0), 10, 64, 64,0);
 	}
 	
 	public void renderPlayer(SpriteBatch batch) {
@@ -75,29 +75,31 @@ public class EntityManager {
 		}
 	}
 
-	// public playerbullet getplayerbullet(){
-	// 	return playerbullet;
-	// }
-
-	public void createPlayerbullet()
+	public void spawnPlayerBullet()
 	{
-			playerbullet = new playerbullet(new Vector2(player.getX(), player.getY()), 10, 64, 64);
-			playerbulletlist.add(playerbullet);
+			playerbullet = new PlayerBullet(new Vector2(player.getX(), player.getY()), 10, 64, 64);
+			playerBulletList.add(playerbullet);
 	}
 
-	public void renderplayerbullet(SpriteBatch batch) {
+	public void renderPlayerBullet(SpriteBatch batch) {
 		// Render player bullet
-		for (int i = 0; i < playerbulletlist.size(); i++)
+		for (int i = 0; i < playerBulletList.size(); i++)
 		{
-			playerbulletlist.get(i).render(batch);
+			playerBulletList.get(i).render(batch);
 		}
 	}
+
 	
-	public void updateplayerbullet(float deltaTime) {
+	
+	public void updatePlayerBullet(float deltaTime) {
 		// Update player bullet position
-		for (playerbullet playerbullet : playerbulletlist)
+		for (int i = 0; i < playerBulletList.size(); i++)
 		{
-			playerbullet.update(deltaTime);
+			playerBulletList.get(i).setY(playerBulletList.get(i).getY() + playerBulletList.get(i).getSpeed());
+			if(playerBulletList.get(i).getY() + playerBulletList.get(i).getHeight() > Gdx.graphics.getHeight())
+			{
+				playerBulletList.remove(i);
+			}
 		}
 	}
 

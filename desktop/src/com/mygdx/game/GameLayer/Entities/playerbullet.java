@@ -6,12 +6,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.GameEngine.BehaviourManager;
 import com.mygdx.game.GameEngine.Entities.CollidableEntity;
+import com.mygdx.game.GameEngine.Entities.EntityManager;
 
-public class playerbullet extends CollidableEntity{
+public class PlayerBullet extends CollidableEntity{
 
     private Texture bullet;
 
-    public playerbullet(Vector2 pos, float speed, float width, float height) {
+    public PlayerBullet(Vector2 pos, float speed, float width, float height) {
         
 		super(pos.x, pos.y, speed, width, height);
 		bullet = new Texture(Gdx.files.internal("entities/bullet.png"));
@@ -22,7 +23,7 @@ public class playerbullet extends CollidableEntity{
 	}
 
 	public void update(float deltaTime) {
-		BehaviourManager.getInstance().updateplayerbullet(this, deltaTime);
+		EntityManager.getInstance().updatePlayerBullet(deltaTime);
 	}
     
 }
