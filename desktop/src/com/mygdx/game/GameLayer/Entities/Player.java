@@ -13,7 +13,7 @@ public class Player extends CollidableEntity {
 	public Player(Vector2 pos, float speed, float width, float height, int score) {
 		super(pos.x, pos.y, speed, width, height);
 		this.score = score;
-		player = new Texture(Gdx.files.internal("entities/bucket.png"));
+		player = new Texture(Gdx.files.internal("entities/player.png"));
 	}
 	
 	public void render(SpriteBatch batch) {

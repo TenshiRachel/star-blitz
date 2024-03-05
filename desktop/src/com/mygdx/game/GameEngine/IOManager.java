@@ -40,5 +40,10 @@ public class IOManager {
 		if (Gdx.input.isKeyPressed(Keys.A)) {
 			game.behaviourManager.moveLeft(player);
 		}
+
+		if (Gdx.input.isKeyJustPressed(Keys.SPACE))
+		{
+			game.behaviourManager.spawnplayerbullet();
+		}
 	}
 }

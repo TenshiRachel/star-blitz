@@ -15,11 +15,14 @@ public class EntityManager {
 	private Player player;
 	private SpriteBatch batch;
 	private List<Droplet> DropletList;
+	private List<playerbullet> playerbulletlist;
 	private Droplet droplet;
+	private playerbullet playerbullet;
 	Random random = new Random();
 	
 	public EntityManager() {
 		DropletList = new ArrayList<>();
+		playerbulletlist = new ArrayList<>();
 	}
 	
 	public static EntityManager getInstance() {
@@ -35,6 +38,11 @@ public class EntityManager {
 	
 	public List<Droplet> getDropletList() {
 		return DropletList;
+	}
+
+	public List<playerbullet> getPlayerbulletList()
+	{
+		return playerbulletlist;
 	}
 	
 	public void create() {
@@ -64,6 +72,32 @@ public class EntityManager {
 		for (Droplet droplet : DropletList) {
 			// Call the update method on each droplet, passing in deltatime
 			droplet.update(deltaTime);
+		}
+	}
+
+	// public playerbullet getplayerbullet(){
+	// 	return playerbullet;
+	// }
+
+	public void createPlayerbullet()
+	{
+			playerbullet = new playerbullet(new Vector2(player.getX(), player.getY()), 10, 64, 64);
+			playerbulletlist.add(playerbullet);
+	}
+
+	public void renderplayerbullet(SpriteBatch batch) {
+		// Render player bullet
+		for (int i = 0; i < playerbulletlist.size(); i++)
+		{
+			playerbulletlist.get(i).render(batch);
+		}
+	}
+	
+	public void updateplayerbullet(float deltaTime) {
+		// Update player bullet position
+		for (playerbullet playerbullet : playerbulletlist)
+		{
+			playerbullet.update(deltaTime);
 		}
 	}
 

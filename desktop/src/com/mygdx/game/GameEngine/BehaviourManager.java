@@ -8,6 +8,7 @@ import com.mygdx.game.GameEngine.Entities.Entity;
 import com.mygdx.game.GameEngine.Entities.EntityManager;
 import com.mygdx.game.GameLayer.Entities.Droplet;
 import com.mygdx.game.GameLayer.Entities.Player;
+import com.mygdx.game.GameLayer.Entities.playerbullet;
 
 public class BehaviourManager {
 	private static BehaviourManager instance;
@@ -41,6 +42,21 @@ public class BehaviourManager {
 			if (droplet.getSpeed() < 10) {
 				droplet.setSpeed(Math.min(droplet.getSpeed()+ 2f , 10f));
 			}
+		}
+	}
+
+	public void spawnplayerbullet()
+	{
+		EntityManager.getInstance().createPlayerbullet();
+	}
+
+	public void updateplayerbullet(playerbullet playerbullet, float deltaTime)
+	{
+		playerbullet.setY(playerbullet.getY() + playerbullet.getSpeed());
+
+		if (playerbullet.getY() + playerbullet.getHeight() > Gdx.graphics.getHeight())
+		{
+			//playerbullet.dispose();
 		}
 	}
 	
