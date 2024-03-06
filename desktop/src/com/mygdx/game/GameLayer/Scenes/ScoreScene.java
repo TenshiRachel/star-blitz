@@ -7,6 +7,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.GameEngine.AudioSettings;
 import com.mygdx.game.GameEngine.Scene.SceneManager;
 
 public class ScoreScene extends SceneManager{
@@ -28,16 +30,25 @@ public class ScoreScene extends SceneManager{
 	private Label dateValueLabel;
 	private Label scoreValueLabel;
 	private int score;
+	private Music music;
+	private AudioSettings audioSettings = new AudioSettings();
 
 	public ScoreScene(Game game) {
 		super(game);
 		// TODO Auto-generated constructor stub
 		batch = new SpriteBatch();
 		stage = new Stage(new ScreenViewport());
+		music = Gdx.audio.newMusic(Gdx.files.internal("audio/score.wav"));
 	}
 	
 	@Override
 	public void show() {
+		if (audioSettings.isAudioEnabled()) {
+			music.setVolume(audioSettings.getAudioVolume());
+			music.setLooping(true);
+			music.play();
+		}
+
 		background = new Texture(Gdx.files.internal("background/space.png"));
 		stage.clear();
 		Gdx.input.setInputProcessor(stage);
@@ -114,6 +125,8 @@ public class ScoreScene extends SceneManager{
 	
 	@Override
 	public void hide() {
+		super.hide();
+		music.stop();
 	}
 	
 	@Override

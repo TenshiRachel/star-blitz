@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.GameEngine.Entities.CollidableEntity;
 import com.mygdx.game.GameEngine.Entities.Entity;
 import com.mygdx.game.GameEngine.Entities.EntityManager;
-import com.mygdx.game.GameLayer.Entities.Droplet;
 import com.mygdx.game.GameLayer.Entities.Player;
 import com.mygdx.game.GameLayer.Entities.PlayerBullet;
 import com.mygdx.game.GameLayer.Entities.Green;
@@ -29,23 +28,6 @@ public class BehaviourManager {
 	
 	public Vector2 getPos() {
 		return pos;
-	}
-	
-	public void updateDroplets(Droplet droplet, float deltaTime) {
-		// Decrease droplet y position based on its speed
-		droplet.setY(droplet.getY() - droplet.getSpeed());
-		
-		// Check if droplet has reached the bottom of the screen
-		if (droplet.getY() + droplet.getHeight() < 0) {
-			// Reset droplet y position to top of screen
-			droplet.setY(Gdx.graphics.getHeight());
-			// Set droplet x position at random, - droplet.getwidth is so that the droplets will not be cut off from the screen
-			droplet.setX(MathUtils.random(0, Gdx.graphics.getWidth() - droplet.getWidth()));
-			// If speed less than 10, + 2
-			if (droplet.getSpeed() < 10) {
-				droplet.setSpeed(Math.min(droplet.getSpeed()+ 2f , 10f));
-			}
-		}
 	}
 	
 	public void updateYellow(Yellow yellow, float deltaTime) {

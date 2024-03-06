@@ -14,14 +14,12 @@ public class EntityManager {
 	protected static EntityManager instance;
 	private Player player;
 	private SpriteBatch batch;
-	private List<Droplet> DropletList;
 	private List<PlayerBullet> playerBulletList;
 	private List<Green> greenList;
 	private List<Yellow> yellowList;
 	private List<Red> redList;
 	private List<Enemy> enemyList;
 	private List<YellowBullet> yellowBulletList;
-	private Droplet droplet;
 	private YellowBullet yellowBullet;
 	private PlayerBullet playerbullet;
 	private int emptyWordCount = 15;
@@ -30,7 +28,6 @@ public class EntityManager {
 	Random random = new Random();
 	
 	public EntityManager() {
-		DropletList = new ArrayList<>();
 		playerBulletList = new ArrayList<>();
 		enemyList = new ArrayList<>();
 		greenList = new ArrayList<>();
@@ -48,10 +45,6 @@ public class EntityManager {
 	
 	public Player getPlayer() {
 		return player;
-	}
-	
-	public List<Droplet> getDropletList() {
-		return DropletList;
 	}
 
 	public List<PlayerBullet> getPlayerbulletList()
@@ -77,28 +70,6 @@ public class EntityManager {
 	
 	public void renderPlayer(SpriteBatch batch) {
 		player.render(batch);
-	}
-	
-	public void spawnDroplets() {
-		for (int i = 0; DropletList.size() < MathUtils.random(1, 5); i++)
-		{
-			droplet = new Droplet(new Vector2(random.nextInt(Gdx.graphics.getWidth()), Gdx.graphics.getHeight()), 2 + random.nextInt(10), 64,64);
-			DropletList.add(droplet);
-		}
-	}
-
-	public void renderDroplets(SpriteBatch batch){
-		for (int i = 0; i  < DropletList.size(); i++){
-			DropletList.get(i).render(batch);
-		}
-	}
-
-	public void updateDroplets(float deltaTime) {
-		// Iterate over all droplets in the dropletlist
-		for (Droplet droplet : DropletList) {
-			// Call the update method on each droplet, passing in deltatime
-			droplet.update(deltaTime);
-		}
 	}
 
 	public void spawnPlayerBullet()

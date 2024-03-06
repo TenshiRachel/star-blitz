@@ -33,8 +33,10 @@ public class MainMenuScene extends SceneManager {
 	
 	@Override
 	public void show() {
-		music.setVolume(audioSettings.getAudioVolume());
-		music.play();
+		if (audioSettings.isAudioEnabled()) {
+			music.setVolume(audioSettings.getAudioVolume());
+			music.play();
+		}
 		
 		background = new Texture(Gdx.files.internal("background/space.png"));
 		
@@ -91,6 +93,7 @@ public class MainMenuScene extends SceneManager {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				game.setScreen(new ScoreScene(game));
+				music.stop();
 			}
 		});
 	}
