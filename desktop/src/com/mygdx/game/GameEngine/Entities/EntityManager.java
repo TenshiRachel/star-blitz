@@ -22,9 +22,6 @@ public class EntityManager {
 	private List<Enemy> enemyList;
 	private List<YellowBullet> yellowBulletList;
 	private Droplet droplet;
-	private Green green;
-	private Yellow yellow;
-	private Red red;
 	private YellowBullet yellowBullet;
 	private PlayerBullet playerbullet;
 	Random random = new Random();
@@ -32,6 +29,7 @@ public class EntityManager {
 	public EntityManager() {
 		DropletList = new ArrayList<>();
 		playerBulletList = new ArrayList<>();
+		enemyList = new ArrayList<>();
 		greenList = new ArrayList<>();
 		yellowList = new ArrayList<>();
 		redList = new ArrayList<>();
@@ -56,6 +54,10 @@ public class EntityManager {
 	public List<PlayerBullet> getPlayerbulletList()
 	{
 		return playerBulletList;
+	}
+	
+	public List<Enemy> getEnemyList(){
+		return enemyList;
 	}
 	
 	public List<Yellow> getYellowList(){
@@ -124,16 +126,60 @@ public class EntityManager {
 	}
 	
 	
-	// Green Enemy
-	
-	// Create 2 at Random stationary position for now
-	public void spawnGreen(){
-		for(int i = 0; greenList.size() < 2; i ++){
-			green = new Green(new Vector2(random.nextInt(Gdx.graphics.getWidth()), 300), 2, 60, 60);
-			greenList.add(green);
+	// Enemy
+	public void spawnEnemy() {
+		for (int i = 0; enemyList.size() < 30; i++) {
+			// 0 for Green, 1 for Yellow 2 for red
+			int enemyType1 = random.nextInt(3);
+			int enemyType2 = random.nextInt(3);
+			int enemyType3 = random.nextInt(3);
+	        Enemy enemy1 = null;
+	        Enemy enemy2 = null;
+	        Enemy enemy3 = null;
+	        // Row 3 Enemy
+	        if (enemyType1 == 0) {
+	            enemy1 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, 1200), 2 + random.nextInt(10), 64, 64);
+	            greenList.add((Green) enemy1);
+	        } else if(enemyType1 == 1){
+	            enemy1 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, 1200), 2 + random.nextInt(10), 64, 64);
+	            yellowList.add((Yellow) enemy1);
+	        } else {
+	        	enemy1 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, 1200), 2 + random.nextInt(10), 64, 64);
+	        	redList.add((Red) enemy1);
+	        }
+	        
+	        enemyList.add(enemy1);
+	        
+	        // Row 2 Enemy
+	        if (enemyType2 == 0) {
+	            enemy2 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, 1100), 2 + random.nextInt(10), 64, 64);
+	            greenList.add((Green) enemy2);
+	        } else if(enemyType2 == 1){
+	            enemy2 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, 1100), 2 + random.nextInt(10), 64, 64);
+	            yellowList.add((Yellow) enemy2);
+	        } else {
+	        	enemy2 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, 1100), 2 + random.nextInt(10), 64, 64);
+	        	redList.add((Red) enemy2);
+	        }
+	        enemyList.add(enemy2);
+	        
+	        // Row 1 Enemy
+	        if (enemyType3 == 0) {
+	            enemy3 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, 1000), 2 + random.nextInt(10), 64, 64);
+	            greenList.add((Green) enemy3);
+	        } else if(enemyType3 == 1){
+	            enemy3 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, 1000), 2 + random.nextInt(10), 64, 64);
+	            yellowList.add((Yellow) enemy3);
+	        } else {
+	        	enemy3 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, 1000), 2 + random.nextInt(10), 64, 64);
+	        	redList.add((Red) enemy3);
+	        }
+	        enemyList.add(enemy3);
 		}
 	}
 	
+	
+	// Green Enemy
 	public void renderGreen(SpriteBatch batch){
 		// Render Yellow Enemy
 		for (int i = 0; i < greenList.size(); i++){
@@ -148,15 +194,6 @@ public class EntityManager {
 	}
 	
 	// Yellow Enemy
-	
-	// Create 2 at Random stationary position for now
-	public void spawnYellow(){
-		for(int i = 0; yellowList.size() < 2; i ++){
-			yellow = new Yellow(new Vector2(random.nextInt(Gdx.graphics.getWidth()), 300), 2, 60, 60);
-			yellowList.add(yellow);
-		}
-	}
-	
 	public void renderYellow(SpriteBatch batch){
 		// Render Yellow Enemy
 		for (int i = 0; i < yellowList.size(); i++){
@@ -171,15 +208,6 @@ public class EntityManager {
 	}
 	
 	// Red Enemy
-	
-	// Create 2 at Random stationary position for now
-	public void spawnRed(){
-		for(int i = 0; redList.size() < 2; i ++){
-			red = new Red(new Vector2(random.nextInt(Gdx.graphics.getWidth()), 300), 2, 60, 60);
-			redList.add(red);
-		}
-	}
-	
 	public void renderRed(SpriteBatch batch){
 		// Render Red Enemy
 		for (int i = 0; i < redList.size(); i++){

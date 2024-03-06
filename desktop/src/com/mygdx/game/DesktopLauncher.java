@@ -9,6 +9,7 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("star blitz");
+		config.setWindowedMode(2000, 1300);
 		new Lwjgl3Application(new LifeCycleManager(), config);
 	}
 }

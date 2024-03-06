@@ -12,6 +12,6 @@ public class Enemy extends CollidableEntity{
 	public Enemy(Vector2 pos, float speed, float width, float height) {
 		super(pos.x, pos.y, speed, width, height);
 	}
-	
+
 
 }

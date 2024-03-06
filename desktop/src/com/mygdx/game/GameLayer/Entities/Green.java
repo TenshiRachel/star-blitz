@@ -7,11 +7,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.GameEngine.BehaviourManager;
 import com.mygdx.game.GameEngine.Entities.CollidableEntity;
 
-public class Green extends CollidableEntity{
+public class Green extends Enemy{
 	private Texture green;
 
 	public Green(Vector2 pos, float speed, float width, float height) {
-		super(pos.x, pos.y, speed, width, height);
+		super(pos, speed, width, height);
 		green = new Texture(Gdx.files.internal("entities/green.png"));
 	}
 	
