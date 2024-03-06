@@ -24,6 +24,9 @@ public class EntityManager {
 	private Droplet droplet;
 	private YellowBullet yellowBullet;
 	private PlayerBullet playerbullet;
+	private int emptyWordCount = 15;
+    private int spaceWordCount = 8;
+    private int nonSpaceWordCount = 7;
 	Random random = new Random();
 	
 	public EntityManager() {
@@ -124,6 +127,34 @@ public class EntityManager {
 			}
 		}
 	}
+
+	private String getEnemyWord() {
+		int randomNumber = random.nextInt(3);
+		while 
+		(
+			(randomNumber == 0 && emptyWordCount == 0) || (randomNumber == 1 && spaceWordCount == 0) || (randomNumber == 2 && nonSpaceWordCount == 0)  
+	    ) 
+			{
+				randomNumber = random.nextInt(3);
+			}
+		if (randomNumber == 1) 
+		{
+			spaceWordCount--;
+			return "SpaceWord";
+		} 
+		else if (randomNumber == 2) 
+		{
+			nonSpaceWordCount--;
+			return "nonSpaceWord";
+		} 
+		else 
+		{
+			emptyWordCount--;
+			return "EmptyWord";
+		}
+	}
+
+	
 	
 	
 	// Enemy
@@ -133,48 +164,57 @@ public class EntityManager {
 			int enemyType1 = random.nextInt(3);
 			int enemyType2 = random.nextInt(3);
 			int enemyType3 = random.nextInt(3);
+
 	        Enemy enemy1 = null;
 	        Enemy enemy2 = null;
 	        Enemy enemy3 = null;
+
 	        // Row 3 Enemy
 	        if (enemyType1 == 0) {
-	            enemy1 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i,Gdx.graphics.getHeight()-170 ), 2, 64, 64);
+	            enemy1 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i,Gdx.graphics.getHeight()-170 ), 2, 64, 64, getEnemyWord());
 	            greenList.add((Green) enemy1);
 	        } else if(enemyType1 == 1){
-	            enemy1 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64);
+	            enemy1 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getEnemyWord());
 	            yellowList.add((Yellow) enemy1);
 	        } else {
-	        	enemy1 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64);
+	        	enemy1 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getEnemyWord());
 	        	redList.add((Red) enemy1);
 	        }
-	        
+
 	        enemyList.add(enemy1);
 	        
 	        // Row 2 Enemy
 	        if (enemyType2 == 0) {
-	            enemy2 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64);
+	            enemy2 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getEnemyWord());
 	            greenList.add((Green) enemy2);
 	        } else if(enemyType2 == 1){
-	            enemy2 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64);
+	            enemy2 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getEnemyWord());
 	            yellowList.add((Yellow) enemy2);
 	        } else {
-	        	enemy2 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64);
+	        	enemy2 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getEnemyWord());
 	        	redList.add((Red) enemy2);
 	        }
 	        enemyList.add(enemy2);
 	        
 	        // Row 1 Enemy
 	        if (enemyType3 == 0) {
-	            enemy3 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64);
+	            enemy3 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getEnemyWord());
 	            greenList.add((Green) enemy3);
 	        } else if(enemyType3 == 1){
-	            enemy3 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64);
+	            enemy3 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getEnemyWord());
 	            yellowList.add((Yellow) enemy3);
 	        } else {
-	        	enemy3 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64);
+	        	enemy3 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getEnemyWord());
 	        	redList.add((Red) enemy3);
 	        }
 	        enemyList.add(enemy3);
+
+			
+		}
+
+		for (int i = 0; i < enemyList.size(); i++) {
+			Enemy enemy = enemyList.get(i);
+			System.out.println("Enemy " + (i + 1) + ": Enemy Word - " + enemy.getEnemyWord());
 		}
 	}
 	

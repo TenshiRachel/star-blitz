@@ -135,11 +135,7 @@ public class PreferencesScene extends SceneManager {
 		
 		batch.begin();
 		
-<<<<<<< Updated upstream
 		batch.draw(background, 0, 0 , 2000, 1300);
-=======
-		batch.draw(background, 0, 0 , Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
->>>>>>> Stashed changes
 		
 		batch.end();
 		
