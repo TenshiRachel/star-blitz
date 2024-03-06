@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.mygdx.game.GameEngine.Entities.EntityManager;
 import com.mygdx.game.GameEngine.BehaviourManager;
+import com.mygdx.game.GameLayer.Entities.Enemy;
 import com.mygdx.game.GameLayer.Entities.Player;
+import com.mygdx.game.GameLayer.Entities.PlayerBullet;
 
 public class CollisionManager {
 	private static CollisionManager instance;
