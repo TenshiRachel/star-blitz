@@ -9,6 +9,9 @@ import com.mygdx.game.GameEngine.Entities.EntityManager;
 import com.mygdx.game.GameLayer.Entities.Droplet;
 import com.mygdx.game.GameLayer.Entities.Player;
 import com.mygdx.game.GameLayer.Entities.PlayerBullet;
+import com.mygdx.game.GameLayer.Entities.Green;
+import com.mygdx.game.GameLayer.Entities.Yellow;
+import com.mygdx.game.GameLayer.Entities.Red;
 
 public class BehaviourManager {
 	private static BehaviourManager instance;
@@ -43,6 +46,21 @@ public class BehaviourManager {
 				droplet.setSpeed(Math.min(droplet.getSpeed()+ 2f , 10f));
 			}
 		}
+	}
+	
+	public void updateYellow(Yellow yellow, float deltaTime) {
+		// Increase x position till border
+		
+	}
+	
+	public void updateRed(Red red, float deltaTime) {
+		// Increase x position till border
+		
+	}
+	
+	public void updateGreen(Green green, float deltaTime) {
+		// Increase x position till border
+		
 	}
 	
 	public void moveUp(Entity entity1) {

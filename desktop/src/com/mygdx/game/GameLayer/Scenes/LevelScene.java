@@ -4,7 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -14,7 +13,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.mygdx.game.GameEngine.AudioSettings;
 import com.mygdx.game.GameEngine.BehaviourManager;
 import com.mygdx.game.GameEngine.IOManager;
 import com.mygdx.game.LifeCycleManager;
@@ -31,8 +29,6 @@ public class LevelScene extends SceneManager {
 	private BitmapFont font;
 	private GlyphLayout layout;
 	private int score;
-	private Music music;
-	private AudioSettings audioSettings = new AudioSettings();
 	
 	
 	public IOManager ioManager = IOManager.getInstance();
@@ -47,13 +43,10 @@ public class LevelScene extends SceneManager {
 		background = new Texture(Gdx.files.internal("background/space.png"));
 		font = new BitmapFont();
 		layout = new GlyphLayout();
-		music = Gdx.audio.newMusic(Gdx.files.internal("audio/level.wav"));
 	}
 	
 	@Override
 	public void show() {
-		music.setVolume(audioSettings.getAudioVolume());
-		music.play();
 		// On create
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			// Return to menu upon pressing Escape button 
@@ -78,10 +71,12 @@ public class LevelScene extends SceneManager {
 		
 		// Spawn entities (Create objects)
 		entityManager.spawnDroplets();
+		entityManager.spawnYellow();
 		
 		// Update entities
 	    entityManager.updateDroplets(deltaTime);
 		entityManager.updatePlayerBullet(deltaTime);
+		entityManager.updateYellow(deltaTime);
 	    
 	    // Show score on top-right hand corner of screen 
 	    score = entityManager.getPlayer().getScore();
@@ -97,6 +92,7 @@ public class LevelScene extends SceneManager {
 		entityManager.renderPlayer(batch);
 		entityManager.renderDroplets(batch);
 		entityManager.renderPlayerBullet(batch);
+		entityManager.renderYellow(batch);
 		
 		// Let IO Manager handle inputs
 		ioManager.handleInput(entityManager.getPlayer());
@@ -124,7 +120,6 @@ public class LevelScene extends SceneManager {
 	@Override
 	public void hide() {
 		super.hide();
-		music.stop();
 	}
 	
 	@Override

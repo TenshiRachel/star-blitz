@@ -16,13 +16,26 @@ public class EntityManager {
 	private SpriteBatch batch;
 	private List<Droplet> DropletList;
 	private List<PlayerBullet> playerBulletList;
+	private List<Green> greenList;
+	private List<Yellow> yellowList;
+	private List<Red> redList;
+	private List<Enemy> enemyList;
+	private List<YellowBullet> yellowBulletList;
 	private Droplet droplet;
+	private Green green;
+	private Yellow yellow;
+	private Red red;
+	private YellowBullet yellowBullet;
 	private PlayerBullet playerbullet;
 	Random random = new Random();
 	
 	public EntityManager() {
 		DropletList = new ArrayList<>();
 		playerBulletList = new ArrayList<>();
+		greenList = new ArrayList<>();
+		yellowList = new ArrayList<>();
+		redList = new ArrayList<>();
+		yellowBulletList = new ArrayList<>();
 	}
 	
 	public static EntityManager getInstance() {
@@ -43,6 +56,14 @@ public class EntityManager {
 	public List<PlayerBullet> getPlayerbulletList()
 	{
 		return playerBulletList;
+	}
+	
+	public List<Yellow> getYellowList(){
+		return yellowList;
+	}
+	
+	public List<YellowBullet> getyellowBulletList(){
+		return yellowBulletList;
 	}
 	
 	public void create() {
@@ -88,7 +109,6 @@ public class EntityManager {
 			playerBulletList.get(i).render(batch);
 		}
 	}
-
 	
 	
 	public void updatePlayerBullet(float deltaTime) {
@@ -102,5 +122,81 @@ public class EntityManager {
 			}
 		}
 	}
+	
+	
+	// Green Enemy
+	
+	// Create 2 at Random stationary position for now
+	public void spawnGreen(){
+		for(int i = 0; greenList.size() < 2; i ++){
+			green = new Green(new Vector2(random.nextInt(Gdx.graphics.getWidth()), 300), 2, 60, 60);
+			greenList.add(green);
+		}
+	}
+	
+	public void renderGreen(SpriteBatch batch){
+		// Render Yellow Enemy
+		for (int i = 0; i < greenList.size(); i++){
+			greenList.get(i).render(batch);
+		}
+	}
+	
+	public void updateGreen(float deltaTime) {
+		for (Green green : greenList) {
+			green.update(deltaTime);
+		}
+	}
+	
+	// Yellow Enemy
+	
+	// Create 2 at Random stationary position for now
+	public void spawnYellow(){
+		for(int i = 0; yellowList.size() < 2; i ++){
+			yellow = new Yellow(new Vector2(random.nextInt(Gdx.graphics.getWidth()), 300), 2, 60, 60);
+			yellowList.add(yellow);
+		}
+	}
+	
+	public void renderYellow(SpriteBatch batch){
+		// Render Yellow Enemy
+		for (int i = 0; i < yellowList.size(); i++){
+			yellowList.get(i).render(batch);
+		}
+	}
+	
+	public void updateYellow(float deltaTime) {
+		for (Yellow yellow : yellowList) {
+			yellow.update(deltaTime);
+		}
+	}
+	
+	// Red Enemy
+	
+	// Create 2 at Random stationary position for now
+	public void spawnRed(){
+		for(int i = 0; redList.size() < 2; i ++){
+			red = new Red(new Vector2(random.nextInt(Gdx.graphics.getWidth()), 300), 2, 60, 60);
+			redList.add(red);
+		}
+	}
+	
+	public void renderRed(SpriteBatch batch){
+		// Render Red Enemy
+		for (int i = 0; i < redList.size(); i++){
+			redList.get(i).render(batch);
+		}
+	}
+	
+	public void updateRed(float deltaTime) {
+		for (Yellow yellow : yellowList) {
+			yellow.update(deltaTime);
+		}
+	}
+	
+	public void updateYellowBullet(float deltaTime) {
+		
+	}
+
+	
 
 }
