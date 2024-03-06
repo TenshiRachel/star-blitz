@@ -135,7 +135,7 @@ public class PreferencesScene extends SceneManager {
 		
 		batch.begin();
 		
-		batch.draw(background, 0, 0 , 800, 600);
+		batch.draw(background, 0, 0 , 2000, 1300);
 		
 		batch.end();
 		

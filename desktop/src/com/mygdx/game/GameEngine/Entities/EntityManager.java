@@ -138,13 +138,13 @@ public class EntityManager {
 	        Enemy enemy3 = null;
 	        // Row 3 Enemy
 	        if (enemyType1 == 0) {
-	            enemy1 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i,Gdx.graphics.getHeight()-50 ), 2, 64, 64);
+	            enemy1 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i,Gdx.graphics.getHeight()-170 ), 2, 64, 64);
 	            greenList.add((Green) enemy1);
 	        } else if(enemyType1 == 1){
-	            enemy1 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-50), 2, 64, 64);
+	            enemy1 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64);
 	            yellowList.add((Yellow) enemy1);
 	        } else {
-	        	enemy1 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-50), 2, 64, 64);
+	        	enemy1 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64);
 	        	redList.add((Red) enemy1);
 	        }
 	        
@@ -152,26 +152,26 @@ public class EntityManager {
 	        
 	        // Row 2 Enemy
 	        if (enemyType2 == 0) {
-	            enemy2 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-150), 2, 64, 64);
+	            enemy2 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64);
 	            greenList.add((Green) enemy2);
 	        } else if(enemyType2 == 1){
-	            enemy2 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-150), 2, 64, 64);
+	            enemy2 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64);
 	            yellowList.add((Yellow) enemy2);
 	        } else {
-	        	enemy2 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-150), 2, 64, 64);
+	        	enemy2 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64);
 	        	redList.add((Red) enemy2);
 	        }
 	        enemyList.add(enemy2);
 	        
 	        // Row 1 Enemy
 	        if (enemyType3 == 0) {
-	            enemy3 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-250), 2, 64, 64);
+	            enemy3 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64);
 	            greenList.add((Green) enemy3);
 	        } else if(enemyType3 == 1){
-	            enemy3 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-250), 2, 64, 64);
+	            enemy3 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64);
 	            yellowList.add((Yellow) enemy3);
 	        } else {
-	        	enemy3 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-250), 2, 64, 64);
+	        	enemy3 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64);
 	        	redList.add((Red) enemy3);
 	        }
 	        enemyList.add(enemy3);
