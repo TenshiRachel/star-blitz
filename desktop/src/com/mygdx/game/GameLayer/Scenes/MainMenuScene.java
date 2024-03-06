@@ -53,12 +53,16 @@ public class MainMenuScene extends SceneManager {
 		TextButton startGame = new TextButton("Start", skin);
 		TextButton exit = new TextButton("Quit", skin);
 		TextButton options = new TextButton("Options", skin);
+		TextButton records = new TextButton("Records", skin);
 		
 		// Add buttons to table
 		table.add(startGame).fillX().uniformX();
 		table.add(exit).fillX().uniformX();
         table.row().pad(5, 0, 5, 0);
         table.add(options).fillX().uniformX();
+        table.add(records).fillX().uniformX();
+        table.row().pad(5, 0, 5, 0);
+        
 		
 		// Button event listeners
 		startGame.addListener(new ChangeListener() {
@@ -80,6 +84,13 @@ public class MainMenuScene extends SceneManager {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				game.setScreen(new PreferencesScene(game));
+			}
+		});
+		
+		records.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				game.setScreen(new ScoreScene(game));
 			}
 		});
 	}
