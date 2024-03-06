@@ -2,6 +2,7 @@ package com.mygdx.game.GameLayer.Scenes;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.GameEngine.AudioSettings;
 import com.mygdx.game.GameEngine.Scene.SceneManager;
 
 public class MainMenuScene extends SceneManager {
@@ -19,15 +21,21 @@ public class MainMenuScene extends SceneManager {
 	private Skin skin;
 	private SpriteBatch batch;
 	private Texture background;
+	private Music music;
+	private AudioSettings audioSettings = new AudioSettings();
 	
 	public MainMenuScene(Game game) {
 		super(game);
 		stage = new Stage(new ScreenViewport());
 		batch = new SpriteBatch();
+		music = Gdx.audio.newMusic(Gdx.files.internal("audio/menu.wav"));
 	}
 	
 	@Override
 	public void show() {
+		music.setVolume(audioSettings.getAudioVolume());
+		music.play();
+		
 		background = new Texture(Gdx.files.internal("background/space.png"));
 		
 		skin = new Skin(Gdx.files.internal("skin/star-soldier-ui.json"));
@@ -44,16 +52,20 @@ public class MainMenuScene extends SceneManager {
 		// Create menu buttons
 		TextButton startGame = new TextButton("Start", skin);
 		TextButton exit = new TextButton("Quit", skin);
+		TextButton options = new TextButton("Options", skin);
 		
 		// Add buttons to table
 		table.add(startGame).fillX().uniformX();
 		table.add(exit).fillX().uniformX();
+        table.row().pad(5, 0, 5, 0);
+        table.add(options).fillX().uniformX();
 		
 		// Button event listeners
 		startGame.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				game.setScreen(new LevelScene(game));
+				music.stop();
 			}
 		});
 		
@@ -61,6 +73,13 @@ public class MainMenuScene extends SceneManager {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Gdx.app.exit();
+			}
+		});
+		
+		options.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				game.setScreen(new PreferencesScene(game));
 			}
 		});
 	}
@@ -101,5 +120,6 @@ public class MainMenuScene extends SceneManager {
 	@Override
 	public void dispose() {
 		stage.dispose();
+		music.dispose();
 	}
 }

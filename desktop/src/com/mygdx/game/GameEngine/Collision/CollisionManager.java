@@ -35,6 +35,15 @@ public class CollisionManager {
 		}
 	}
 	
+	public void collideAlien() {
+		// get alien and bullet lists, loop through aliens and check if bullet collide
+		// if collide, remove bullet and alien, play alien_hit sound
+	}
+	
+	public void collidePlayer(Player player) {
+		
+	}
+	
 	public void collideBorder(Player player) {
 		if (player.detectBorder(player, 0, 0, 0, 0)) {
 			BehaviourManager.handleBorder(player, 0, 0, 0, 0);
