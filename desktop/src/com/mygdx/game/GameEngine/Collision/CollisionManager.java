@@ -5,7 +5,9 @@ import java.util.List;
 import com.mygdx.game.GameEngine.Entities.EntityManager;
 import com.mygdx.game.GameEngine.BehaviourManager;
 import com.mygdx.game.GameLayer.Entities.Player;
+import com.mygdx.game.GameLayer.Entities.PlayerBullet;
 import com.mygdx.game.GameLayer.Entities.Droplet;
+import com.mygdx.game.GameLayer.Entities.Enemy;
 
 public class CollisionManager {
 	private static CollisionManager instance;
@@ -21,23 +23,42 @@ public class CollisionManager {
 		return instance;
 	}
 	
-	public void collideDroplet(Player player) {
-		List<Droplet> DropletList = entityManager.getDropletList();
-		// Loop through droplets and check if they collide with player
-		for (int i = 0; i < DropletList.size(); i++) {
-			Droplet droplet = DropletList.get(i);
-			if (player.isCollide(droplet)) {
-				// Do stuff if collide
-				DropletList.remove(i);
-				player.setScore(player.getScore() + 1);
-				System.err.println(player.getScore());
-			}
-		}
-	}
+//	public void collideDroplet(Player player) {
+//		List<Droplet> DropletList = entityManager.getDropletList();
+//		// Loop through droplets and check if they collide with player
+//		for (int i = 0; i < DropletList.size(); i++) {
+//			Droplet droplet = DropletList.get(i);
+//			if (player.isCollide(droplet)) {
+//				// Do stuff if collide
+//				DropletList.remove(i);
+//				player.setScore(player.getScore() + 1);
+//				System.err.println(player.getScore());
+//			}
+//		}
+//	}
 	
-	public void collideAlien() {
+	public void collideAlien(Player player) {
 		// get alien and bullet lists, loop through aliens and check if bullet collide
 		// if collide, remove bullet and alien, play alien_hit sound
+		List<Enemy> EnemyList = entityManager.getEnemyList();
+		List<PlayerBullet> PlayerBulletList = entityManager.getPlayerbulletList();
+		for (int i = 0; i < EnemyList.size(); i++) {
+			Enemy enemy = EnemyList.get(i);
+			for (int j = 0; j < PlayerBulletList.size(); j++) {
+				PlayerBullet playerBullet = PlayerBulletList.get(j);
+				if (enemy.isCollide(playerBullet)) {
+					// Do stuff if collide
+//					EnemyList.remove(i);
+//					PlayerBulletList.remove(j);
+					System.err.println("hit");
+					player.setScore(player.getScore() + 1);
+					System.err.println(player.getScore());
+//					i--;
+					break;
+				}
+			}
+			
+		}
 	}
 	
 	public void collidePlayer(Player player) {
