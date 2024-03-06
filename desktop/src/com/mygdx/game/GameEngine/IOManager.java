@@ -49,9 +49,11 @@ public class IOManager {
 
 		if (Gdx.input.isKeyJustPressed(Keys.SPACE))
 		{
-			music = Gdx.audio.newMusic(Gdx.files.internal("audio/player_shoot.wav"));
-			music.setVolume(audioSettings.getSoundVolume());
-			music.play();
+			if (audioSettings.isSoundEnabled()) {
+				music = Gdx.audio.newMusic(Gdx.files.internal("audio/player_shoot.wav"));
+				music.setVolume(audioSettings.getSoundVolume());
+				music.play();
+			}
 			entitymanager.spawnPlayerBullet();
 		}
 	}

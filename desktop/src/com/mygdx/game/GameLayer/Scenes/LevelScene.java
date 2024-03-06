@@ -52,8 +52,11 @@ public class LevelScene extends SceneManager {
 	
 	@Override
 	public void show() {
-		music.setVolume(audioSettings.getAudioVolume());
-		music.play();
+		if (audioSettings.isAudioEnabled()) {
+			music.setVolume(audioSettings.getAudioVolume());
+			music.setLooping(true);
+			music.play();
+		}
 		// On create
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			// Return to menu upon pressing Escape button 
@@ -107,8 +110,7 @@ public class LevelScene extends SceneManager {
 		
 		// Collisions
 		collisionManager.collideBorder(entityManager.getPlayer(), -30, 30, 30, -30);
-		
-		
+
 		batch.end();
 	}
 	
