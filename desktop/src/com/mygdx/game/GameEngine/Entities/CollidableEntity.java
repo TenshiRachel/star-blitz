@@ -19,12 +19,12 @@ public abstract class CollidableEntity extends Entity implements iCollidable {
 		// Get border of both entities
 		float obj1_left = this.getX() - (this.getWidth() / 2);
 		float obj2_left = object.getX() - (object.getWidth() / 2);
-		float obj1_right = this.getX() + (this.getX() / 2);
-		float obj2_right = object.getX() + (object.getX() / 2);
-		float obj1_top = this.getY() + (this.getY() / 2);
-		float obj2_top = object.getY() + (object.getY() / 2);
-		float obj1_bottom = this.getY() - (this.getY() / 2);
-		float obj2_bottom = object.getY() - (object.getY() / 2);
+		float obj1_right = this.getX() + (this.getWidth() / 2);
+		float obj2_right = object.getX() + (object.getWidth() / 2);
+		float obj1_top = this.getY() + (this.getHeight() / 2);
+		float obj2_top = object.getY() + (object.getHeight() / 2);
+		float obj1_bottom = this.getY() - (this.getHeight() / 2);
+		float obj2_bottom = object.getY() - (object.getHeight() / 2);
 		
 		// If collided, set true
 		if (obj1_left < obj2_right) {

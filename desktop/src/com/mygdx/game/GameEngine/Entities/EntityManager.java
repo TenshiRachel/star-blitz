@@ -185,7 +185,7 @@ public class EntityManager {
 
 		for (int i = 0; i < enemyList.size(); i++) {
 			Enemy enemy = enemyList.get(i);
-			System.out.println("Enemy " + (i + 1) + ": Enemy Word - " + enemy.getEnemyWord());
+			// System.out.println("Enemy " + (i + 1) + ": Enemy Word - " + enemy.getEnemyWord());
 		}
 	}
 	
