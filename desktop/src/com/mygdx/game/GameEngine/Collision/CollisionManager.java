@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.mygdx.game.GameEngine.AudioSettings;
 import com.mygdx.game.GameEngine.BehaviourManager;
+import com.mygdx.game.GameLayer.WordFactory;
 import com.mygdx.game.GameLayer.Entities.Enemy;
 import com.mygdx.game.GameLayer.Entities.Player;
 import com.mygdx.game.GameLayer.Entities.PlayerBullet;
@@ -18,6 +19,7 @@ public class CollisionManager {
 	private EntityManager entityManager = EntityManager.getInstance();
 	private Music music;
 	private AudioSettings audioSettings = new AudioSettings();
+	private WordFactory wordFactory = new WordFactory();
 	
 	private CollisionManager() {
 	}
@@ -35,21 +37,35 @@ public class CollisionManager {
 		List<Enemy> EnemyList = entityManager.getEnemyList();
 		List<PlayerBullet> PlayerBulletList = entityManager.getPlayerbulletList();
 		
-	    for (int i = 0; i < EnemyList.size(); i++) {
-	    	Enemy alien = EnemyList.get(i);
+		
+	    for (Iterator<Enemy> enemyIterator = EnemyList.iterator(); enemyIterator.hasNext();) {
+	    	Enemy alien = enemyIterator.next();
 	    	for (int j = 0; j < PlayerBulletList.size(); j++) {
 	    		PlayerBullet bullet = PlayerBulletList.get(j);
 	    		
-	    		if (bullet.isCollide(alien)) {
-//	    			EnemyList.remove(i);
-//	    			PlayerBulletList.remove(j);
+	    		if (alien.isCollide(bullet)) {
+	    			PlayerBulletList.remove(j);
 	    			if (audioSettings.isSoundEnabled()) {
 	    				music = Gdx.audio.newMusic(Gdx.files.internal("audio/alien_hit.wav"));
 	    				music.setVolume(audioSettings.getSoundVolume());
 	    				music.play();
 	    			}
 	    			
-	    			player.setScore(player.getScore() + 1);
+	    			if (alien.getEnemyType() == "empty") {
+	    				player.setScore(player.getScore() + 10);
+	    			}
+	    			
+	    			if (alien.getEnemyType() == "space") {
+	    				player.setScore(player.getScore() + 20);
+	    			}
+	    			
+	    			if (alien.getEnemyType() == "nonSpace") {
+	    				player.setScore(player.getScore() - 10);
+	    				if (player.getScore() < 0) {
+	    					player.setScore(0);
+	    				}
+	    			}
+	    			// enemyIterator.remove();
 	    			
 	    			break;
 	    		}
@@ -58,7 +74,7 @@ public class CollisionManager {
 	}
 	
 	public void collidePlayer(Player player) {
-		
+		// get enemy bullet, loop through and check if bullet collide with player
 	}
 	
 	public void collideBorder(Player player) {

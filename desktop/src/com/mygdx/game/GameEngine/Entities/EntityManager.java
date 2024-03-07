@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.GameLayer.WordFactory;
 import com.mygdx.game.GameLayer.Entities.*;
 
 public class EntityManager {
@@ -22,9 +23,13 @@ public class EntityManager {
 	private List<YellowBullet> yellowBulletList;
 	private YellowBullet yellowBullet;
 	private PlayerBullet playerbullet;
+	
 	private int emptyWordCount = 15;
     private int spaceWordCount = 8;
     private int nonSpaceWordCount = 7;
+    
+    public WordFactory wordFactory = new WordFactory();
+    
 	Random random = new Random();
 	
 	public EntityManager() {
@@ -99,7 +104,7 @@ public class EntityManager {
 		}
 	}
 
-	private String getEnemyWord() {
+	private String getRandomEnemyType() {
 		int randomNumber = random.nextInt(3);
 		while 
 		(
@@ -111,22 +116,19 @@ public class EntityManager {
 		if (randomNumber == 1) 
 		{
 			spaceWordCount--;
-			return "SpaceWord";
+			return "space";
 		} 
 		else if (randomNumber == 2) 
 		{
 			nonSpaceWordCount--;
-			return "nonSpaceWord";
+			return "nonSpace";
 		} 
 		else 
 		{
 			emptyWordCount--;
-			return "EmptyWord";
+			return "empty";
 		}
 	}
-
-	
-	
 	
 	// Enemy
 	public void spawnEnemy() {
@@ -142,42 +144,47 @@ public class EntityManager {
 
 	        // Row 3 Enemy
 	        if (enemyType1 == 0) {
-	            enemy1 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i,Gdx.graphics.getHeight()-170 ), 2, 64, 64, getEnemyWord());
+	            enemy1 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i,Gdx.graphics.getHeight()-170 ), 2, 64, 64, getRandomEnemyType());
 	            greenList.add((Green) enemy1);
 	        } else if(enemyType1 == 1){
-	            enemy1 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getEnemyWord());
+	            enemy1 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getRandomEnemyType());
 	            yellowList.add((Yellow) enemy1);
 	        } else {
-	        	enemy1 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getEnemyWord());
+	        	enemy1 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getRandomEnemyType());
 	        	redList.add((Red) enemy1);
 	        }
-
+	        
+	        enemy1.setEnemyWord(wordFactory.getRandomWord(enemy1.getEnemyType()));
 	        enemyList.add(enemy1);
 	        
 	        // Row 2 Enemy
 	        if (enemyType2 == 0) {
-	            enemy2 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getEnemyWord());
+	            enemy2 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
 	            greenList.add((Green) enemy2);
 	        } else if(enemyType2 == 1){
-	            enemy2 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getEnemyWord());
+	            enemy2 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
 	            yellowList.add((Yellow) enemy2);
 	        } else {
-	        	enemy2 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getEnemyWord());
+	        	enemy2 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
 	        	redList.add((Red) enemy2);
 	        }
+	        
+	        enemy2.setEnemyWord(wordFactory.getRandomWord(enemy2.getEnemyType()));
 	        enemyList.add(enemy2);
 	        
 	        // Row 1 Enemy
 	        if (enemyType3 == 0) {
-	            enemy3 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getEnemyWord());
+	            enemy3 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType());
 	            greenList.add((Green) enemy3);
 	        } else if(enemyType3 == 1){
-	            enemy3 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getEnemyWord());
+	            enemy3 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType());
 	            yellowList.add((Yellow) enemy3);
 	        } else {
-	        	enemy3 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getEnemyWord());
+	        	enemy3 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType());
 	        	redList.add((Red) enemy3);
 	        }
+	        
+	        enemy3.setEnemyWord(wordFactory.getRandomWord(enemy3.getEnemyType()));
 	        enemyList.add(enemy3);
 
 			
