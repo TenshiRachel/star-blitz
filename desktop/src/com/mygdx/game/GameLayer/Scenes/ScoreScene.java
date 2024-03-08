@@ -18,7 +18,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.GameEngine.AudioSettings;
+import com.mygdx.game.GameEngine.Entities.EntityManager;
 import com.mygdx.game.GameEngine.Scene.SceneManager;
+import com.mygdx.game.GameLayer.Entities.Player;
 
 public class ScoreScene extends SceneManager{
 	private Stage stage;
@@ -32,6 +34,8 @@ public class ScoreScene extends SceneManager{
 	private int score;
 	private Music music;
 	private AudioSettings audioSettings = new AudioSettings();
+	
+	public EntityManager entityManager = EntityManager.getInstance();
 
 	public ScoreScene(Game game) {
 		super(game);
@@ -66,6 +70,7 @@ public class ScoreScene extends SceneManager{
 		SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy");
 		String dateString = formatter.format(new Date(TimeUtils.millis()));
 		dateValueLabel = new Label(dateString, skin);
+		score = entityManager.getPlayer().getScore();
         scoreValueLabel = new Label(String.valueOf(score), skin);
 		
 		
@@ -99,8 +104,6 @@ public class ScoreScene extends SceneManager{
 		batch.begin();
 		
 		batch.draw(background, 0, 0 , Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		
-		// Show Date and score
 		
 		batch.end();
 		
