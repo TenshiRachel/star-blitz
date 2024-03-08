@@ -65,7 +65,7 @@ public class PauseScene extends SceneManager {
         settingsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-            	game.setScreen(new PreferencesScene(game));
+            	game.setScreen(new SettingsScene(game));
             }
         });
         
