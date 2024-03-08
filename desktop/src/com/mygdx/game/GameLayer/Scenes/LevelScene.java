@@ -81,12 +81,15 @@ public class LevelScene extends SceneManager {
 		
 		// Spawn entities (Create objects)
 		entityManager.spawnEnemy();
+		entityManager.spawnBullet();
 		
 		// Update entities
 		entityManager.updatePlayerBullet(deltaTime);
 		entityManager.updateGreen(deltaTime);
 		entityManager.updateYellow(deltaTime);
 		entityManager.updateRed(deltaTime);
+		entityManager.updateYellowBullet(deltaTime);
+		
 	    
 	    // Show score on top-right hand corner of screen 
 	    score = entityManager.getPlayer().getScore();
@@ -104,6 +107,7 @@ public class LevelScene extends SceneManager {
 		entityManager.renderGreen(batch);
 		entityManager.renderYellow(batch);
 		entityManager.renderRed(batch);
+		entityManager.renderYellowBullet(batch);
 		
 		// Let IO Manager handle inputs
 		ioManager.handleInput(entityManager.getPlayer());

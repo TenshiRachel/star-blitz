@@ -32,4 +32,14 @@ public class Enemy extends CollidableEntity{
     public void setEnemyType(String enemyType) {
     	this.enemyType = enemyType;
     }
+
+	public void render(SpriteBatch batch) {
+		
+	}
+	
+	public void update(float deltaTime) {
+		
+	}
+    
+    
 }

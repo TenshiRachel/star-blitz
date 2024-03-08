@@ -8,12 +8,11 @@ import com.mygdx.game.GameEngine.BehaviourManager;
 import com.mygdx.game.GameEngine.Entities.CollidableEntity;
 import com.mygdx.game.GameEngine.Entities.EntityManager;
 
-public class YellowBullet extends CollidableEntity{
-
+public class YellowBullet extends Bullet{
     private Texture bullet;
 
     public YellowBullet(Vector2 pos, float speed, float width, float height) {	
-		super(pos.x, pos.y, speed, width, height);
+		super(pos, speed, width, height);
 		bullet = new Texture(Gdx.files.internal("entities/droplet.png"));
 	}
 

@@ -16,13 +16,10 @@ public class EntityManager {
 	private Player player;
 	private SpriteBatch batch;
 	private List<PlayerBullet> playerBulletList;
-	private List<Green> greenList;
-	private List<Yellow> yellowList;
-	private List<Red> redList;
 	private List<Enemy> enemyList;
-	private List<YellowBullet> yellowBulletList;
-	private YellowBullet yellowBullet;
+	private List<Bullet> bulletList;
 	private PlayerBullet playerbullet;
+	private Bullet bullet;
 	
 	private int emptyWordCount = 15;
     private int spaceWordCount = 8;
@@ -35,10 +32,7 @@ public class EntityManager {
 	public EntityManager() {
 		playerBulletList = new ArrayList<>();
 		enemyList = new ArrayList<>();
-		greenList = new ArrayList<>();
-		yellowList = new ArrayList<>();
-		redList = new ArrayList<>();
-		yellowBulletList = new ArrayList<>();
+		bulletList = new ArrayList<>();
 	}
 	
 	public static EntityManager getInstance() {
@@ -61,12 +55,8 @@ public class EntityManager {
 		return enemyList;
 	}
 	
-	public List<Yellow> getYellowList(){
-		return yellowList;
-	}
-	
-	public List<YellowBullet> getyellowBulletList(){
-		return yellowBulletList;
+	public List<Bullet> getBulletList(){
+		return bulletList;
 	}
 	
 	public void create() {
@@ -145,47 +135,46 @@ public class EntityManager {
 	        // Row 3 Enemy
 	        if (enemyType1 == 0) {
 	            enemy1 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i,Gdx.graphics.getHeight()-170 ), 2, 64, 64, getRandomEnemyType());
-	            greenList.add((Green) enemy1);
+	            enemyList.add((Green) enemy1);
 	        } else if(enemyType1 == 1){
 	            enemy1 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getRandomEnemyType());
-	            yellowList.add((Yellow) enemy1);
+	            enemyList.add((Yellow) enemy1);
 	        } else {
 	        	enemy1 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getRandomEnemyType());
-	        	redList.add((Red) enemy1);
+	        	enemyList.add((Red) enemy1);
 	        }
 	        
 	        enemy1.setEnemyWord(wordFactory.getRandomWord(enemy1.getEnemyType()));
-	        enemyList.add(enemy1);
 	        
 	        // Row 2 Enemy
 	        if (enemyType2 == 0) {
 	            enemy2 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
-	            greenList.add((Green) enemy2);
+	            enemyList.add((Green) enemy2);
 	        } else if(enemyType2 == 1){
 	            enemy2 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
-	            yellowList.add((Yellow) enemy2);
+	            enemyList.add((Yellow) enemy2);
 	        } else {
 	        	enemy2 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
-	        	redList.add((Red) enemy2);
+	        	enemyList.add((Red) enemy2);
 	        }
 	        
 	        enemy2.setEnemyWord(wordFactory.getRandomWord(enemy2.getEnemyType()));
-	        enemyList.add(enemy2);
+
 	        
 	        // Row 1 Enemy
 	        if (enemyType3 == 0) {
 	            enemy3 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType());
-	            greenList.add((Green) enemy3);
+	            enemyList.add((Green) enemy3);
 	        } else if(enemyType3 == 1){
 	            enemy3 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType());
-	            yellowList.add((Yellow) enemy3);
+	            enemyList.add((Yellow) enemy3);
 	        } else {
 	        	enemy3 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType());
-	        	redList.add((Red) enemy3);
+	        	enemyList.add((Red) enemy3);
 	        }
 	        
 	        enemy3.setEnemyWord(wordFactory.getRandomWord(enemy3.getEnemyType()));
-	        enemyList.add(enemy3);
+
 
 			
 		}
@@ -197,52 +186,87 @@ public class EntityManager {
 	}
 	
 	
-	// Green Enemy
-	public void renderGreen(SpriteBatch batch){
-		// Render Yellow Enemy
-		for (int i = 0; i < greenList.size(); i++){
-			greenList.get(i).render(batch);
-		}
+	// Enemies
+	public void renderGreen(SpriteBatch batch) {
+	    for (Enemy enemy : enemyList) {
+	        if (enemy instanceof Green) {
+	            enemy.render(batch);
+	        }
+	    }
 	}
 	
 	public void updateGreen(float deltaTime) {
-		for (Green green : greenList) {
-			green.update(deltaTime);
-		}
+	    for (Enemy enemy : enemyList) {
+	        if (enemy instanceof Green) {
+	            enemy.update(deltaTime);
+	        }
+	    }
 	}
 	
-	// Yellow Enemy
-	public void renderYellow(SpriteBatch batch){
-		// Render Yellow Enemy
-		for (int i = 0; i < yellowList.size(); i++){
-			yellowList.get(i).render(batch);
-		}
+
+	public void renderYellow(SpriteBatch batch) {
+	    for (Enemy enemy : enemyList) {
+	        if (enemy instanceof Yellow) {
+	            enemy.render(batch);
+	        }
+	    }
 	}
 	
 	public void updateYellow(float deltaTime) {
-		for (Yellow yellow : yellowList) {
-			yellow.update(deltaTime);
-		}
+	    for (Enemy enemy : enemyList) {
+	        if (enemy instanceof Yellow) {
+	            enemy.update(deltaTime);
+	        }
+	    }
 	}
 	
-	// Red Enemy
-	public void renderRed(SpriteBatch batch){
-		// Render Red Enemy
-		for (int i = 0; i < redList.size(); i++){
-			redList.get(i).render(batch);
-		}
+
+	public void renderRed(SpriteBatch batch) {
+	    for (Enemy enemy : enemyList) {
+	        if (enemy instanceof Red) {
+	            enemy.render(batch);
+	        }
+	    }
 	}
 	
 	public void updateRed(float deltaTime) {
-		for (Yellow yellow : yellowList) {
-			yellow.update(deltaTime);
+	    for (Enemy enemy : enemyList) {
+	        if (enemy instanceof Red) {
+	            enemy.update(deltaTime);
+	        }
+	    }
+	}
+	
+	// Bullets
+	
+	public void spawnBullet() {
+		for (Enemy enemy : enemyList) {
+			if (enemy instanceof Green) {
+				
+			} else if (enemy instanceof Yellow) {
+				bullet = new YellowBullet(new Vector2(enemy.getX(),enemy.getY()), 2, 50, 50);
+				bulletList.add((YellowBullet) bullet);
+			} else if (enemy instanceof Red) {
+				
+			}
 		}
 	}
 	
-	public void updateYellowBullet(float deltaTime) {
-		
+	public void renderYellowBullet(SpriteBatch batch) {
+	    for (Bullet bullet: bulletList) {
+	        if (bullet instanceof YellowBullet) {
+	            bullet.render(batch);
+	        }
+	    }
 	}
-
 	
+	
+	public void updateYellowBullet(float deltaTime) {
+	    for (Enemy enemy : enemyList) {
+	        if (enemy instanceof Yellow) {
+	            enemy.update(deltaTime);
+	        }
+	    }
+	}
 
 }
