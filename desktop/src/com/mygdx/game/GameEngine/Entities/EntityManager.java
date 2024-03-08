@@ -21,6 +21,8 @@ public class EntityManager {
 	private PlayerBullet playerbullet;
 	private Bullet bullet;
 	
+	private int EnemySpawn;
+	
 	private int emptyWordCount = 15;
     private int spaceWordCount = 8;
     private int nonSpaceWordCount = 7;
@@ -175,7 +177,7 @@ public class EntityManager {
 	        
 	        enemy3.setEnemyWord(wordFactory.getRandomWord(enemy3.getEnemyType()));
 
-
+	        EnemySpawn = 1;
 			
 		}
 
@@ -238,16 +240,17 @@ public class EntityManager {
 	}
 	
 	// Bullets
-	
 	public void spawnBullet() {
-		for (Enemy enemy : enemyList) {
-			if (enemy instanceof Green) {
-				
-			} else if (enemy instanceof Yellow) {
-				bullet = new YellowBullet(new Vector2(enemy.getX(),enemy.getY()), 2, 50, 50);
-				bulletList.add((YellowBullet) bullet);
-			} else if (enemy instanceof Red) {
-				
+		if(EnemySpawn == 1) {
+			for (int i = 0; bulletList.size() < 4; i++) {
+				if (enemyList.get(i) instanceof Green) {
+					
+				} else if (enemyList.get(i)instanceof Yellow) {
+					bullet = new YellowBullet(new Vector2(enemyList.get(i).getX(),enemyList.get(i).getY()), 2, 50, 50);
+					bulletList.add((YellowBullet) bullet);
+				} else if (enemyList.get(i) instanceof Red) {
+					
+				}
 			}
 		}
 	}
