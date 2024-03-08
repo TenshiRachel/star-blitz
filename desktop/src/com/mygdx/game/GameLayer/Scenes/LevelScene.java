@@ -33,6 +33,8 @@ public class LevelScene extends SceneManager {
 	private GlyphLayout layout;
 	private int score;
 	private Music playingSong;
+	private int currentScore;
+	private Music music;
 	private AudioSettings audioSettings = new AudioSettings();
 	
 	
@@ -99,6 +101,8 @@ public class LevelScene extends SceneManager {
 	    score = entityManager.getPlayer().getScore();
 	    scoreText = "Score: " + score;
 	    float x = Gdx.graphics.getWidth() - layout.width - 200;
+	    currentScore = entityManager.getPlayer().getScore();
+	    scoreText = "Score: " + currentScore;
 	    float y = Gdx.graphics.getHeight() - 50;
 	    
 	    font.setColor(255, 255, 255, 255);

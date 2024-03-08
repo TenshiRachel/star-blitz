@@ -35,6 +35,7 @@ public class ScoreScene extends SceneManager{
 	private int score;
 	private Music playingSong;
 	private AudioSettings audioSettings = new AudioSettings();
+	private int highestScore;
 	
 	public EntityManager entityManager = EntityManager.getInstance();
 
@@ -76,8 +77,8 @@ public class ScoreScene extends SceneManager{
 		SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy");
 		String dateString = formatter.format(new Date(TimeUtils.millis()));
 		dateValueLabel = new Label(dateString, skin);
-		score = entityManager.getPlayer().getScore();
-        scoreValueLabel = new Label(String.valueOf(score), skin);
+		highestScore = entityManager.getPlayer().getScore();
+        scoreValueLabel = new Label(String.valueOf(highestScore), skin);
 		
 		
 		table.pad(100); // offset from corner of the screen
