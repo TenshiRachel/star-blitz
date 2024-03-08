@@ -21,7 +21,7 @@ public class RedBullet extends Bullet{
 	}
 
 	public void update(float deltaTime) {
-		EntityManager.getInstance().updateYellowBullet(deltaTime);
+		EntityManager.getInstance().updateRedBullet(deltaTime);
 	}
     
 }

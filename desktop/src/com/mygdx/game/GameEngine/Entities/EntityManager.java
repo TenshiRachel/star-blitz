@@ -166,13 +166,13 @@ public class EntityManager {
 	        
 	        // Row 2 Enemy
 	        if (enemyType2 == 0) {
-	            enemy2 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
+	            enemy2 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i+100, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
 	            enemyList.add((Green) enemy2);
 	        } else if(enemyType2 == 1){
-	            enemy2 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
+	            enemy2 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i+100, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
 	            enemyList.add((Yellow) enemy2);
 	        } else {
-	        	enemy2 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
+	        	enemy2 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i+100, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
 	        	enemyList.add((Red) enemy2);
 	        }
 	        
@@ -258,15 +258,15 @@ public class EntityManager {
 	// Bullets
 	public void spawnBullet() {
 		if(EnemySpawn == 1) {
-			for (int i = 0; bulletList.size() < enemyList.size(); i++) {
+			for (int i = 2; bulletList.size() < enemyList.size()/3; i+=3) {
 				if (enemyList.get(i) instanceof Green) {
-					bullet = new GreenBullet(new Vector2(enemyList.get(i).getX(),enemyList.get(i).getY()), 2, 50, 50);
+					bullet = new GreenBullet(new Vector2(enemyList.get(i).getX(),enemyList.get(i).getY()), 20, 50, 50);
 					bulletList.add((GreenBullet) bullet);
 				} else if (enemyList.get(i)instanceof Yellow) {
-					bullet = new YellowBullet(new Vector2(enemyList.get(i).getX(),enemyList.get(i).getY()), 2, 50, 50);
+					bullet = new YellowBullet(new Vector2(enemyList.get(i).getX(),enemyList.get(i).getY()), 20, 50, 50);
 					bulletList.add((YellowBullet) bullet);
 				} else if (enemyList.get(i) instanceof Red) {
-					bullet = new RedBullet(new Vector2(enemyList.get(i).getX(),enemyList.get(i).getY()), 2, 50, 50);
+					bullet = new RedBullet(new Vector2(enemyList.get(i).getX(),enemyList.get(i).getY()), 20, 50, 50);
 					bulletList.add((RedBullet) bullet);
 				}
 			}
@@ -283,9 +283,13 @@ public class EntityManager {
 	
 	
 	public void updateGreenBullet(float deltaTime) {
-	    for (Enemy enemy : enemyList) {
-	        if (enemy instanceof Green) {
-	            enemy.update(deltaTime);
+	    for (int i = 0; i < bulletList.size();i++) {
+	        if (bulletList.get(i) instanceof GreenBullet) {  	
+	        	bulletList.get(i).setY(bulletList.get(i).getY() - bulletList.get(i).getSpeed());
+				if(bulletList.get(i).getY() + bulletList.get(i).getHeight() < 0){
+					bulletList.get(i).setX(enemyList.get((i*3)+2).getX());
+					bulletList.get(i).setY(enemyList.get((i*3)+2).getY());
+				}
 	        }
 	    }
 	}
@@ -300,9 +304,13 @@ public class EntityManager {
 	
 	
 	public void updateYellowBullet(float deltaTime) {
-	    for (Enemy enemy : enemyList) {
-	        if (enemy instanceof Yellow) {
-	            enemy.update(deltaTime);
+	    for (int i = 0; i < bulletList.size();i++) {
+	        if (bulletList.get(i) instanceof YellowBullet) {  	
+	        	bulletList.get(i).setY(bulletList.get(i).getY() - bulletList.get(i).getSpeed());
+				if(bulletList.get(i).getY() + bulletList.get(i).getHeight() < 0){
+					bulletList.get(i).setX(enemyList.get((i*3)+2).getX());
+					bulletList.get(i).setY(enemyList.get((i*3)+2).getY());
+				}
 	        }
 	    }
 	}
@@ -317,11 +325,18 @@ public class EntityManager {
 	
 	
 	public void updateRedBullet(float deltaTime) {
-	    for (Enemy enemy : enemyList) {
-	        if (enemy instanceof Red) {
-	            enemy.update(deltaTime);
+	    for (int i = 0; i < bulletList.size();i++) {
+	        if (bulletList.get(i) instanceof RedBullet) {  	
+	        	bulletList.get(i).setY(bulletList.get(i).getY() - bulletList.get(i).getSpeed());
+				if(bulletList.get(i).getY() + bulletList.get(i).getHeight() < 0){
+					bulletList.get(i).setX(enemyList.get((i*3)+2).getX());
+					bulletList.get(i).setY(enemyList.get((i*3)+2).getY());
+				}
 	        }
 	    }
+	    
 	}
-
+	
 }
+
+

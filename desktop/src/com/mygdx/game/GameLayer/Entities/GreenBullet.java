@@ -21,7 +21,7 @@ public class GreenBullet extends Bullet{
 	}
 
 	public void update(float deltaTime) {
-		EntityManager.getInstance().updateYellowBullet(deltaTime);
+		EntityManager.getInstance().updateGreenBullet(deltaTime);
 	}
     
 }
