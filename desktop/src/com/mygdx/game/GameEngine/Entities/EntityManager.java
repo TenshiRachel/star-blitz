@@ -242,17 +242,36 @@ public class EntityManager {
 	// Bullets
 	public void spawnBullet() {
 		if(EnemySpawn == 1) {
-			for (int i = 0; bulletList.size() < 4; i++) {
+			for (int i = 0; bulletList.size() < enemyList.size(); i++) {
 				if (enemyList.get(i) instanceof Green) {
-					
+					bullet = new GreenBullet(new Vector2(enemyList.get(i).getX(),enemyList.get(i).getY()), 2, 50, 50);
+					bulletList.add((GreenBullet) bullet);
 				} else if (enemyList.get(i)instanceof Yellow) {
 					bullet = new YellowBullet(new Vector2(enemyList.get(i).getX(),enemyList.get(i).getY()), 2, 50, 50);
 					bulletList.add((YellowBullet) bullet);
 				} else if (enemyList.get(i) instanceof Red) {
-					
+					bullet = new RedBullet(new Vector2(enemyList.get(i).getX(),enemyList.get(i).getY()), 2, 50, 50);
+					bulletList.add((RedBullet) bullet);
 				}
 			}
 		}
+	}
+	
+	public void renderGreenBullet(SpriteBatch batch) {
+	    for (Bullet bullet: bulletList) {
+	        if (bullet instanceof GreenBullet) {
+	            bullet.render(batch);
+	        }
+	    }
+	}
+	
+	
+	public void updateGreenBullet(float deltaTime) {
+	    for (Enemy enemy : enemyList) {
+	        if (enemy instanceof Green) {
+	            enemy.update(deltaTime);
+	        }
+	    }
 	}
 	
 	public void renderYellowBullet(SpriteBatch batch) {
@@ -267,6 +286,23 @@ public class EntityManager {
 	public void updateYellowBullet(float deltaTime) {
 	    for (Enemy enemy : enemyList) {
 	        if (enemy instanceof Yellow) {
+	            enemy.update(deltaTime);
+	        }
+	    }
+	}
+	
+	public void renderRedBullet(SpriteBatch batch) {
+	    for (Bullet bullet: bulletList) {
+	        if (bullet instanceof RedBullet) {
+	            bullet.render(batch);
+	        }
+	    }
+	}
+	
+	
+	public void updateRedBullet(float deltaTime) {
+	    for (Enemy enemy : enemyList) {
+	        if (enemy instanceof Red) {
 	            enemy.update(deltaTime);
 	        }
 	    }
