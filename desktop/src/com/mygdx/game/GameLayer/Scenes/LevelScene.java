@@ -68,7 +68,7 @@ public class LevelScene extends SceneManager {
 			@Override
 			public boolean keyDown(int keyCode) {
 				if (keyCode == Input.Keys.ESCAPE) {
-					game.setScreen(new MainMenuScene(game));
+					game.setScreen(new PauseScene(game));
 				}
 				return true;
 			}
