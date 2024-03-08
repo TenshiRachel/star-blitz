@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.GameEngine.AssetsManager;
 import com.mygdx.game.GameEngine.AudioSettings;
 import com.mygdx.game.GameEngine.BehaviourManager;
 import com.mygdx.game.GameEngine.IOManager;
@@ -31,7 +32,7 @@ public class LevelScene extends SceneManager {
 	private BitmapFont font;
 	private GlyphLayout layout;
 	private int score;
-	private Music music;
+	private Music playingSong;
 	private AudioSettings audioSettings = new AudioSettings();
 	
 	
@@ -47,16 +48,18 @@ public class LevelScene extends SceneManager {
 		background = new Texture(Gdx.files.internal("background/space.png"));
 		font = new BitmapFont();
 		layout = new GlyphLayout();
-		music = Gdx.audio.newMusic(Gdx.files.internal("audio/level.wav"));
 	}
 	
 	@Override
 	public void show() {
-		if (audioSettings.isAudioEnabled()) {
-			music.setVolume(audioSettings.getAudioVolume());
-			music.setLooping(true);
-			music.play();
-		}
+        AssetsManager.queueLevelMusic();
+        AssetsManager.getManager().finishLoading();
+        playingSong = AssetsManager.getManager().get(AssetsManager.playingSongPath);
+        playingSong.setVolume(audioSettings.getAudioVolume());
+        playingSong.setLooping(true);
+        if (audioSettings.isAudioEnabled()) {
+            playingSong.play();
+        }
 		// On create
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			// Return to menu upon pressing Escape button 
@@ -95,7 +98,7 @@ public class LevelScene extends SceneManager {
 	    // Show score on top-right hand corner of screen 
 	    score = entityManager.getPlayer().getScore();
 	    scoreText = "Score: " + score;
-	    float x = Gdx.graphics.getWidth() - layout.width - 150;
+	    float x = Gdx.graphics.getWidth() - layout.width - 200;
 	    float y = Gdx.graphics.getHeight() - 50;
 	    
 	    font.setColor(255, 255, 255, 255);
@@ -136,7 +139,7 @@ public class LevelScene extends SceneManager {
 	@Override
 	public void hide() {
 		super.hide();
-		music.stop();
+		playingSong.stop();
 	}
 	
 	@Override

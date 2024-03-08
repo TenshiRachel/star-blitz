@@ -12,8 +12,6 @@ public class IOManager {
 	private static IOManager instance;
 	private LifeCycleManager game;
 	private EntityManager entitymanager = EntityManager.getInstance();
-	private Music music;
-	private AudioSettings audioSettings = new AudioSettings();
 	
 	public void setGame(LifeCycleManager game) {
 		this.game = game;
@@ -21,6 +19,7 @@ public class IOManager {
 
 	
 	private IOManager() {
+
 	}
 	
 	public static IOManager getInstance() {
@@ -49,11 +48,6 @@ public class IOManager {
 
 		if (Gdx.input.isKeyJustPressed(Keys.SPACE))
 		{
-			if (audioSettings.isSoundEnabled()) {
-				music = Gdx.audio.newMusic(Gdx.files.internal("audio/player_shoot.wav"));
-				music.setVolume(audioSettings.getSoundVolume());
-				music.play();
-			}
 			entitymanager.spawnPlayerBullet();
 		}
 	}

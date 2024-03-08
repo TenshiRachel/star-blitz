@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.GameEngine.AssetsManager;
 import com.mygdx.game.GameEngine.AudioSettings;
 import com.mygdx.game.GameEngine.Scene.SceneManager;
 
@@ -38,6 +39,10 @@ public class PreferencesScene extends SceneManager {
 		
 		batch = new SpriteBatch();
 		stage = new Stage(new ScreenViewport());
+		
+		AssetsManager assetsManager = getAssetManager();
+		assetsManager.queueAddSkin();
+		assetsManager.getManager().finishLoading();
 	}
 	
 	@Override
@@ -51,7 +56,7 @@ public class PreferencesScene extends SceneManager {
 		
 		stage.addActor(table);
 		
-		skin =  new Skin(Gdx.files.internal("skin/star-soldier-ui.json"));
+		skin =  getAssetManager().getSkin();
 		
 		Slider musicVolSlider = new Slider(0f, 1f, 0.1f, false, skin);
         musicVolSlider.setValue(audioSettings.getAudioVolume());

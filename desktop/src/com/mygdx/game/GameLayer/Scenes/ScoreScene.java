@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.GameEngine.AssetsManager;
 import com.mygdx.game.GameEngine.AudioSettings;
 import com.mygdx.game.GameEngine.Entities.EntityManager;
 import com.mygdx.game.GameEngine.Scene.SceneManager;
@@ -32,7 +33,7 @@ public class ScoreScene extends SceneManager{
 	private Label dateValueLabel;
 	private Label scoreValueLabel;
 	private int score;
-	private Music music;
+	private Music playingSong;
 	private AudioSettings audioSettings = new AudioSettings();
 	
 	public EntityManager entityManager = EntityManager.getInstance();
@@ -42,21 +43,26 @@ public class ScoreScene extends SceneManager{
 		// TODO Auto-generated constructor stub
 		batch = new SpriteBatch();
 		stage = new Stage(new ScreenViewport());
-		music = Gdx.audio.newMusic(Gdx.files.internal("audio/score.wav"));
+		AssetsManager assetsManager = getAssetManager();
+		assetsManager.queueAddSkin();
+		assetsManager.getManager().finishLoading();
 	}
 	
 	@Override
 	public void show() {
-		if (audioSettings.isAudioEnabled()) {
-			music.setVolume(audioSettings.getAudioVolume());
-			music.setLooping(true);
-			music.play();
-		}
+        AssetsManager.queueScoreMusic();
+        AssetsManager.getManager().finishLoading();
+        playingSong = AssetsManager.getManager().get(AssetsManager.scoreSongPath);
+        playingSong.setVolume(audioSettings.getAudioVolume());
+        playingSong.setLooping(true);
+        if (audioSettings.isAudioEnabled()) {
+            playingSong.play();
+        }
 
 		background = new Texture(Gdx.files.internal("background/space.png"));
 		stage.clear();
 		Gdx.input.setInputProcessor(stage);
-		skin =  new Skin(Gdx.files.internal("skin/star-soldier-ui.json"));
+		skin =  getAssetManager().getSkin();
 		
 		Table table = new Table();
 		table.setFillParent(true);
@@ -129,7 +135,7 @@ public class ScoreScene extends SceneManager{
 	@Override
 	public void hide() {
 		super.hide();
-		music.stop();
+		playingSong.stop();
 	}
 	
 	@Override

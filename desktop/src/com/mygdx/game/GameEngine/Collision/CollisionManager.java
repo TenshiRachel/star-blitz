@@ -7,6 +7,7 @@ import java.util.ListIterator;
 import com.mygdx.game.GameEngine.Entities.EntityManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.mygdx.game.GameEngine.AssetsManager;
 import com.mygdx.game.GameEngine.AudioSettings;
 import com.mygdx.game.GameEngine.BehaviourManager;
 import com.mygdx.game.GameLayer.WordFactory;
@@ -17,11 +18,17 @@ import com.mygdx.game.GameLayer.Entities.PlayerBullet;
 public class CollisionManager {
 	private static CollisionManager instance;
 	private EntityManager entityManager = EntityManager.getInstance();
-	private Music music;
+	private Music alienHitSound, playerHitSound;
 	private AudioSettings audioSettings = new AudioSettings();
 	private WordFactory wordFactory = new WordFactory();
 	
 	private CollisionManager() {
+        AssetsManager.queueAlienHitMusic();
+        // AssetsManager.queuePlayerHitMusic();
+        AssetsManager.getManager().finishLoading();
+        
+        alienHitSound = AssetsManager.getManager().get(AssetsManager.alienHitSound);
+        // playerHitSound = AssetsManager.getManager().get(AssetsManager.playerHitSound);
 	}
 	
 	public static synchronized CollisionManager getInstance() {
@@ -44,13 +51,11 @@ public class CollisionManager {
 	    		PlayerBullet bullet = PlayerBulletList.get(j);
 	    		
 	    		if (alien.isCollide(bullet)) {
-	    			PlayerBulletList.remove(j);
-	    			if (audioSettings.isSoundEnabled()) {
-	    				music = Gdx.audio.newMusic(Gdx.files.internal("audio/alien_hit.wav"));
-	    				music.setVolume(audioSettings.getSoundVolume());
-	    				music.play();
-	    			}
-	    			
+	    			alienHitSound.setVolume(audioSettings.getSoundVolume());
+	    	        if (audioSettings.isSoundEnabled()) {
+	    	        	alienHitSound.play();
+	    	        }
+	    	        
 	    			if (alien.getEnemyType() == "empty") {
 	    				player.setScore(player.getScore() + 10);
 	    			}
@@ -66,6 +71,7 @@ public class CollisionManager {
 	    				}
 	    			}
 	    			// enemyIterator.remove();
+	    			PlayerBulletList.remove(j);
 	    			
 	    			break;
 	    		}

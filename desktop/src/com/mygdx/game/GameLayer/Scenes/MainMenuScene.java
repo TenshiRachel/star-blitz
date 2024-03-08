@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.GameEngine.AssetsManager;
 import com.mygdx.game.GameEngine.AudioSettings;
 import com.mygdx.game.GameEngine.Scene.SceneManager;
 
@@ -21,26 +22,34 @@ public class MainMenuScene extends SceneManager {
 	private Skin skin;
 	private SpriteBatch batch;
 	private Texture background;
-	private Music music;
+	private Music playingSong;
 	private AudioSettings audioSettings = new AudioSettings();
 	
 	public MainMenuScene(Game game) {
 		super(game);
 		stage = new Stage(new ScreenViewport());
 		batch = new SpriteBatch();
-		music = Gdx.audio.newMusic(Gdx.files.internal("audio/menu.wav"));
+		
+		AssetsManager assetsManager = getAssetManager();
+		assetsManager.queueAddSkin();
+		assetsManager.getManager().finishLoading();
 	}
 	
 	@Override
 	public void show() {
-		if (audioSettings.isAudioEnabled()) {
-			music.setVolume(audioSettings.getAudioVolume());
-			music.play();
-		}
+        AssetsManager.queueMenuMusic();
+        AssetsManager.getManager().finishLoading();
+        playingSong = AssetsManager.getManager().get(AssetsManager.menuSongPath);
+        playingSong.setVolume(audioSettings.getAudioVolume());
+        playingSong.setLooping(true);
+        if (audioSettings.isAudioEnabled()) {
+            playingSong.play();
+        }
+
 		
 		background = new Texture(Gdx.files.internal("background/space.png"));
 		
-		skin = new Skin(Gdx.files.internal("skin/star-soldier-ui.json"));
+		skin = getAssetManager().getSkin();
 		
 		stage = new Stage(new ScreenViewport());
 		Gdx.input.setInputProcessor(stage);
@@ -71,7 +80,7 @@ public class MainMenuScene extends SceneManager {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				game.setScreen(new LevelScene(game));
-				music.stop();
+				playingSong.stop();
 			}
 		});
 		
@@ -93,7 +102,7 @@ public class MainMenuScene extends SceneManager {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				game.setScreen(new ScoreScene(game));
-				music.stop();
+				playingSong.stop();
 			}
 		});
 	}
@@ -134,6 +143,6 @@ public class MainMenuScene extends SceneManager {
 	@Override
 	public void dispose() {
 		stage.dispose();
-		music.dispose();
+		AssetsManager.getManager().dispose();
 	}
 }

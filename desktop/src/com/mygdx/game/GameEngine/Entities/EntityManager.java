@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.GameEngine.AssetsManager;
+import com.mygdx.game.GameEngine.AudioSettings;
 import com.mygdx.game.GameLayer.WordFactory;
 import com.mygdx.game.GameLayer.Entities.*;
 
@@ -20,6 +23,9 @@ public class EntityManager {
 	private List<Bullet> bulletList;
 	private PlayerBullet playerbullet;
 	private Bullet bullet;
+	
+	private Music playerShootSound, alienShootSound;
+	private AudioSettings audioSettings = new AudioSettings();
 	
 	private int EnemySpawn;
 	
@@ -35,6 +41,11 @@ public class EntityManager {
 		playerBulletList = new ArrayList<>();
 		enemyList = new ArrayList<>();
 		bulletList = new ArrayList<>();
+		AssetsManager.queuePlayerShootMusic();
+		AssetsManager.queueAlienShootMusic();
+        AssetsManager.getManager().finishLoading();
+        playerShootSound = AssetsManager.getManager().get(AssetsManager.playerShootSound);
+        alienShootSound = AssetsManager.getManager().get(AssetsManager.alienShootSound);
 	}
 	
 	public static EntityManager getInstance() {
@@ -71,8 +82,13 @@ public class EntityManager {
 
 	public void spawnPlayerBullet()
 	{
-			playerbullet = new PlayerBullet(new Vector2(player.getX(), player.getY()), 10, 64, 64);
-			playerBulletList.add(playerbullet);
+		playerShootSound.setVolume(audioSettings.getSoundVolume());
+        if (audioSettings.isSoundEnabled()) {
+        	playerShootSound.play();
+        }
+		playerbullet = new PlayerBullet(new Vector2(player.getX(), player.getY()), 10, 64, 64);
+		playerBulletList.add(playerbullet);
+
 	}
 
 	public void renderPlayerBullet(SpriteBatch batch) {
