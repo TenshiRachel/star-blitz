@@ -31,9 +31,8 @@ public class LevelScene extends SceneManager {
 	private String scoreText = "Score: ";
 	private BitmapFont font;
 	private GlyphLayout layout;
-	private int score;
+	public int currentScore;
 	private Music playingSong;
-	private int currentScore;
 	private Music music;
 	private AudioSettings audioSettings = new AudioSettings();
 	
@@ -99,7 +98,10 @@ public class LevelScene extends SceneManager {
 		
 		if (entityManager.getPlayer().getPlayerHealth() == 0)
 		{
+			// Proceed to Game Over Scene once player is dead
+			game.setScreen(new GameOverScene(game));
 			System.out.println("player dead");
+			
 		}
 		else
 		{
@@ -108,8 +110,8 @@ public class LevelScene extends SceneManager {
 		
 	    
 	    // Show score on top-right hand corner of screen 
-	    score = entityManager.getPlayer().getScore();
-	    scoreText = "Score: " + score;
+	    currentScore = entityManager.getPlayer().getScore();
+	    scoreText = "Score: " + currentScore;
 	    float x = Gdx.graphics.getWidth() - layout.width - 200;
 	    currentScore = entityManager.getPlayer().getScore();
 	    scoreText = "Score: " + currentScore;
