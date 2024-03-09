@@ -33,24 +33,6 @@ public class BehaviourManager {
 	public Vector2 getPos() {
 		return pos;
 	}
-	//still working on this - jake
-	public boolean checkAndSpawnBullet(Player player, List<Enemy> enemies, EntityManager entityManager) {
-		boolean spawnedBullet = false;
-	    for (Enemy enemy : enemies) {
-	        if (isPlayerDirectlyBelow(player, enemy)) {
-	            entityManager.spawnEnemyBullet(); 
-	            spawnedBullet = true;
-	        }
-	    }
-	    return spawnedBullet;
-    }
-	//still working on this - jake
-	public boolean isPlayerDirectlyBelow (Player player, Enemy enemy) {
-		float enemyCenterX = enemy.getX() + enemy.getWidth() / 2;
-	    float playerCenterX = player.getX() + player.getWidth() / 2;
-	    float threshold = 5; 
-	    return Math.abs(enemyCenterX - playerCenterX) <= threshold;
-	}
 	
 	public boolean playerNearAlien(Player player, Enemy enemy) {
 		float playerX = player.getX();

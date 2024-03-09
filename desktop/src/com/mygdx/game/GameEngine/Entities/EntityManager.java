@@ -283,25 +283,6 @@ public class EntityManager {
 			}
 		}
 	}
-	//still working on this - jake
-//	public void spawnEnemyBullet() {
-//        for (Enemy enemy : enemyList) {
-//            if (behaviourManager.isPlayerDirectlyBelow(player, enemy)) {
-//                Bullet bullet;
-//                if (enemy instanceof Green) {
-//                    bullet = new GreenBullet(new Vector2(enemy.getX(), enemy.getY()), 20, 50, 50);
-//                } else if (enemy instanceof Yellow) {
-//                    bullet = new YellowBullet(new Vector2(enemy.getX(), enemy.getY()), 20, 50, 50);
-//                } else if (enemy instanceof Red) {
-//                    bullet = new RedBullet(new Vector2(enemy.getX(), enemy.getY()), 20, 50, 50);
-//                } else {
-//                    // Default bullet type if enemy type is unknown
-//                    bullet = new Bullet(new Vector2(enemy.getX(), enemy.getY()), 20, 50, 50);
-//                }
-//                bulletList.add(bullet);
-//            }
-//        }
-//    }
 	
 	public void renderEnemyBullet(SpriteBatch batch) {
 		for (int i = 0; i < EnemyBulletList.size(); i++) {
