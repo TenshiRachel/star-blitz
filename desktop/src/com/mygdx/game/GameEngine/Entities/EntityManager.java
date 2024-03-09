@@ -152,6 +152,8 @@ public class EntityManager {
 	        Enemy enemy2 = null;
 	        Enemy enemy3 = null;
 
+	        
+	       
 	        // Row 3 Enemy
 	        if (enemyType1 == 0) {
 	            enemy1 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i,Gdx.graphics.getHeight()-170 ), 2, 64, 64, getRandomEnemyType());
@@ -198,10 +200,38 @@ public class EntityManager {
 	        EnemySpawn = 1;
 			
 		}
+		
+		
 
 		for (int i = 0; i < enemyList.size(); i++) {
 			Enemy enemy = enemyList.get(i);
 			// System.out.println("Enemy " + (i + 1) + ": Enemy Word - " + enemy.getEnemyWord());
+		}
+	}
+	
+	public void swapEnemyRow(float deltaTime)
+	{
+		for (int i = 0; i < enemyList.size(); i++)
+		{
+			enemyList.get(i).setY(enemyList.get(i).getY() - 100);
+			if (enemyList.get(i).getY() < Gdx.graphics.getHeight() - 400)
+			{
+				enemyList.get(i).setY(Gdx.graphics.getHeight()-170);
+				
+			}
+			
+			if(enemyList.get(i).getY() == Gdx.graphics.getHeight() - 270)
+			{
+				enemyList.get(i).setX(enemyList.get(i).getX() + 100);
+			}
+			else if(enemyList.get(i).getY() == Gdx.graphics.getHeight() - 370)
+			{
+				enemyList.get(i).setX(enemyList.get(i).getX()- 100);
+			}
+			else
+			{
+				enemyList.get(i).setX(enemyList.get(i).getX()) ;
+			}
 		}
 	}
 	

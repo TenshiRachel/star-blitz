@@ -36,6 +36,9 @@ public class LevelScene extends SceneManager {
 	private Music music;
 	private AudioSettings audioSettings = new AudioSettings();
 	
+	private float timer = 0;
+    private float swapInterval = 5; // 5 seconds
+	
 	
 	public IOManager ioManager = IOManager.getInstance();
 	public BehaviourManager behaviourManager = BehaviourManager.getInstance();
@@ -49,6 +52,7 @@ public class LevelScene extends SceneManager {
 		background = new Texture(Gdx.files.internal("background/space.png"));
 		font = new BitmapFont();
 		layout = new GlyphLayout();
+		
 	}
 	
 	@Override
@@ -83,6 +87,8 @@ public class LevelScene extends SceneManager {
 		
 		batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
+		timer += deltaTime;
+		
 		// Spawn entities (Create objects)
 		entityManager.spawnEnemy();
 		entityManager.spawnEnemyBullet();
@@ -92,7 +98,19 @@ public class LevelScene extends SceneManager {
 		entityManager.updateGreen(deltaTime);
 		entityManager.updateYellow(deltaTime);
 		entityManager.updateRed(deltaTime);
+<<<<<<< Updated upstream
 		entityManager.updateEnemyBullet(deltaTime);
+=======
+		entityManager.updateGreenBullet(deltaTime);
+		entityManager.updateYellowBullet(deltaTime);
+		entityManager.updateRedBullet(deltaTime);
+		//entityManager.swapEnemyRow(deltaTime);
+	    if (timer >= swapInterval) 
+	    {
+	    	entityManager.swapEnemyRow(deltaTime);
+	        timer = 0; // Reset the timer
+	    }
+>>>>>>> Stashed changes
 		
 		//Get playerHealth 
 		
