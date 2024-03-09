@@ -19,9 +19,5 @@ public class GreenBullet extends Bullet{
     public void render(SpriteBatch batch) {
 		batch.draw(bullet, getX(), getY(), getWidth(), getHeight());
 	}
-
-	public void update(float deltaTime) {
-		EntityManager.getInstance().updateGreenBullet(deltaTime);
-	}
     
 }

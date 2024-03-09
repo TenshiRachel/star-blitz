@@ -21,7 +21,7 @@ public class EntityManager {
 	private SpriteBatch batch;
 	private List<PlayerBullet> playerBulletList;
 	private List<Enemy> enemyList;
-	private List<Bullet> bulletList;
+	private List<Bullet> EnemyBulletList;
 	private PlayerBullet playerbullet;
 	private Bullet bullet;
 	public BehaviourManager behaviourManager = BehaviourManager.getInstance();
@@ -42,7 +42,7 @@ public class EntityManager {
 	public EntityManager() {
 		playerBulletList = new ArrayList<>();
 		enemyList = new ArrayList<>();
-		bulletList = new ArrayList<>();
+		EnemyBulletList = new ArrayList<>();
 		AssetsManager.queuePlayerShootMusic();
 		AssetsManager.queueAlienShootMusic();
         AssetsManager.getManager().finishLoading();
@@ -71,7 +71,7 @@ public class EntityManager {
 	}
 	
 	public List<Bullet> getBulletList(){
-		return bulletList;
+		return EnemyBulletList;
 	}
 	
 	public void create() {
@@ -259,17 +259,22 @@ public class EntityManager {
 	
 	// Bullets
 	public void spawnEnemyBullet() {
-		if (behaviourManager.checkAndSpawnBullet(player, enemyList, this)){
-			for (int i = 2; bulletList.size() < enemyList.size()/3; i+=3) {
-				if (enemyList.get(i) instanceof Green) {
-					bullet = new GreenBullet(new Vector2(enemyList.get(i).getX(),enemyList.get(i).getY()), 20, 50, 50);
-					bulletList.add((GreenBullet) bullet);
-				} else if (enemyList.get(i)instanceof Yellow) {
-					bullet = new YellowBullet(new Vector2(enemyList.get(i).getX(),enemyList.get(i).getY()), 20, 50, 50);
-					bulletList.add((YellowBullet) bullet);
-				} else if (enemyList.get(i) instanceof Red) {
-					bullet = new RedBullet(new Vector2(enemyList.get(i).getX(),enemyList.get(i).getY()), 20, 50, 50);
-					bulletList.add((RedBullet) bullet);
+		for (int i = 0; i < enemyList.size(); i++) {
+			Enemy alien = enemyList.get(i);
+			if (behaviourManager.playerNearAlien(player, alien)) {
+				if (alien instanceof Yellow) {
+					YellowBullet bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+					EnemyBulletList.add(bullet);
+				}
+				
+				if (alien instanceof Green) {
+					GreenBullet bullet = new GreenBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+					EnemyBulletList.add(bullet);
+				}
+				
+				if (alien instanceof Red) {
+					RedBullet bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+					EnemyBulletList.add(bullet);
 				}
 			}
 		}
@@ -294,69 +299,22 @@ public class EntityManager {
 //        }
 //    }
 	
-	public void renderGreenBullet(SpriteBatch batch) {
-	    for (Bullet bullet: bulletList) {
-	        if (bullet instanceof GreenBullet) {
-	            bullet.render(batch);
-	        }
-	    }
+	public void renderEnemyBullet(SpriteBatch batch) {
+		for (int i = 0; i < EnemyBulletList.size(); i++) {
+			EnemyBulletList.get(i).render(batch);;
+		}
 	}
 	
-	
-	public void updateGreenBullet(float deltaTime) {
-//	    for (int i = 0; i < bulletList.size();i++) {
-//	        if (bulletList.get(i) instanceof GreenBullet) {  	
-//	        	bulletList.get(i).setY(bulletList.get(i).getY() - bulletList.get(i).getSpeed());
-//				if(bulletList.get(i).getY() + bulletList.get(i).getHeight() < 0){
-//					bulletList.get(i).setX(enemyList.get((i*3)+2).getX());
-//					bulletList.get(i).setY(enemyList.get((i*3)+2).getY());
-//				}
-//	        }
-//	    }
+	public void updateEnemyBullet(float deltaTime) {
+		for (int i = 0; i < EnemyBulletList.size(); i++) {
+			Bullet enemyBullet = EnemyBulletList.get(i);
+			enemyBullet.setY(enemyBullet.getY() - enemyBullet.getSpeed());
+			if (enemyBullet.getY() < 0) {
+				EnemyBulletList.remove(i);
+			}
+		}
 	}
 	
-	public void renderYellowBullet(SpriteBatch batch) {
-	    for (Bullet bullet: bulletList) {
-	        if (bullet instanceof YellowBullet) {
-	            bullet.render(batch);
-	        }
-	    }
-	}
-	
-	
-	public void updateYellowBullet(float deltaTime) {
-//	    for (int i = 0; i < bulletList.size();i++) {
-//	        if (bulletList.get(i) instanceof YellowBullet) {  	
-//	        	bulletList.get(i).setY(bulletList.get(i).getY() - bulletList.get(i).getSpeed());
-//				if(bulletList.get(i).getY() + bulletList.get(i).getHeight() < 0){
-//					bulletList.get(i).setX(enemyList.get((i*3)+2).getX());
-//					bulletList.get(i).setY(enemyList.get((i*3)+2).getY());
-//				}
-//	        }
-//	    }
-	}
-	
-	public void renderRedBullet(SpriteBatch batch) {
-	    for (Bullet bullet: bulletList) {
-	        if (bullet instanceof RedBullet) {
-	            bullet.render(batch);
-	        }
-	    }
-	}
-	
-	
-	public void updateRedBullet(float deltaTime) {
-//	    for (int i = 0; i < bulletList.size();i++) {
-//	        if (bulletList.get(i) instanceof RedBullet) {  	
-//	        	bulletList.get(i).setY(bulletList.get(i).getY() - bulletList.get(i).getSpeed());
-//				if(bulletList.get(i).getY() + bulletList.get(i).getHeight() < 0){
-//					bulletList.get(i).setX(enemyList.get((i*3)+2).getX());
-//					bulletList.get(i).setY(enemyList.get((i*3)+2).getY());
-//				}
-//	        }
-//	    }
-	    
-	}
 	
 }
 

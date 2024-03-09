@@ -52,6 +52,15 @@ public class BehaviourManager {
 	    return Math.abs(enemyCenterX - playerCenterX) <= threshold;
 	}
 	
+	public boolean playerNearAlien(Player player, Enemy enemy) {
+		float playerX = player.getX();
+		float alienX = enemy.getX();
+		
+		int threshold = 50;
+		
+		return (playerX + threshold == alienX || playerX - threshold == alienX);
+	}
+	
 	public void updateYellow(Yellow yellow, float deltaTime) {
 		// Increase x position till border
 		

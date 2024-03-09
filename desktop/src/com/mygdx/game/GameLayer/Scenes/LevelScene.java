@@ -86,16 +86,14 @@ public class LevelScene extends SceneManager {
 		
 		// Spawn entities (Create objects)
 		entityManager.spawnEnemy();
-		//entityManager.spawnEnemyBullet();
+		entityManager.spawnEnemyBullet();
 		
 		// Update entities
 		entityManager.updatePlayerBullet(deltaTime);
 		entityManager.updateGreen(deltaTime);
 		entityManager.updateYellow(deltaTime);
 		entityManager.updateRed(deltaTime);
-		entityManager.updateGreenBullet(deltaTime);
-		entityManager.updateYellowBullet(deltaTime);
-		entityManager.updateRedBullet(deltaTime);
+		entityManager.updateEnemyBullet(deltaTime);
 		
 		//Get playerHealth 
 		
@@ -127,9 +125,10 @@ public class LevelScene extends SceneManager {
 		entityManager.renderGreen(batch);
 		entityManager.renderYellow(batch);
 		entityManager.renderRed(batch);
-		entityManager.renderGreenBullet(batch);
-		entityManager.renderYellowBullet(batch);
-		entityManager.renderRedBullet(batch);
+//		entityManager.renderGreenBullet(batch);
+//		entityManager.renderYellowBullet(batch);
+//		entityManager.renderRedBullet(batch);
+		entityManager.renderEnemyBullet(batch);
 		
 		// Let IO Manager handle inputs
 		ioManager.handleInput(entityManager.getPlayer());
