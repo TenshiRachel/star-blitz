@@ -98,19 +98,16 @@ public class LevelScene extends SceneManager {
 		entityManager.updateGreen(deltaTime);
 		entityManager.updateYellow(deltaTime);
 		entityManager.updateRed(deltaTime);
-<<<<<<< Updated upstream
 		entityManager.updateEnemyBullet(deltaTime);
-=======
-		entityManager.updateGreenBullet(deltaTime);
-		entityManager.updateYellowBullet(deltaTime);
-		entityManager.updateRedBullet(deltaTime);
+
+
 		//entityManager.swapEnemyRow(deltaTime);
 	    if (timer >= swapInterval) 
 	    {
 	    	entityManager.swapEnemyRow(deltaTime);
 	        timer = 0; // Reset the timer
 	    }
->>>>>>> Stashed changes
+
 		
 		//Get playerHealth 
 		
