@@ -96,6 +96,18 @@ public class LevelScene extends SceneManager {
 		entityManager.updateGreenBullet(deltaTime);
 		entityManager.updateYellowBullet(deltaTime);
 		entityManager.updateRedBullet(deltaTime);
+		
+		//Get playerHealth 
+		
+		if (entityManager.getPlayer().getPlayerHealth() == 0)
+		{
+			System.out.println("player dead");
+		}
+		else
+		{
+			System.out.println(entityManager.getPlayer().getPlayerHealth());
+		}
+		
 	    
 	    // Show score on top-right hand corner of screen 
 	    score = entityManager.getPlayer().getScore();

@@ -9,8 +9,9 @@ import com.mygdx.game.GameEngine.Entities.CollidableEntity;
 public class Player extends CollidableEntity {
 	private Texture player;
 	private int score = 0;
+	private int playerhealth = 5;
 
-	public Player(Vector2 pos, float speed, float width, float height, int score) {
+	public Player(Vector2 pos, float speed, float width, float height, int score, int playerhealth) {
 		super(pos.x, pos.y, speed, width, height);
 		this.score = score;
 		player = new Texture(Gdx.files.internal("entities/player.png"));
@@ -27,6 +28,16 @@ public class Player extends CollidableEntity {
 	public void setScore(int score)
 	{
 		this.score = score;
+	}
+	
+	public int getPlayerHealth()
+	{
+		return playerhealth;
+	}
+	
+	public void setPlayerHealth(int playerhealth)
+	{
+		this.playerhealth = playerhealth;
 	}
 
 }
