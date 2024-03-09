@@ -1,5 +1,7 @@
 package com.mygdx.game.GameEngine;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -8,6 +10,8 @@ import com.mygdx.game.GameEngine.Entities.Entity;
 import com.mygdx.game.GameEngine.Entities.EntityManager;
 import com.mygdx.game.GameLayer.Entities.Player;
 import com.mygdx.game.GameLayer.Entities.PlayerBullet;
+import com.mygdx.game.GameLayer.Entities.Bullet;
+import com.mygdx.game.GameLayer.Entities.Enemy;
 import com.mygdx.game.GameLayer.Entities.Green;
 import com.mygdx.game.GameLayer.Entities.Yellow;
 import com.mygdx.game.GameLayer.Entities.Red;
@@ -28,6 +32,24 @@ public class BehaviourManager {
 	
 	public Vector2 getPos() {
 		return pos;
+	}
+	//still working on this - jake
+	public boolean checkAndSpawnBullet(Player player, List<Enemy> enemies, EntityManager entityManager) {
+		boolean spawnedBullet = false;
+	    for (Enemy enemy : enemies) {
+	        if (isPlayerDirectlyBelow(player, enemy)) {
+	            entityManager.spawnEnemyBullet(); 
+	            spawnedBullet = true;
+	        }
+	    }
+	    return spawnedBullet;
+    }
+	//still working on this - jake
+	public boolean isPlayerDirectlyBelow (Player player, Enemy enemy) {
+		float enemyCenterX = enemy.getX() + enemy.getWidth() / 2;
+	    float playerCenterX = player.getX() + player.getWidth() / 2;
+	    float threshold = 5; 
+	    return Math.abs(enemyCenterX - playerCenterX) <= threshold;
 	}
 	
 	public void updateYellow(Yellow yellow, float deltaTime) {

@@ -86,7 +86,7 @@ public class LevelScene extends SceneManager {
 		
 		// Spawn entities (Create objects)
 		entityManager.spawnEnemy();
-		entityManager.spawnBullet();
+		//entityManager.spawnEnemyBullet();
 		
 		// Update entities
 		entityManager.updatePlayerBullet(deltaTime);
