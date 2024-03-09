@@ -136,6 +136,8 @@ public class LevelScene extends SceneManager {
 		// Collisions
 		collisionManager.collideBorder(entityManager.getPlayer(), -30, 30, 30, -30);
 		collisionManager.collideAlien(entityManager.getPlayer());
+		collisionManager.collidePlayer(entityManager.getPlayer());
+		
 		batch.end();
 	}
 	

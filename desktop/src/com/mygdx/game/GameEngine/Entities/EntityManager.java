@@ -70,7 +70,7 @@ public class EntityManager {
 		return enemyList;
 	}
 	
-	public List<Bullet> getBulletList(){
+	public List<Bullet> getEnemyBulletList(){
 		return EnemyBulletList;
 	}
 	
@@ -262,6 +262,10 @@ public class EntityManager {
 		for (int i = 0; i < enemyList.size(); i++) {
 			Enemy alien = enemyList.get(i);
 			if (behaviourManager.playerNearAlien(player, alien)) {
+				alienShootSound.setVolume(audioSettings.getSoundVolume());
+		        if (audioSettings.isSoundEnabled()) {
+		        	alienShootSound.play();
+		        }
 				if (alien instanceof Yellow) {
 					YellowBullet bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
 					EnemyBulletList.add(bullet);

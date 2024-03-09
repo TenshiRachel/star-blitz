@@ -11,6 +11,7 @@ import com.mygdx.game.GameEngine.AssetsManager;
 import com.mygdx.game.GameEngine.AudioSettings;
 import com.mygdx.game.GameEngine.BehaviourManager;
 import com.mygdx.game.GameLayer.WordFactory;
+import com.mygdx.game.GameLayer.Entities.Bullet;
 import com.mygdx.game.GameLayer.Entities.Enemy;
 import com.mygdx.game.GameLayer.Entities.Player;
 import com.mygdx.game.GameLayer.Entities.PlayerBullet;
@@ -81,6 +82,23 @@ public class CollisionManager {
 	
 	public void collidePlayer(Player player) {
 		// get enemy bullet, loop through and check if bullet collide with player
+		List<Bullet> EnemyBulletList = entityManager.getEnemyBulletList();
+		
+		for (int i = 0; i < EnemyBulletList.size(); i++) {
+			if (player.isCollide(EnemyBulletList.get(i))) {
+				player.setPlayerHealth(player.getPlayerHealth() - 1);
+				if (player.getPlayerHealth() < 0) {
+					player.setPlayerHealth(0);
+				}
+				
+				player.setScore(player.getScore() - 20);
+				if (player.getScore() < 0) {
+					player.setScore(0);
+				}
+				
+				EnemyBulletList.remove(i);
+			}
+		}
 	}
 	
 	public void collideBorder(Player player) {
