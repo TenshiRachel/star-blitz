@@ -109,14 +109,12 @@ public class GameOverScene extends SceneManager{
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				game.setScreen(new LevelScene(game));
-				//playingSong.stop();
 			}
 		});
 		
 		mainMenu.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				//Gdx.app.exit();
 				game.setScreen(new MainMenuScene(game));
 			}
 		});
@@ -153,6 +151,8 @@ public class GameOverScene extends SceneManager{
 	
 	@Override
 	public void hide() {
+		super.hide();
+		playingSong.stop();
 	}
 	
 	@Override

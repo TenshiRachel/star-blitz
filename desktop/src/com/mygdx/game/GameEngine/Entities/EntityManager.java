@@ -144,6 +144,7 @@ public class EntityManager {
 	public void spawnEnemy() {
 		for (int i = 0; enemyList.size() < 30; i++) {
 			// 0 for Green, 1 for Yellow 2 for red
+			System.out.println(enemyList.size());
 			int enemyType1 = random.nextInt(3);
 			int enemyType2 = random.nextInt(3);
 			int enemyType3 = random.nextInt(3);
@@ -201,12 +202,6 @@ public class EntityManager {
 			
 		}
 		
-		
-
-		for (int i = 0; i < enemyList.size(); i++) {
-			Enemy enemy = enemyList.get(i);
-			// System.out.println("Enemy " + (i + 1) + ": Enemy Word - " + enemy.getEnemyWord());
-		}
 	}
 	
 	public void swapEnemyRow(float deltaTime)
@@ -237,54 +232,17 @@ public class EntityManager {
 	
 	
 	// Enemies
-	public void renderGreen(SpriteBatch batch) {
-	    for (Enemy enemy : enemyList) {
-	        if (enemy instanceof Green) {
-	            enemy.render(batch);
-	        }
-	    }
+	public void renderEnemies(SpriteBatch batch) {
+		for (int i = 0; i < enemyList.size(); i++)
+		{
+			enemyList.get(i).render(batch);
+		}
 	}
 	
-	public void updateGreen(float deltaTime) {
-	    for (Enemy enemy : enemyList) {
-	        if (enemy instanceof Green) {
-	            enemy.update(deltaTime);
-	        }
-	    }
-	}
-	
-
-	public void renderYellow(SpriteBatch batch) {
-	    for (Enemy enemy : enemyList) {
-	        if (enemy instanceof Yellow) {
-	            enemy.render(batch);
-	        }
-	    }
-	}
-	
-	public void updateYellow(float deltaTime) {
-	    for (Enemy enemy : enemyList) {
-	        if (enemy instanceof Yellow) {
-	            enemy.update(deltaTime);
-	        }
-	    }
-	}
-	
-
-	public void renderRed(SpriteBatch batch) {
-	    for (Enemy enemy : enemyList) {
-	        if (enemy instanceof Red) {
-	            enemy.render(batch);
-	        }
-	    }
-	}
-	
-	public void updateRed(float deltaTime) {
-	    for (Enemy enemy : enemyList) {
-	        if (enemy instanceof Red) {
-	            enemy.update(deltaTime);
-	        }
-	    }
+	public void updateEnemies(float deltaTime) {
+		for (int i = 0; i < enemyList.size(); i++) {
+			enemyList.get(i).update(deltaTime);
+		}
 	}
 	
 	// Bullets
@@ -330,7 +288,13 @@ public class EntityManager {
 		}
 	}
 	
-	
+	public void resetEntities() {
+		EnemyBulletList.clear();
+		playerBulletList.clear();
+		enemyList.clear();
+		System.out.println(enemyList.size());
+		player.setX(Gdx.graphics.getWidth() / 2);
+	}
 }
 
 

@@ -77,7 +77,8 @@ public class LevelScene extends SceneManager {
 				return true;
 			}
 		});
-
+		
+		entityManager.spawnEnemy();
 	}
 	
 	@Override
@@ -91,14 +92,11 @@ public class LevelScene extends SceneManager {
 		timer += deltaTime;
 		
 		// Spawn entities (Create objects)
-		entityManager.spawnEnemy();
 		entityManager.spawnEnemyBullet();
 		
 		// Update entities
 		entityManager.updatePlayerBullet(deltaTime);
-		entityManager.updateGreen(deltaTime);
-		entityManager.updateYellow(deltaTime);
-		entityManager.updateRed(deltaTime);
+		entityManager.updateEnemies(deltaTime);
 		entityManager.updateEnemyBullet(deltaTime);
 
 
@@ -114,19 +112,11 @@ public class LevelScene extends SceneManager {
 		
 		if (entityManager.getPlayer().getPlayerHealth() == 0)
 		{
+			// Clear and reset entities
+			entityManager.resetEntities();
 			// Proceed to Game Over Scene once player is dead
 			game.setScreen(new GameOverScene(game));
-			// Clear and reset entities
-			entityManager.getEnemyBulletList().clear();
-			entityManager.getPlayerbulletList().clear();
-			entityManager.getPlayer().setX(Gdx.graphics.getWidth() / 2);
-			// entityManager.getEnemyList().clear();
-			
-			System.out.println("player dead");
-		}
-		else
-		{
-			System.out.println(entityManager.getPlayer().getPlayerHealth());
+			System.out.println("Player is dead");
 		}
 		
 	    
@@ -143,9 +133,7 @@ public class LevelScene extends SceneManager {
 		// Render entities
 		entityManager.renderPlayer(batch);
 		entityManager.renderPlayerBullet(batch);
-		entityManager.renderGreen(batch);
-		entityManager.renderYellow(batch);
-		entityManager.renderRed(batch);
+		entityManager.renderEnemies(batch);
 		entityManager.renderEnemyBullet(batch);
 		
 		// Let IO Manager handle inputs

@@ -71,7 +71,7 @@ public class CollisionManager {
 	    					player.setScore(0);
 	    				}
 	    			}
-	    			// enemyIterator.remove();
+	    			enemyIterator.remove();
 	    			PlayerBulletList.remove(j);
 	    			
 	    			break;
