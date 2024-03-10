@@ -133,6 +133,13 @@ public class LevelScene extends SceneManager {
 	    font.draw(batch, scoreText, x, y);
 	    font.getData().setScale(2, 2);
 	    
+	    // Display enemy words
+	    for (int i = 0; i < entityManager.getEnemyList().size(); i++)
+		{
+	    	entityManager.getEnemyList().get(i).getX();
+	    	font.draw(batch, entityManager.getEnemyList().get(i).getEnemyWord(), entityManager.getEnemyList().get(i).getX(), entityManager.getEnemyList().get(i).getY());
+		}
+	    
 		// Render entities
 		entityManager.renderPlayer(batch);
 		entityManager.renderPlayerBullet(batch);
