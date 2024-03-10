@@ -51,7 +51,7 @@ public class LevelScene extends SceneManager {
 		background = new Texture(Gdx.files.internal("background/space.png"));
 		font = new BitmapFont();
 		layout = new GlyphLayout();
-		entityManager.spawnEnemy();
+		//entityManager.spawnEnemy();
 		
 	}
 	
@@ -65,7 +65,6 @@ public class LevelScene extends SceneManager {
         if (audioSettings.isAudioEnabled()) {
             playingSong.play();
         }
-        
 		// On create
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			// Return to menu upon pressing Escape button 
@@ -77,8 +76,7 @@ public class LevelScene extends SceneManager {
 				return true;
 			}
 		});
-		
-		//entityManager.spawnEnemy();
+		entityManager.spawnEnemy();
 	}
 	
 	@Override
@@ -86,20 +84,21 @@ public class LevelScene extends SceneManager {
 		// When running
 		ScreenUtils.clear(0, 0.2f, 0, 0);
 		batch.begin();
-		
 		batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
 		timer += deltaTime;
 		
+		
 		// Spawn entities (Create objects)
 		entityManager.spawnEnemyBullet();
+		
 		
 		// Update entities
 		entityManager.updatePlayerBullet(deltaTime);
 		entityManager.updateEnemies(deltaTime);
 		entityManager.updateEnemyBullet(deltaTime);
 
-
+		
 		//entityManager.swapEnemyRow(deltaTime);
 	    if (timer >= swapInterval) 
 	    {
@@ -107,7 +106,6 @@ public class LevelScene extends SceneManager {
 	        timer = 0; // Reset the timer
 	    }
 
-		
 		//Get playerHealth 
 		
 		if (entityManager.getPlayer().getPlayerHealth() == 0)

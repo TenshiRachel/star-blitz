@@ -37,10 +37,6 @@ public class MainMenuScene extends SceneManager {
 		AssetsManager assetsManager = getAssetManager();
 		assetsManager.queueAddSkin();
 		assetsManager.getManager().finishLoading();
-		EntityManager.resetInstance();
-		//BehaviourManager.resetInstance();
-		CollisionManager.resetInstance();
-		//IOManager.resetInstance();
 	}
 	
 	@Override

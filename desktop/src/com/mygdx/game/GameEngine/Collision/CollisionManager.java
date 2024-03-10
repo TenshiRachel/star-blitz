@@ -113,9 +113,4 @@ public class CollisionManager {
 		}
 	}
 	
-    public static void resetInstance() {
-        instance = null;
-    }
-	
-
 }

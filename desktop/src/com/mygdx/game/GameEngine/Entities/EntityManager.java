@@ -35,8 +35,6 @@ public class EntityManager {
     private int spaceWordCount = 8;
     private int nonSpaceWordCount = 7;
     
-    public WordFactory wordFactory = new WordFactory();
-    
 	Random random = new Random();
 	
 	public EntityManager() {
@@ -128,6 +126,7 @@ public class EntityManager {
 		{
 			spaceWordCount--;
 			return "space";
+			
 		} 
 		else if (randomNumber == 2) 
 		{
@@ -143,12 +142,11 @@ public class EntityManager {
 	
 	// Enemy
 	public void spawnEnemy() {
-		
+		WordFactory wordFactory = new WordFactory();
 		if (EnemySpawn == 0)
 		{
 			for (int i = 0; enemyList.size() < 30; i++) {
 				// 0 for Green, 1 for Yellow 2 for red
-				System.out.println(enemyList.size());
 				int enemyType1 = random.nextInt(3);
 				int enemyType2 = random.nextInt(3);
 				int enemyType3 = random.nextInt(3);
@@ -156,7 +154,6 @@ public class EntityManager {
 		        Enemy enemy1 = null;
 		        Enemy enemy2 = null;
 		        Enemy enemy3 = null;
-	
 		        
 		       
 		        // Row 3 Enemy
@@ -170,7 +167,7 @@ public class EntityManager {
 		        	enemy1 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getRandomEnemyType());
 		        	enemyList.add((Red) enemy1);
 		        }
-		        
+
 		        enemy1.setEnemyWord(wordFactory.getRandomWord(enemy1.getEnemyType()));
 		        
 		        // Row 2 Enemy
@@ -201,7 +198,7 @@ public class EntityManager {
 		        }
 		        
 		        enemy3.setEnemyWord(wordFactory.getRandomWord(enemy3.getEnemyType()));
-	
+		        
 		        EnemySpawn = 1;
 			}
 		}
@@ -290,21 +287,20 @@ public class EntityManager {
 			}
 		}
 	}
-    // Method to reset the EntityManager instance
-    public static void resetInstance() {
-        instance = null;
-    }
 
-	
 	public void resetEntities() {
 		EnemyBulletList.clear();
-		//playerBulletList.clear();
+		playerBulletList.clear();
 		enemyList.clear();
 		EnemySpawn = 0;
+		emptyWordCount = 15;
+		spaceWordCount = 8;
+		nonSpaceWordCount = 7;
 		player.setPlayerHealth(5);
 		player.setScore(0);
 		System.out.println(enemyList.size());
 		player.setX(Gdx.graphics.getWidth() / 2);
+		
 		//EntityManager.resetInstance();
 	}
 }

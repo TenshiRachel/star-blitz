@@ -52,7 +52,4 @@ public class IOManager {
 		}
 	}
 	
-    public static void resetInstance() {
-        instance = null;
-    }
 }

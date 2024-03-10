@@ -7,7 +7,7 @@ import com.mygdx.game.GameEngine.AssetsManager;
 
 public abstract class SceneManager implements Screen {
 	protected Game game;
-	private AssetsManager assetsManager = new AssetsManager();
+	private static AssetsManager assetsManager = new AssetsManager();
 	
 	public SceneManager(Game game) {
 		this.game = game;
@@ -47,4 +47,5 @@ public abstract class SceneManager implements Screen {
 	@Override
 	public void dispose() {
 	}
+	
 }
