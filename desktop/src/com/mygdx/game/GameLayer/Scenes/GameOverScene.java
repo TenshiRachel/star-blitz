@@ -31,8 +31,8 @@ public class GameOverScene extends SceneManager{
 	private Label highScoreLabel;
 	private Label currentScoreValueLabel;
 	private Label highScoreValueLabel;
-	//private Music playingSong;
-	//private AudioSettings audioSettings = new AudioSettings();
+	private Music playingSong;
+	private AudioSettings audioSettings = new AudioSettings();
 	public int currentScore, highScore;
 	
 	public EntityManager entityManager = EntityManager.getInstance();
@@ -46,6 +46,15 @@ public class GameOverScene extends SceneManager{
 	
 	@Override
 	public void show() {
+        AssetsManager.queueEndMusic();
+        AssetsManager.getManager().finishLoading();
+        playingSong = AssetsManager.getManager().get(AssetsManager.gameOverPath);
+        playingSong.setVolume(audioSettings.getAudioVolume());
+        playingSong.setLooping(true);
+        if (audioSettings.isAudioEnabled()) {
+            playingSong.play();
+        }
+		
 		background = new Texture(Gdx.files.internal("background/space.png"));
 		
 		skin = getAssetManager().getSkin();

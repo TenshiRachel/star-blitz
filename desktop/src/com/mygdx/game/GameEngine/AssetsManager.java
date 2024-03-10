@@ -19,6 +19,7 @@ public class AssetsManager {
     public static final String playerHitSound = "audio/player_hit.wav";
     public static final String alienShootSound = "audio/alien_shoot.wav";
     public static final String playerShootSound = "audio/player_shoot.wav";
+    public static final String playerDieSound = "audio/die.wav";
 
     public static void queueAddSkin(){
         SkinLoader.SkinParameter params = new SkinLoader.SkinParameter("skin/star-soldier-ui.atlas");
@@ -46,8 +47,12 @@ public class AssetsManager {
     }
     
     public static void queuePlayerHitMusic(){manager.load(playerHitSound, Music.class);}
+    
     public static void queueAlienShootMusic(){manager.load(alienShootSound, Music.class);}
+    
     public static void queuePlayerShootMusic(){manager.load(playerShootSound, Music.class);}
+    
+    public static void queuePlayerDieMusic() {manager.load(playerDieSound, Music.class);}
     
     public void setSkin(Skin skin) {
         this.skin = skin;

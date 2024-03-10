@@ -65,6 +65,7 @@ public class LevelScene extends SceneManager {
         if (audioSettings.isAudioEnabled()) {
             playingSong.play();
         }
+        
 		// On create
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			// Return to menu upon pressing Escape button 
@@ -115,8 +116,13 @@ public class LevelScene extends SceneManager {
 		{
 			// Proceed to Game Over Scene once player is dead
 			game.setScreen(new GameOverScene(game));
-			System.out.println("player dead");
+			// Clear and reset entities
+			entityManager.getEnemyBulletList().clear();
+			entityManager.getPlayerbulletList().clear();
+			entityManager.getPlayer().setX(Gdx.graphics.getWidth() / 2);
+			// entityManager.getEnemyList().clear();
 			
+			System.out.println("player dead");
 		}
 		else
 		{
@@ -125,12 +131,10 @@ public class LevelScene extends SceneManager {
 		
 	    
 	    // Show score on top-right hand corner of screen 
-	    currentScore = entityManager.getPlayer().getScore();
-	    scoreText = "Score: " + currentScore;
 	    float x = Gdx.graphics.getWidth() - layout.width - 200;
+	    float y = Gdx.graphics.getHeight() - 50;
 	    currentScore = entityManager.getPlayer().getScore();
 	    scoreText = "Score: " + currentScore;
-	    float y = Gdx.graphics.getHeight() - 50;
 	    
 	    font.setColor(255, 255, 255, 255);
 	    font.draw(batch, scoreText, x, y);
@@ -142,9 +146,6 @@ public class LevelScene extends SceneManager {
 		entityManager.renderGreen(batch);
 		entityManager.renderYellow(batch);
 		entityManager.renderRed(batch);
-//		entityManager.renderGreenBullet(batch);
-//		entityManager.renderYellowBullet(batch);
-//		entityManager.renderRedBullet(batch);
 		entityManager.renderEnemyBullet(batch);
 		
 		// Let IO Manager handle inputs
