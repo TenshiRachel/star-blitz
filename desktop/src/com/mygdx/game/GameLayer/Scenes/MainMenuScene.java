@@ -151,7 +151,9 @@ public class MainMenuScene extends SceneManager {
 	@Override
 	public void dispose() {
 		stage.dispose();
+		background.dispose();
 		AssetsManager.getManager().dispose();
+		playingSong.dispose();
 	}
 	
 	

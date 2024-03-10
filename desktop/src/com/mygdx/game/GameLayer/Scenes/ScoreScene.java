@@ -61,8 +61,10 @@ public class ScoreScene extends SceneManager{
         }
 
 		background = new Texture(Gdx.files.internal("background/space.png"));
+		
 		stage.clear();
 		Gdx.input.setInputProcessor(stage);
+		
 		skin =  getAssetManager().getSkin();
 		
 		Table table = new Table();
@@ -141,7 +143,9 @@ public class ScoreScene extends SceneManager{
 	
 	@Override
 	public void dispose() {
+		batch.dispose();
 		stage.dispose();
+		playingSong.dispose();
 	}
 }
 
