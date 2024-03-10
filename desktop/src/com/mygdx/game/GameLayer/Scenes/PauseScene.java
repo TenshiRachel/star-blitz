@@ -6,19 +6,14 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.mygdx.game.GameEngine.AudioSettings;
+import com.mygdx.game.GameEngine.AssetsManager;
 import com.mygdx.game.GameEngine.Scene.SceneManager;
 
 public class PauseScene extends SceneManager {
@@ -33,6 +28,10 @@ public class PauseScene extends SceneManager {
 		// TODO Auto-generated constructor stub
 		batch = new SpriteBatch();
 		stage = new Stage(new ScreenViewport());
+		
+		AssetsManager assetsManager = getAssetManager();
+		assetsManager.queueAddSkin();
+		assetsManager.getManager().finishLoading();
 	}
 	
 	
@@ -47,7 +46,7 @@ public class PauseScene extends SceneManager {
 		
 		stage.addActor(table);
 		
-		skin =  new Skin(Gdx.files.internal("skin/star-soldier-ui.json"));
+		skin = getAssetManager().getSkin();
 		
         
 		// Resume button
@@ -126,7 +125,5 @@ public class PauseScene extends SceneManager {
 	@Override
 	public void dispose() {
 		stage.dispose();
-		batch.dispose();
-		background.dispose();
 	}
 }

@@ -51,8 +51,6 @@ public class LevelScene extends SceneManager {
 		background = new Texture(Gdx.files.internal("background/space.png"));
 		font = new BitmapFont();
 		layout = new GlyphLayout();
-		//entityManager.spawnEnemy();
-		
 	}
 	
 	@Override
@@ -78,7 +76,6 @@ public class LevelScene extends SceneManager {
 		});
 
 		entityManager.spawnEnemy();
-
 
 	}
 	
