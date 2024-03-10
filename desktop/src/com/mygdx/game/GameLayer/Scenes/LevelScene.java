@@ -39,7 +39,6 @@ public class LevelScene extends SceneManager {
 	private float timer = 0;
     private float swapInterval = 5; // 5 seconds
 	
-	
 	public IOManager ioManager = IOManager.getInstance();
 	public BehaviourManager behaviourManager = BehaviourManager.getInstance();
 	public EntityManager entityManager = EntityManager.getInstance();
@@ -52,6 +51,7 @@ public class LevelScene extends SceneManager {
 		background = new Texture(Gdx.files.internal("background/space.png"));
 		font = new BitmapFont();
 		layout = new GlyphLayout();
+		entityManager.spawnEnemy();
 		
 	}
 	
@@ -78,7 +78,7 @@ public class LevelScene extends SceneManager {
 			}
 		});
 		
-		entityManager.spawnEnemy();
+		//entityManager.spawnEnemy();
 	}
 	
 	@Override
@@ -170,5 +170,6 @@ public class LevelScene extends SceneManager {
 		font.dispose();
 		batch.dispose();
 		background.dispose();
+		
 	}
 }

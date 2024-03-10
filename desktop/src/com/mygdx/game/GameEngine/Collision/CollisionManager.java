@@ -112,4 +112,10 @@ public class CollisionManager {
 			BehaviourManager.handleBorder(player, os_left, os_right, os_top, os_bottom);
 		}
 	}
+	
+    public static void resetInstance() {
+        instance = null;
+    }
+	
+
 }

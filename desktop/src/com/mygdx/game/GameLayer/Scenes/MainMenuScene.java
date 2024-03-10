@@ -15,6 +15,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.GameEngine.AssetsManager;
 import com.mygdx.game.GameEngine.AudioSettings;
+import com.mygdx.game.GameEngine.BehaviourManager;
+import com.mygdx.game.GameEngine.IOManager;
+import com.mygdx.game.GameEngine.Collision.CollisionManager;
+import com.mygdx.game.GameEngine.Entities.EntityManager;
 import com.mygdx.game.GameEngine.Scene.SceneManager;
 
 public class MainMenuScene extends SceneManager {
@@ -33,6 +37,10 @@ public class MainMenuScene extends SceneManager {
 		AssetsManager assetsManager = getAssetManager();
 		assetsManager.queueAddSkin();
 		assetsManager.getManager().finishLoading();
+		EntityManager.resetInstance();
+		//BehaviourManager.resetInstance();
+		CollisionManager.resetInstance();
+		//IOManager.resetInstance();
 	}
 	
 	@Override
@@ -145,4 +153,6 @@ public class MainMenuScene extends SceneManager {
 		stage.dispose();
 		AssetsManager.getManager().dispose();
 	}
+	
+	
 }

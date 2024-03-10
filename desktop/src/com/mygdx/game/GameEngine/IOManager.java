@@ -51,4 +51,8 @@ public class IOManager {
 			entitymanager.spawnPlayerBullet();
 		}
 	}
+	
+    public static void resetInstance() {
+        instance = null;
+    }
 }

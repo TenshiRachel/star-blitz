@@ -118,4 +118,8 @@ public class BehaviourManager {
 		}
 	}
 	
+    public static void resetInstance() {
+        instance = null;
+    }
+	
 }

@@ -51,6 +51,7 @@ public class EntityManager {
 	}
 	
 	public static EntityManager getInstance() {
+		
 		if (instance == null) {
 			instance = new EntityManager();
 		}
@@ -289,13 +290,22 @@ public class EntityManager {
 			}
 		}
 	}
+    // Method to reset the EntityManager instance
+    public static void resetInstance() {
+        instance = null;
+    }
+
 	
 	public void resetEntities() {
 		EnemyBulletList.clear();
-		playerBulletList.clear();
+		//playerBulletList.clear();
 		enemyList.clear();
+		EnemySpawn = 0;
+		player.setPlayerHealth(5);
+		player.setScore(0);
 		System.out.println(enemyList.size());
 		player.setX(Gdx.graphics.getWidth() / 2);
+		//EntityManager.resetInstance();
 	}
 }
 
