@@ -81,7 +81,7 @@ public class GameOverScene extends SceneManager{
 		currentScoreLabel = new Label ("Score:", skin);
 		highScoreLabel = new Label ("Highest Score:", skin);
 		currentScoreValueLabel = new Label(String.valueOf(currentScore), skin);
-		highScoreValueLabel = new Label(String.valueOf(highScoreValueLabel), skin);
+		highScoreValueLabel = new Label(String.valueOf(highScore), skin);
 		
 		
 		// Create menu buttons

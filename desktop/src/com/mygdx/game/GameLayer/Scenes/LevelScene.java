@@ -76,7 +76,10 @@ public class LevelScene extends SceneManager {
 				return true;
 			}
 		});
+
 		entityManager.spawnEnemy();
+
+
 	}
 	
 	@Override
@@ -115,6 +118,11 @@ public class LevelScene extends SceneManager {
 			// Proceed to Game Over Scene once player is dead
 			game.setScreen(new GameOverScene(game));
 			System.out.println("Player is dead");
+		}
+		
+		if (entityManager.getEnemyList().isEmpty() == true) {
+			// Proceed to Game Over Scene once player has killed all enemies
+			game.setScreen(new GameOverScene(game));
 		}
 		
 	    
