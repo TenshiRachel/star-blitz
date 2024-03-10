@@ -243,26 +243,48 @@ public class EntityManager {
 	public void spawnEnemyBullet() {
 		for (int i = 0; i < enemyList.size(); i++) {
 			Enemy alien = enemyList.get(i);
-			if (behaviourManager.playerNearAlien(player, alien)) {
-				alienShootSound.setVolume(audioSettings.getSoundVolume());
-		        if (audioSettings.isSoundEnabled()) {
-		        	alienShootSound.play();
-		        }
-				if (alien instanceof Yellow) {
-					YellowBullet bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
-					EnemyBulletList.add(bullet);
-				}
-				
-				if (alien instanceof Green) {
-					GreenBullet bullet = new GreenBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
-					EnemyBulletList.add(bullet);
-				}
-				
-				if (alien instanceof Red) {
-					RedBullet bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
-					EnemyBulletList.add(bullet);
+			if (enemyList.get(i).getY() == Gdx.graphics.getHeight() - 370) {
+				if (behaviourManager.playerNearAlien(player, alien)) {
+					alienShootSound.setVolume(audioSettings.getSoundVolume());
+			        if (audioSettings.isSoundEnabled()) {
+			        	alienShootSound.play();
+			        }
+					if (alien instanceof Yellow) {
+						YellowBullet bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+						EnemyBulletList.add(bullet);
+					}
+					
+					if (alien instanceof Green) {
+						GreenBullet bullet = new GreenBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+						EnemyBulletList.add(bullet);
+					}
+					
+					if (alien instanceof Red) {
+						RedBullet bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+						EnemyBulletList.add(bullet);
+					}
 				}
 			}
+//			if (behaviourManager.playerNearAlien(player, alien)) {
+//				alienShootSound.setVolume(audioSettings.getSoundVolume());
+//		        if (audioSettings.isSoundEnabled()) {
+//		        	alienShootSound.play();
+//		        }
+//				if (alien instanceof Yellow) {
+//					YellowBullet bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+//					EnemyBulletList.add(bullet);
+//				}
+//				
+//				if (alien instanceof Green) {
+//					GreenBullet bullet = new GreenBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+//					EnemyBulletList.add(bullet);
+//				}
+//				
+//				if (alien instanceof Red) {
+//					RedBullet bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+//					EnemyBulletList.add(bullet);
+//				}
+//			}
 		}
 	}
 	
