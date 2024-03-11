@@ -136,7 +136,12 @@ public class LevelScene extends SceneManager {
 	    // Display enemy words
 	    for (int i = 0; i < entityManager.getEnemyList().size(); i++)
 		{
-	    	font.draw(batch, entityManager.getEnemyList().get(i).getEnemyWord(), entityManager.getEnemyList().get(i).getX(), entityManager.getEnemyList().get(i).getY() + 90);
+	    	layout = new GlyphLayout(font, entityManager.getEnemyList().get(i).getEnemyWord());
+	    	float width = layout.width;
+	    	x = entityManager.getEnemyList().get(i).getX() + (entityManager.getEnemyList().get(i).getWidth() - width) / 2;
+	    	y = entityManager.getEnemyList().get(i).getY() + entityManager.getEnemyList().get(i).getHeight() + 30;
+	    	
+	    	font.draw(batch, entityManager.getEnemyList().get(i).getEnemyWord(), x, y);
 		}
 	    
 		// Render entities

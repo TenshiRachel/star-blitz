@@ -29,6 +29,8 @@ public class MainMenuScene extends SceneManager {
 	private Music playingSong;
 	private AudioSettings audioSettings = new AudioSettings();
 	
+	private EntityManager entityManager = EntityManager.getInstance();
+	
 	public MainMenuScene(Game game) {
 		super(game);
 		stage = new Stage(new ScreenViewport());
@@ -37,6 +39,7 @@ public class MainMenuScene extends SceneManager {
 		AssetsManager assetsManager = getAssetManager();
 		assetsManager.queueAddSkin();
 		assetsManager.getManager().finishLoading();
+		entityManager.resetEntities();
 	}
 	
 	@Override

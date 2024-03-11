@@ -296,9 +296,11 @@ public class EntityManager {
 		nonSpaceWordCount = 7;
 		
 		// Reset player attributes
-		player.setPlayerHealth(5);
-		player.setScore(0);
-		player.setX(Gdx.graphics.getWidth() / 2);
+		if (player != null) {
+			player.setPlayerHealth(5);
+			player.setScore(0);
+			player.setX(Gdx.graphics.getWidth() / 2);
+		}
 	}
 }
 
