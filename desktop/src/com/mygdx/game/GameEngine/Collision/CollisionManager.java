@@ -83,6 +83,7 @@ public class CollisionManager {
 	public void collidePlayer(Player player) {
 		// get enemy bullet, loop through and check if bullet collide with player
 		List<Bullet> EnemyBulletList = entityManager.getEnemyBulletList();
+		List<Enemy> RowOneEnemies = entityManager.getRowOne();
 		
 		for (int i = 0; i < EnemyBulletList.size(); i++) {
 			if (player.isCollide(EnemyBulletList.get(i))) {
@@ -94,6 +95,13 @@ public class CollisionManager {
 				player.setScore(player.getScore() - 20);
 				if (player.getScore() < 0) {
 					player.setScore(0);
+				}
+				
+				for (int j = 0; j < RowOneEnemies.size(); j++) {
+					Enemy alien = RowOneEnemies.get(j);
+					if (EnemyBulletList.get(i).getX() == alien.getX()) {
+						alien.setHasFired(false);
+					}
 				}
 				
 				EnemyBulletList.remove(i);

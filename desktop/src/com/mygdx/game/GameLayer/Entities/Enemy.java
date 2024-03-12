@@ -10,11 +10,13 @@ import com.mygdx.game.GameEngine.Entities.CollidableEntity;
 public class Enemy extends CollidableEntity{
 	private String enemyType;
 	private String enemyword;
+	private boolean hasFired;
 	
 	public Enemy(Vector2 pos, float speed, float width, float height, String enemyType) {
 		super(pos.x, pos.y, speed, width, height);
 		this.enemyword = "";
 		this.enemyType = enemyType;
+		this.hasFired = false;
 	}
 	
 	public String getEnemyType() {
@@ -31,6 +33,14 @@ public class Enemy extends CollidableEntity{
     
     public void setEnemyType(String enemyType) {
     	this.enemyType = enemyType;
+    }
+    
+    public boolean getHasFired() {
+    	return hasFired;
+    }
+    
+    public void setHasFired(boolean hasFired) {
+    	this.hasFired = hasFired;
     }
 
 	public void render(SpriteBatch batch) {

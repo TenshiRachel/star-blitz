@@ -21,6 +21,7 @@ public class EntityManager {
 	private SpriteBatch batch;
 	private List<PlayerBullet> playerBulletList;
 	private List<Enemy> enemyList;
+	private List<Enemy> RowOneEnemies;
 	private List<Bullet> EnemyBulletList;
 	private PlayerBullet playerbullet;
 	private Bullet bullet;
@@ -40,6 +41,7 @@ public class EntityManager {
 	public EntityManager() {
 		playerBulletList = new ArrayList<>();
 		enemyList = new ArrayList<>();
+		RowOneEnemies = new ArrayList<>();
 		EnemyBulletList = new ArrayList<>();
 		AssetsManager.queuePlayerShootMusic();
 		AssetsManager.queueAlienShootMusic();
@@ -67,6 +69,10 @@ public class EntityManager {
 	
 	public List<Enemy> getEnemyList(){
 		return enemyList;
+	}
+	
+	public List<Enemy> getRowOne(){
+		return RowOneEnemies;
 	}
 	
 	public List<Bullet> getEnemyBulletList(){
@@ -191,6 +197,7 @@ public class EntityManager {
 		        }
 		        
 		        enemyList.add(enemy3);
+		        RowOneEnemies.add(enemy3);
 		        enemy3.setEnemyWord(wordFactory.getRandomWord(enemy3.getEnemyType()));
 		        
 		        enemySpawned = true;
@@ -245,23 +252,27 @@ public class EntityManager {
 			Enemy alien = enemyList.get(i);
 			if (enemyList.get(i).getY() == Gdx.graphics.getHeight() - 370) {
 				if (behaviourManager.playerNearAlien(player, alien)) {
-					alienShootSound.setVolume(audioSettings.getSoundVolume());
-			        if (audioSettings.isSoundEnabled()) {
-			        	alienShootSound.play();
-			        }
-					if (alien instanceof Yellow) {
-						YellowBullet bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+					if (!alien.getHasFired()) {
+						alienShootSound.setVolume(audioSettings.getSoundVolume());
+				        if (audioSettings.isSoundEnabled()) {
+				        	alienShootSound.play();
+				        }
+				        Bullet bullet = null;
+				        
+						if (alien instanceof Yellow) {
+							bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+						}
+						
+						if (alien instanceof Green) {
+							bullet = new GreenBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+						}
+						
+						if (alien instanceof Red) {
+							bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+						}
+						
 						EnemyBulletList.add(bullet);
-					}
-					
-					if (alien instanceof Green) {
-						GreenBullet bullet = new GreenBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
-						EnemyBulletList.add(bullet);
-					}
-					
-					if (alien instanceof Red) {
-						RedBullet bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
-						EnemyBulletList.add(bullet);
+						alien.setHasFired(true);
 					}
 				}
 			}
@@ -279,7 +290,13 @@ public class EntityManager {
 			Bullet enemyBullet = EnemyBulletList.get(i);
 			enemyBullet.setY(enemyBullet.getY() - enemyBullet.getSpeed());
 			if (enemyBullet.getY() < 0) {
+				for (int j = 0; j < RowOneEnemies.size(); j++) {
+					if (RowOneEnemies.get(j).getX() == enemyBullet.getX()) {
+						RowOneEnemies.get(j).setHasFired(false);
+					}
+				}
 				EnemyBulletList.remove(i);
+				
 			}
 		}
 	}
@@ -289,6 +306,7 @@ public class EntityManager {
 		EnemyBulletList.clear();
 		playerBulletList.clear();
 		enemyList.clear();
+		RowOneEnemies.clear();
 		
 		enemySpawned = false;
 		emptyWordCount = 15;

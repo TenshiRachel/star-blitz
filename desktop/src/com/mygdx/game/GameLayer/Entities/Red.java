@@ -19,8 +19,4 @@ public class Red extends Enemy{
 		batch.draw(red, getX(), getY(), getWidth(), getHeight());
 	}
 	
-	public void update(float deltaTime) {
-		BehaviourManager.getInstance().updateRed(this, deltaTime);
-	}
-	
 }

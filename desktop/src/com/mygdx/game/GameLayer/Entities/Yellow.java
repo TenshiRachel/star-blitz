@@ -20,8 +20,4 @@ public class Yellow extends Enemy{
 		batch.draw(yellow, getX(), getY(), getWidth(), getHeight());
 	}
 	
-	public void update(float deltaTime) {
-		BehaviourManager.getInstance().updateYellow(this, deltaTime);
-	}
-	
 }

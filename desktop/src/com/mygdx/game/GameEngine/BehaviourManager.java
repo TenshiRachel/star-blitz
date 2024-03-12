@@ -38,24 +38,9 @@ public class BehaviourManager {
 		float playerX = player.getX();
 		float alienX = enemy.getX();
 		
-		int threshold = 50;
+		int threshold = 100;
 		
 		return (playerX + threshold == alienX || playerX - threshold == alienX);
-	}
-	
-	public void updateYellow(Yellow yellow, float deltaTime) {
-		// Increase x position till border
-		
-	}
-	
-	public void updateRed(Red red, float deltaTime) {
-		// Increase x position till border
-		
-	}
-	
-	public void updateGreen(Green green, float deltaTime) {
-		// Increase x position till border
-		
 	}
 	
 	public void moveUp(Entity entity1) {
