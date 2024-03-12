@@ -21,7 +21,6 @@ public class EntityManager {
 	private SpriteBatch batch;
 	private List<PlayerBullet> playerBulletList;
 	private List<Enemy> enemyList;
-	private List<Enemy> RowOneEnemies;
 	private List<Bullet> EnemyBulletList;
 	private PlayerBullet playerbullet;
 	private Bullet bullet;
@@ -41,7 +40,6 @@ public class EntityManager {
 	public EntityManager() {
 		playerBulletList = new ArrayList<>();
 		enemyList = new ArrayList<>();
-		RowOneEnemies = new ArrayList<>();
 		EnemyBulletList = new ArrayList<>();
 		AssetsManager.queuePlayerShootMusic();
 		AssetsManager.queueAlienShootMusic();
@@ -69,10 +67,6 @@ public class EntityManager {
 	
 	public List<Enemy> getEnemyList(){
 		return enemyList;
-	}
-	
-	public List<Enemy> getRowOne(){
-		return RowOneEnemies;
 	}
 	
 	public List<Bullet> getEnemyBulletList(){
@@ -197,7 +191,6 @@ public class EntityManager {
 		        }
 		        
 		        enemyList.add(enemy3);
-		        RowOneEnemies.add(enemy3);
 		        enemy3.setEnemyWord(wordFactory.getRandomWord(enemy3.getEnemyType()));
 		        
 		        enemySpawned = true;
@@ -210,6 +203,7 @@ public class EntityManager {
 		for (int i = 0; i < enemyList.size(); i++)
 		{
 			enemyList.get(i).setY(enemyList.get(i).getY() - 100);
+			enemyList.get(i).setHasFired(false);
 			if (enemyList.get(i).getY() < Gdx.graphics.getHeight() - 400)
 			{
 				enemyList.get(i).setY(Gdx.graphics.getHeight()-170);
@@ -290,9 +284,9 @@ public class EntityManager {
 			Bullet enemyBullet = EnemyBulletList.get(i);
 			enemyBullet.setY(enemyBullet.getY() - enemyBullet.getSpeed());
 			if (enemyBullet.getY() < 0) {
-				for (int j = 0; j < RowOneEnemies.size(); j++) {
-					if (RowOneEnemies.get(j).getX() == enemyBullet.getX()) {
-						RowOneEnemies.get(j).setHasFired(false);
+				for (int j = 0; j < enemyList.size(); j++) {
+					if (enemyList.get(j).getX() == enemyBullet.getX() && enemyList.get(j).getY() == Gdx.graphics.getHeight() - 370) {
+						enemyList.get(j).setHasFired(false);
 					}
 				}
 				EnemyBulletList.remove(i);
@@ -306,7 +300,6 @@ public class EntityManager {
 		EnemyBulletList.clear();
 		playerBulletList.clear();
 		enemyList.clear();
-		RowOneEnemies.clear();
 		
 		enemySpawned = false;
 		emptyWordCount = 15;
