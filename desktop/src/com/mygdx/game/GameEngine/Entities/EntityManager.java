@@ -246,6 +246,7 @@ public class EntityManager {
 			Enemy alien = enemyList.get(i);
 			if (enemyList.get(i).getY() == Gdx.graphics.getHeight() - 370) {
 				if (behaviourManager.playerNearAlien(player, alien)) {
+					System.out.println("spawn");
 					if (!alien.getHasFired()) {
 						alienShootSound.setVolume(audioSettings.getSoundVolume());
 				        if (audioSettings.isSoundEnabled()) {

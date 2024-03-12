@@ -39,8 +39,7 @@ public class BehaviourManager {
 		float alienX = enemy.getX();
 		
 		int threshold = 100;
-		
-		return (playerX + threshold == alienX || playerX - threshold == alienX);
+		return (Math.abs(playerX - alienX) <= threshold);
 	}
 	
 	public void moveUp(Entity entity1) {
