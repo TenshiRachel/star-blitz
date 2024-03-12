@@ -255,15 +255,15 @@ public class EntityManager {
 				        Bullet bullet = null;
 				        
 						if (alien instanceof Yellow) {
-							bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+							bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 10, 64, 64);
 						}
 						
 						if (alien instanceof Green) {
-							bullet = new GreenBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+							bullet = new GreenBullet(new Vector2(alien.getX(), alien.getY()), 10, 64, 64);
 						}
 						
 						if (alien instanceof Red) {
-							bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 10, 50, 50);
+							bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 10, 64, 64);
 						}
 						
 						EnemyBulletList.add(bullet);

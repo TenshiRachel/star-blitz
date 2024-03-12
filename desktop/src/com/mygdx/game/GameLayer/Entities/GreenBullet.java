@@ -13,7 +13,7 @@ public class GreenBullet extends Bullet{
 
     public GreenBullet(Vector2 pos, float speed, float width, float height) {	
 		super(pos, speed, width, height);
-		bullet = new Texture(Gdx.files.internal("entities/bucket.png"));
+		bullet = new Texture(Gdx.files.internal("entities/greenBullet.png"));
 	}
 
     public void render(SpriteBatch batch) {

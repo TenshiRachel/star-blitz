@@ -13,7 +13,7 @@ public class RedBullet extends Bullet{
 
     public RedBullet(Vector2 pos, float speed, float width, float height) {	
 		super(pos, speed, width, height);
-		bullet = new Texture(Gdx.files.internal("entities/bullet.png"));
+		bullet = new Texture(Gdx.files.internal("entities/redBullet.png"));
 	}
 
     public void render(SpriteBatch batch) {
