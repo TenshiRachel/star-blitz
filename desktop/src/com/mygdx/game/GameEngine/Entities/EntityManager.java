@@ -196,6 +196,7 @@ public class EntityManager {
 		        enemySpawned = true;
 			}
 		}
+			
 	}
 	
 	public void swapEnemyRow(float deltaTime)
@@ -246,7 +247,7 @@ public class EntityManager {
 			Enemy alien = enemyList.get(i);
 			if (enemyList.get(i).getY() == Gdx.graphics.getHeight() - 370) {
 				if (behaviourManager.playerNearAlien(player, alien)) {
-					System.out.println("spawn");
+					//System.out.println("spawn");
 					if (!alien.getHasFired()) {
 						alienShootSound.setVolume(audioSettings.getSoundVolume());
 				        if (audioSettings.isSoundEnabled()) {
@@ -294,6 +295,27 @@ public class EntityManager {
 				
 			}
 		}
+	}
+	
+	public void respawnEnemies() {
+		enemySpawned = false;
+		emptyWordCount = 15;
+		spaceWordCount = 8;
+		nonSpaceWordCount = 7;
+		
+		enemyList.clear();
+
+	}
+	
+	public int spaceWordExist() 
+	{
+	    for (Enemy enemy : enemyList) 
+	    {
+	        if (enemy.getEnemyType().equals("space")) {
+	            return 1;
+	        }
+	    }
+	    return 0;
 	}
 
 	public void resetEntities() {

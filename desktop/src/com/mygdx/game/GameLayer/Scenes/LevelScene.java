@@ -119,8 +119,19 @@ public class LevelScene extends SceneManager {
 		
 		if (entityManager.getEnemyList().isEmpty() == true) {
 			// Proceed to Game Over Scene once player has killed all enemies
-			game.setScreen(new GameOverScene(game));
+			entityManager.respawnEnemies();
+			entityManager.spawnEnemy();
+			//entityManager.spawnEnemy();
 		}
+		
+		
+		if (entityManager.spaceWordExist() == 0)
+		{
+			entityManager.respawnEnemies();
+			entityManager.spawnEnemy();
+		}
+
+		
 		
 	    
 	    // Show score on top-right hand corner of screen 
