@@ -8,7 +8,7 @@ import java.util.Random;
 public class WordFactory {
 	private List<String> WordList;
 	private List<String> SpaceWordList = new ArrayList<>(Arrays.asList("Asteroid", "Moon", "Star",
-			"Earth", "Sun", "Orion belt", "Big Bang", "Mars"));
+			"Earth", "Sun", "Astronaut", "Big Bang", "Mars"));
 	private List<String> NonSpaceWordList = new ArrayList<>(Arrays.asList("Tree", "Apple", "Water",
 			"Dog", "Burger", "Air", "Ball"));
 	Random random = new Random();
