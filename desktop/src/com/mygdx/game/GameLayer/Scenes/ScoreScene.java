@@ -79,7 +79,14 @@ public class ScoreScene extends SceneManager{
 		SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy");
 		String dateString = formatter.format(new Date(TimeUtils.millis()));
 		dateValueLabel = new Label(dateString, skin);
-		highScore = entityManager.getPlayer().getScore();
+		// Assuming player is retrieved from entityManager
+		Player player = entityManager.getPlayer();
+		if (player != null) {
+		    highScore = player.getScore();
+		} else {
+		    // Handle the case where player is not initialized properly
+		    highScore = 0; // or any default value
+		}
         scoreValueLabel = new Label(String.valueOf(highScore), skin);
 		
 		
