@@ -70,19 +70,28 @@ public class MainMenuScene extends SceneManager {
 		// Create menu buttons
 		TextButton startGame = new TextButton("Start", skin);
 		TextButton exit = new TextButton("Quit", skin);
+		TextButton instructions = new TextButton("Instructions", skin);
 		TextButton options = new TextButton("Options", skin);
 		TextButton records = new TextButton("Records", skin);
 		
 		// Add buttons to table
 		table.add(startGame).fillX().uniformX();
-		table.add(exit).fillX().uniformX();
+		table.add(instructions).fillX().uniformX();
         table.row().pad(5, 0, 5, 0);
         table.add(options).fillX().uniformX();
         table.add(records).fillX().uniformX();
         table.row().pad(5, 0, 5, 0);
+        table.add(exit).fillX().uniformX();
         
 		
 		// Button event listeners
+        instructions.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				game.setScreen(new InstructionsScene(game));
+			}
+		});
+		
 		startGame.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
