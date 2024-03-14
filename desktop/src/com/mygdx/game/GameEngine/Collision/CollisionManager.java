@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import com.mygdx.game.GameEngine.Entities.EntityManager;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.mygdx.game.GameEngine.AssetsManager;
@@ -15,6 +16,8 @@ import com.mygdx.game.GameLayer.Entities.Bullet;
 import com.mygdx.game.GameLayer.Entities.Enemy;
 import com.mygdx.game.GameLayer.Entities.Player;
 import com.mygdx.game.GameLayer.Entities.PlayerBullet;
+import com.mygdx.game.GameLayer.Scenes.InfoScene;
+import com.mygdx.game.GameLayer.Scenes.PauseScene;
 
 public class CollisionManager {
 	private static CollisionManager instance;
@@ -39,7 +42,7 @@ public class CollisionManager {
 		return instance;
 	}
 	
-	public void collideAlien(Player player) {
+	public void collideAlien(Player player, Game game) {
 		// get alien and bullet lists, loop through aliens and check if bullet collide
 		// if collide, remove bullet and alien, play alien_hit sound
 		List<Enemy> EnemyList = entityManager.getEnemyList();
@@ -63,6 +66,7 @@ public class CollisionManager {
 	    			
 	    			if (alien.getEnemyType() == "space") {
 	    				player.setScore(player.getScore() + 20);
+	    				game.setScreen(new InfoScene(game, alien.getEnemyWord()));
 	    			}
 	    			
 	    			if (alien.getEnemyType() == "nonSpace") {
