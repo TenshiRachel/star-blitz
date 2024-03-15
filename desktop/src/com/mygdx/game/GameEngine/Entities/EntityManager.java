@@ -76,7 +76,9 @@ public class EntityManager {
 	}
 	
 	public void create() {
-		player = new Player(new Vector2(Gdx.graphics.getWidth() / 2, 0), 10, 64, 64,0, 5);
+		if (player == null) {
+			player = new Player(new Vector2(Gdx.graphics.getWidth() / 2, 0), 10, 64, 64, 0, 5);
+		}
 	}
 	
 	public void renderPlayer(SpriteBatch batch) {

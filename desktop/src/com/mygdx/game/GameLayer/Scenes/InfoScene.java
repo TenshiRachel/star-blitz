@@ -50,7 +50,6 @@ public class InfoScene extends SceneManager {
 		Table table = new Table();
 		table.setFillParent(true);
 		
-//		stage.addActor(popUp);
 		stage.addActor(table);
 		
 		skin = getAssetManager().getSkin();
@@ -67,33 +66,10 @@ public class InfoScene extends SceneManager {
             }
         });
         
-//        // Settings button
-//        TextButton settingsButton = new TextButton("CHANGED", skin);
-//        settingsButton.addListener(new ChangeListener() {
-//            @Override
-//            public void changed(ChangeEvent event, Actor actor) {
-//            	game.setScreen(new SettingsScene(game));
-//            }
-//        });
-//        
-//        // Main Menu Button
-//        TextButton mainMenuButton = new TextButton("Main Menu", skin);
-//        mainMenuButton.addListener(new ChangeListener() {
-//            @Override
-//            public void changed(ChangeEvent event, Actor actor) {
-//            	game.setScreen(new MainMenuScene(game));
-//            }
-//        });
         table.row().pad(60, 250, 0, 250);;
-//        table.add(test).width(200).height(100);
 		table.add(test);
         table.row().pad(90, 0, 100, 0);;
         table.add(resumeButton);
-        
-//        table.row().pad(5, 0, 5, 0);;
-//        table.add(settingsButton);
-//        table.row().pad(5, 0, 5, 0);;
-//        table.add(mainMenuButton);
 	}
 
 	

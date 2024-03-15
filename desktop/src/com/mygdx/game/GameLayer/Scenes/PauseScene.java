@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.GameEngine.AssetsManager;
+import com.mygdx.game.GameEngine.Entities.EntityManager;
 import com.mygdx.game.GameEngine.Scene.SceneManager;
 
 public class PauseScene extends SceneManager {
@@ -22,6 +23,8 @@ public class PauseScene extends SceneManager {
 	private Skin skin;
 	private Texture background;
 	private int currentScore;
+	
+	private EntityManager entityManager = EntityManager.getInstance();
 	
 	public PauseScene(Game game) {
 		super(game);
