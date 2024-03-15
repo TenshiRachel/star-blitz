@@ -101,16 +101,13 @@ public class LevelScene extends SceneManager {
 		entityManager.updateEnemyBullet(deltaTime);
 
 		
-		//entityManager.swapEnemyRow(deltaTime);
+		// entityManager.swapEnemyRow(deltaTime);
 	    if (timer >= swapInterval) 
 	    {
 	    	entityManager.swapEnemyRow(deltaTime);
 	        timer = 0; // Reset the timer
 	    }
-
-		//Get playerHealth
-	    //Show playerHealth
-	    drawHearts();
+	    
 		
 		if (entityManager.getPlayer().getPlayerHealth() == 0)
 		{
@@ -133,10 +130,7 @@ public class LevelScene extends SceneManager {
 		{
 			entityManager.respawnEnemies();
 			entityManager.spawnEnemy();
-		}
-
-		
-		
+		}		
 	    
 	    // Show score on top-right hand corner of screen 
 	    float x = Gdx.graphics.getWidth() - layout.width - 200;
@@ -164,6 +158,7 @@ public class LevelScene extends SceneManager {
 		entityManager.renderPlayerBullet(batch);
 		entityManager.renderEnemies(batch);
 		entityManager.renderEnemyBullet(batch);
+		entityManager.renderHearts(batch);
 		
 		// Let IO Manager handle inputs
 		ioManager.handleInput(entityManager.getPlayer());
@@ -174,27 +169,6 @@ public class LevelScene extends SceneManager {
 		collisionManager.collidePlayer(entityManager.getPlayer());
 		
 		batch.end();
-	}
-	
-	private void drawHearts() {
-		float heartWidth = 50;
-		float padding = 10;
-		float x = Gdx.graphics.getWidth() - (heartWidth + padding) * 5;
-		float y = padding;
-		
-		int playerHealth = entityManager.getPlayer().getPlayerHealth();
-
-        for (int i = 0; i < playerHealth; i++) {
-            batch.draw(health, x + i * (heartWidth + padding), y, heartWidth, heartWidth);
-        }
-
-        if (playerHealth == 0) {
-            // Clear and reset entities
-            entityManager.resetEntities();
-            // Proceed to Game Over Scene once player is dead
-            game.setScreen(new GameOverScene(game));
-            System.out.println("Player is dead");
-        }
 	}
 	
 	@Override

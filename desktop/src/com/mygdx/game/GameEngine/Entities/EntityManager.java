@@ -24,6 +24,7 @@ public class EntityManager {
 	private List<Bullet> EnemyBulletList;
 	private PlayerBullet playerbullet;
 	private Bullet bullet;
+	private Hearts hearts;
 	public BehaviourManager behaviourManager = BehaviourManager.getInstance();
 	
 	private Music playerShootSound, alienShootSound;
@@ -34,6 +35,7 @@ public class EntityManager {
 	private int emptyWordCount = 15;
     private int spaceWordCount = 8;
     private int nonSpaceWordCount = 7;
+    private int numOfHearts = 5;
     
 	Random random = new Random();
 	
@@ -239,6 +241,28 @@ public class EntityManager {
 		for (int i = 0; i < enemyList.size(); i++) {
 			enemyList.get(i).update(deltaTime);
 		}
+	}
+	
+	// Hearts
+	public void renderHearts(SpriteBatch batch) {
+	    float heartWidth = 50; // Adjust according to heart texture size
+	    float padding = 10; // Adjust spacing between hearts
+	    float x = Gdx.graphics.getWidth() - (heartWidth + padding) * numOfHearts; // Starting x-position
+	    float y = padding; // Y-position of the hearts
+
+	    int playerHealth = player.getPlayerHealth(); // Get player's current health
+
+	    // Render hearts based on the player's health
+	    for (int i = 0; i < playerHealth; i++) {
+	        hearts = new Hearts(x + i * (heartWidth + padding), y, 0, heartWidth, heartWidth);
+	        hearts.render(batch);
+	    }
+	}
+	
+	public void removeHeart() {
+		if (player.getPlayerHealth() > 0) {
+	        player.setPlayerHealth(player.getPlayerHealth() - 1);
+	    }
 	}
 	
 	// Bullets
