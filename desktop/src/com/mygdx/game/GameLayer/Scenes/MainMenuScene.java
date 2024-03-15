@@ -28,6 +28,7 @@ public class MainMenuScene extends SceneManager {
 	private Texture background;
 	private Music playingSong;
 	private AudioSettings audioSettings = new AudioSettings();
+	private int highScore;
 	
 	private EntityManager entityManager = EntityManager.getInstance();
 	
@@ -36,6 +37,17 @@ public class MainMenuScene extends SceneManager {
 		stage = new Stage(new ScreenViewport());
 		batch = new SpriteBatch();
 		
+		AssetsManager assetsManager = getAssetManager();
+		assetsManager.queueAddSkin();
+		assetsManager.getManager().finishLoading();
+		entityManager.resetEntities();
+	}
+	
+	public MainMenuScene(Game game, int highScore) {
+		super(game);
+		this.highScore = highScore;
+		stage = new Stage(new ScreenViewport());
+		batch = new SpriteBatch();
 		AssetsManager assetsManager = getAssetManager();
 		assetsManager.queueAddSkin();
 		assetsManager.getManager().finishLoading();
@@ -117,7 +129,7 @@ public class MainMenuScene extends SceneManager {
 		records.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				game.setScreen(new ScoreScene(game));
+				game.setScreen(new ScoreScene(game, highScore));
 				playingSong.stop();
 			}
 		});

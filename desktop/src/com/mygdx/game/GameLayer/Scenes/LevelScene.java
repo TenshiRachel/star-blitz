@@ -113,10 +113,12 @@ public class LevelScene extends SceneManager {
 		
 		if (entityManager.getPlayer().getPlayerHealth() == 0)
 		{
+			// Get current score
+			currentScore = entityManager.getPlayer().getScore();
 			// Clear and reset entities
 			entityManager.resetEntities();
 			// Proceed to Game Over Scene once player is dead
-			game.setScreen(new GameOverScene(game));
+			game.setScreen(new GameOverScene(game, currentScore));
 			System.out.println("Player is dead");
 		}
 		
