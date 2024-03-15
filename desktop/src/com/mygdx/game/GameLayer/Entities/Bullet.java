@@ -9,10 +9,20 @@ import com.mygdx.game.GameEngine.Entities.CollidableEntity;
 
 public class Bullet extends CollidableEntity{
 	
-	public Bullet(Vector2 pos, float speed, float width, float height) {
+	private int column;
+
+	public Bullet(Vector2 pos, float speed, float width, float height, int column) {
 		super(pos.x, pos.y, speed, width, height);
+		this.column = column;
+	}
+	public int getColumn() {
+		return column;
 	}
 	
+    public void setColumn(int column) {
+		this.column = column;
+	}
+    
 	public void render(SpriteBatch batch) {
 		
 	}

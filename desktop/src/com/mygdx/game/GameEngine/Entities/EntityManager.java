@@ -31,6 +31,8 @@ public class EntityManager {
 	private AudioSettings audioSettings = new AudioSettings();
 	
 	private boolean enemySpawned = false;
+	private float shoottimer = 10;
+    private float shootInterval = 10;
 	
 	private int emptyWordCount = 15;
     private int spaceWordCount = 8;
@@ -225,6 +227,8 @@ public class EntityManager {
 		boolean first = true;
 		
 		for(int i = 0; i < enemyList.size(); i++) {
+			//System.out.println(enemy.getColumn());
+			//System.out.println(enemyList.get(i).getColumn());
 			if(enemy.getColumn() == enemyList.get(i).getColumn()) {
 				if(enemy.getY() > enemyList.get(i).getY()) {
 					first = false;
@@ -271,12 +275,18 @@ public class EntityManager {
 	}
 	
 	// Bullets
-	public void spawnEnemyBullet() {
+	public void spawnEnemyBullet(float deltaTime) {
 		for (int i = 0; i < enemyList.size(); i++) {
 			Enemy alien = enemyList.get(i);
+			
+			//System.out.println("Near Player");
+			//System.out.println(behaviourManager.playerNearAlien(player, alien));
 			if (behaviourManager.playerNearAlien(player, alien)) {
+				//System.out.println(rowChecker(alien));
 				if (rowChecker(alien)){
 					if (!alien.getHasFired()) {
+					//System.out.println("Has Fired");
+					//System.out.println(alien.getHasFired());
 						alienShootSound.setVolume(audioSettings.getSoundVolume());
 				        if (audioSettings.isSoundEnabled()) {
 				        	alienShootSound.play();
@@ -284,18 +294,19 @@ public class EntityManager {
 				        Bullet bullet = null;
 				        
 						if (alien instanceof Yellow) {
-							bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 10, 64, 64);
+							bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 10, 64, 64, alien.getColumn());
 						}
 						
 						if (alien instanceof Green) {
-							bullet = new GreenBullet(new Vector2(alien.getX(), alien.getY()), 10, 64, 64);
+							bullet = new GreenBullet(new Vector2(alien.getX(), alien.getY()), 10, 64, 64, alien.getColumn());
 						}
 						
 						if (alien instanceof Red) {
-							bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 10, 64, 64);
+							bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 10, 64, 64, alien.getColumn());
 						}
 						
 						EnemyBulletList.add(bullet);
+						shoottimer = 0;
 						alien.setHasFired(true);
 					}
 				}
@@ -315,7 +326,7 @@ public class EntityManager {
 			enemyBullet.setY(enemyBullet.getY() - enemyBullet.getSpeed());
 			if (enemyBullet.getY() < 0) {
 				for (int j = 0; j < enemyList.size(); j++) {
-					if (enemyList.get(j).getX() == enemyBullet.getX() && enemyList.get(j).getY() == Gdx.graphics.getHeight() - 370) {
+					if (enemyList.get(j).getColumn() == enemyBullet.getColumn()) {
 						enemyList.get(j).setHasFired(false);
 					}
 				}

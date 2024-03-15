@@ -11,8 +11,8 @@ import com.mygdx.game.GameEngine.Entities.EntityManager;
 public class GreenBullet extends Bullet{
     private Texture bullet;
 
-    public GreenBullet(Vector2 pos, float speed, float width, float height) {	
-		super(pos, speed, width, height);
+    public GreenBullet(Vector2 pos, float speed, float width, float height, int colomn) {	
+		super(pos, speed, width, height, colomn);
 		bullet = new Texture(Gdx.files.internal("entities/greenBullet.png"));
 	}
 

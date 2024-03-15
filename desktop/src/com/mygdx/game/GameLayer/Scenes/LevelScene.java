@@ -38,8 +38,6 @@ public class LevelScene extends SceneManager {
 	
 	private float swaptimer = 0;
     private float swapInterval = 5; // 5 seconds
-    private float shoottimer = 0;
-    private float shootInterval = 0;
 	
 	public IOManager ioManager = IOManager.getInstance();
 	public BehaviourManager behaviourManager = BehaviourManager.getInstance();
@@ -94,7 +92,7 @@ public class LevelScene extends SceneManager {
 		
 		
 		// Spawn entities (Create objects)
-		entityManager.spawnEnemyBullet();
+		entityManager.spawnEnemyBullet(deltaTime);
 		
 		
 		// Update entities

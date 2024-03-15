@@ -11,8 +11,8 @@ import com.mygdx.game.GameEngine.Entities.EntityManager;
 public class RedBullet extends Bullet{
     private Texture bullet;
 
-    public RedBullet(Vector2 pos, float speed, float width, float height) {	
-		super(pos, speed, width, height);
+    public RedBullet(Vector2 pos, float speed, float width, float height, int column) {	
+		super(pos, speed, width, height, column);
 		bullet = new Texture(Gdx.files.internal("entities/redBullet.png"));
 	}
 
