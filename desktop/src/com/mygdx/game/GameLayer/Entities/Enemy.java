@@ -11,12 +11,16 @@ public class Enemy extends CollidableEntity{
 	private String enemyType;
 	private String enemyword;
 	private boolean hasFired;
+	private int column;
+	private int row;
 	
-	public Enemy(Vector2 pos, float speed, float width, float height, String enemyType) {
+	public Enemy(Vector2 pos, float speed, float width, float height, String enemyType, int column, int row) {
 		super(pos.x, pos.y, speed, width, height);
 		this.enemyword = "";
 		this.enemyType = enemyType;
 		this.hasFired = false;
+		this.row = row;
+		this.column = column;
 	}
 	
 	public String getEnemyType() {
@@ -26,6 +30,14 @@ public class Enemy extends CollidableEntity{
 	public String getEnemyWord() {
         return enemyword;
     }
+	
+	public int getColumn() {
+		return column;
+	}
+	
+	public int getRow() {
+		return row;
+	}
 
     public void setEnemyWord(String enemyword) {
         this.enemyword = enemyword;
@@ -34,6 +46,15 @@ public class Enemy extends CollidableEntity{
     public void setEnemyType(String enemyType) {
     	this.enemyType = enemyType;
     }
+    
+    public void setColumn(int column) {
+		this.column = column;
+	}
+
+    public void setRow(int row) {
+		this.row = row;
+    }
+    
     
     public boolean getHasFired() {
     	return hasFired;

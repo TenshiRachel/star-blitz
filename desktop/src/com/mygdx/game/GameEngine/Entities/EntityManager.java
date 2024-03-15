@@ -145,6 +145,7 @@ public class EntityManager {
 	// Enemy
 	public void spawnEnemy() {
 		WordFactory wordFactory = new WordFactory();
+		int column = 0;
 		if (!enemySpawned)
 		{
 			for (int i = 0; enemyList.size() < 30; i++) {
@@ -160,11 +161,11 @@ public class EntityManager {
 		       
 		        // Row 3 Enemy
 		        if (enemyType1 == 0) {
-		            enemy1 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i,Gdx.graphics.getHeight()-170 ), 2, 64, 64, getRandomEnemyType());
+		            enemy1 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i,Gdx.graphics.getHeight()-170 ), 2, 64, 64, getRandomEnemyType(), column, 3);
 		        } else if(enemyType1 == 1){
-		            enemy1 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getRandomEnemyType());
+		            enemy1 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getRandomEnemyType(), column, 3);
 		        } else {
-		        	enemy1 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getRandomEnemyType());
+		        	enemy1 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getRandomEnemyType(), column, 3);
 		        }
 		        
 		        enemyList.add(enemy1);
@@ -172,11 +173,11 @@ public class EntityManager {
 		        
 		        // Row 2 Enemy
 		        if (enemyType2 == 0) {
-		            enemy2 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i+100, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
+		            enemy2 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i+100, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType(), column, 2);
 		        } else if(enemyType2 == 1){
-		            enemy2 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i+100, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
+		            enemy2 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i+100, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType(), column, 2);
 		        } else {
-		        	enemy2 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i+100, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType());
+		        	enemy2 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i+100, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType(), column, 2);
 		        }
 		        
 		        enemyList.add(enemy2);
@@ -185,49 +186,53 @@ public class EntityManager {
 		        
 		        // Row 1 Enemy
 		        if (enemyType3 == 0) {
-		            enemy3 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType());
+		            enemy3 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType(), column, 1);
 		        } else if(enemyType3 == 1){
-		            enemy3 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType());
+		            enemy3 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType(), column, 1);
 		        } else {
-		        	enemy3 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType());
+		        	enemy3 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType(), column, 1);
 		        }
 		        
 		        enemyList.add(enemy3);
 		        enemy3.setEnemyWord(wordFactory.getRandomWord(enemy3.getEnemyType()));
-		        
+		        column += 1;
 		        enemySpawned = true;
 			}
 		}
 			
 	}
 	
-	public void swapEnemyRow(float deltaTime)
-	{
-		for (int i = 0; i < enemyList.size(); i++)
-		{
-			enemyList.get(i).setY(enemyList.get(i).getY() - 100);
-			enemyList.get(i).setHasFired(false);
-			if (enemyList.get(i).getY() < Gdx.graphics.getHeight() - 400)
-			{
+	public void swapEnemyRow(float deltaTime){
+		for (int i = 0; i < enemyList.size(); i++){
+			if (enemyList.get(i).getRow() == 1){
 				enemyList.get(i).setY(Gdx.graphics.getHeight()-170);
-				
-			}
-			
-			if(enemyList.get(i).getY() == Gdx.graphics.getHeight() - 270)
-			{
-				enemyList.get(i).setX(enemyList.get(i).getX() + 100);
-			}
-			else if(enemyList.get(i).getY() == Gdx.graphics.getHeight() - 370)
-			{
+				enemyList.get(i).setRow(3);
+			}else if(enemyList.get(i).getRow() == 2) {
 				enemyList.get(i).setX(enemyList.get(i).getX()- 100);
-			}
-			else
-			{
-				enemyList.get(i).setX(enemyList.get(i).getX()) ;
+				enemyList.get(i).setY(enemyList.get(i).getY()-100);
+				enemyList.get(i).setRow(1);
+			}else {
+				enemyList.get(i).setX(enemyList.get(i).getX() + 100);
+				enemyList.get(i).setY(enemyList.get(i).getY()-100);
+				enemyList.get(i).setRow(2);
 			}
 		}
 	}
 	
+	public boolean rowChecker(Enemy enemy) {
+		boolean first = true;
+		
+		for(int i = 0; i < enemyList.size(); i++) {
+			System.out.println(enemy.getColumn());
+			System.out.println(enemyList.get(i).getColumn());
+			if(enemy.getColumn() == enemyList.get(i).getColumn()) {
+				if(enemy.getY() > enemyList.get(i).getY()) {
+					first = false;
+				}
+			}
+		}
+		return first;
+	}
 	
 	// Enemies
 	public void renderEnemies(SpriteBatch batch) {
@@ -269,9 +274,13 @@ public class EntityManager {
 	public void spawnEnemyBullet() {
 		for (int i = 0; i < enemyList.size(); i++) {
 			Enemy alien = enemyList.get(i);
-			if (enemyList.get(i).getY() == Gdx.graphics.getHeight() - 370) {
-				if (behaviourManager.playerNearAlien(player, alien)) {
-					//System.out.println("spawn");
+			//System.out.println("Near Player");
+			//System.out.println(behaviourManager.playerNearAlien(player, alien));
+			if (behaviourManager.playerNearAlien(player, alien)) {
+				//System.out.println(rowChecker(alien));
+				if (rowChecker(alien)){
+					//System.out.println("Has Fired");
+					//System.out.println(alien.getHasFired());
 					if (!alien.getHasFired()) {
 						alienShootSound.setVolume(audioSettings.getSoundVolume());
 				        if (audioSettings.isSoundEnabled()) {

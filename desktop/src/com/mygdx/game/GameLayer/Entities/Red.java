@@ -10,8 +10,8 @@ import com.mygdx.game.GameEngine.Entities.CollidableEntity;
 public class Red extends Enemy{
 	private Texture red;
 
-	public Red(Vector2 pos, float speed, float width, float height, String enemyword) {
-		super(pos, speed, width, height, enemyword);
+	public Red(Vector2 pos, float speed, float width, float height, String enemyword, int column, int row) {
+		super(pos, speed, width, height, enemyword, column, row);
 		red = new Texture(Gdx.files.internal("entities/red.png"));
 	}
 	

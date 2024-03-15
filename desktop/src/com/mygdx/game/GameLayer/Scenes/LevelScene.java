@@ -36,8 +36,10 @@ public class LevelScene extends SceneManager {
 	private Music music;
 	private AudioSettings audioSettings = new AudioSettings();
 	
-	private float timer = 0;
+	private float swaptimer = 0;
     private float swapInterval = 5; // 5 seconds
+    private float shoottimer = 0;
+    private float shootInterval = 0;
 	
 	public IOManager ioManager = IOManager.getInstance();
 	public BehaviourManager behaviourManager = BehaviourManager.getInstance();
@@ -88,7 +90,7 @@ public class LevelScene extends SceneManager {
 		batch.begin();
 		batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
-		timer += deltaTime;
+		swaptimer += deltaTime;
 		
 		
 		// Spawn entities (Create objects)
@@ -102,10 +104,10 @@ public class LevelScene extends SceneManager {
 
 		
 		// entityManager.swapEnemyRow(deltaTime);
-	    if (timer >= swapInterval) 
+	    if (swaptimer >= swapInterval) 
 	    {
 	    	entityManager.swapEnemyRow(deltaTime);
-	        timer = 0; // Reset the timer
+	        swaptimer = 0; // Reset the timer
 	    }
 	    
 		

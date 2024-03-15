@@ -11,8 +11,8 @@ import com.mygdx.game.GameLayer.Entities.Enemy;
 public class Yellow extends Enemy{
 	private Texture yellow;
 
-	public Yellow(Vector2 pos, float speed, float width, float height, String enemyword) {
-		super(pos, speed, width, height, enemyword);
+	public Yellow(Vector2 pos, float speed, float width, float height, String enemyword, int column, int row) {
+		super(pos, speed, width, height, enemyword, column, row);
 		yellow = new Texture(Gdx.files.internal("entities/yellow.png"));
 	}
 	
