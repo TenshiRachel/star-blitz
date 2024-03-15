@@ -56,6 +56,7 @@ public class InfoScene extends SceneManager {
 
 		test = new Image(new Texture(Gdx.files.internal("background/"+word+".png")));
 //        System.err.println(word);
+		
 		// Resume button
         TextButton resumeButton = new TextButton("Continue", skin);
         resumeButton.addListener(new ChangeListener() {
@@ -105,7 +106,6 @@ public class InfoScene extends SceneManager {
 	
 	@Override
 	public void hide() {
-		super.hide();
 	}
 	
 	@Override

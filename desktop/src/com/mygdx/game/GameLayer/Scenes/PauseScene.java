@@ -7,14 +7,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.GameEngine.AssetsManager;
-import com.mygdx.game.GameEngine.Entities.EntityManager;
 import com.mygdx.game.GameEngine.Scene.SceneManager;
 
 public class PauseScene extends SceneManager {
@@ -23,8 +21,6 @@ public class PauseScene extends SceneManager {
 	private Skin skin;
 	private Texture background;
 	private int currentScore;
-	
-	private EntityManager entityManager = EntityManager.getInstance();
 	
 	public PauseScene(Game game) {
 		super(game);
@@ -122,7 +118,6 @@ public class PauseScene extends SceneManager {
 	
 	@Override
 	public void hide() {
-		super.hide();
 	}
 	
 	@Override
