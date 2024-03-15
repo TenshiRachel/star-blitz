@@ -223,8 +223,6 @@ public class EntityManager {
 		boolean first = true;
 		
 		for(int i = 0; i < enemyList.size(); i++) {
-			System.out.println(enemy.getColumn());
-			System.out.println(enemyList.get(i).getColumn());
 			if(enemy.getColumn() == enemyList.get(i).getColumn()) {
 				if(enemy.getY() > enemyList.get(i).getY()) {
 					first = false;
@@ -274,13 +272,8 @@ public class EntityManager {
 	public void spawnEnemyBullet() {
 		for (int i = 0; i < enemyList.size(); i++) {
 			Enemy alien = enemyList.get(i);
-			//System.out.println("Near Player");
-			//System.out.println(behaviourManager.playerNearAlien(player, alien));
 			if (behaviourManager.playerNearAlien(player, alien)) {
-				//System.out.println(rowChecker(alien));
 				if (rowChecker(alien)){
-					//System.out.println("Has Fired");
-					//System.out.println(alien.getHasFired());
 					if (!alien.getHasFired()) {
 						alienShootSound.setVolume(audioSettings.getSoundVolume());
 				        if (audioSettings.isSoundEnabled()) {
