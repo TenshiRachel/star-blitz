@@ -21,7 +21,7 @@ public class PauseScene extends SceneManager {
 	private SpriteBatch batch;
 	private Skin skin;
 	private Texture background;
-	private Label pauseLabel;
+	private int currentScore;
 	
 	public PauseScene(Game game) {
 		super(game);

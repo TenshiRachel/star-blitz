@@ -27,7 +27,7 @@ import com.mygdx.game.GameLayer.Entities.Player;
 
 public class LevelScene extends SceneManager {
 	private SpriteBatch batch;
-	private Texture background;
+	private Texture background, health;
 	private String scoreText = "Score: ";
 	private BitmapFont font;
 	private GlyphLayout layout;
@@ -49,9 +49,11 @@ public class LevelScene extends SceneManager {
 		batch = new SpriteBatch();
 		entityManager.create();
 		background = new Texture(Gdx.files.internal("background/space.png"));
+		health = new Texture(Gdx.files.internal("entities/heart.png"));
 		font = new BitmapFont();
 		layout = new GlyphLayout();
 	}
+	
 	
 	@Override
 	public void show() {
@@ -69,7 +71,7 @@ public class LevelScene extends SceneManager {
 			@Override
 			public boolean keyDown(int keyCode) {
 				if (keyCode == Input.Keys.ESCAPE) {
-					game.setScreen(new PauseScene(game));
+					pause();
 				}
 				return true;
 			}
@@ -106,7 +108,9 @@ public class LevelScene extends SceneManager {
 	        timer = 0; // Reset the timer
 	    }
 
-		//Get playerHealth 
+		//Get playerHealth
+	    //Show playerHealth
+	    drawHearts();
 		
 		if (entityManager.getPlayer().getPlayerHealth() == 0)
 		{
@@ -172,16 +176,39 @@ public class LevelScene extends SceneManager {
 		batch.end();
 	}
 	
+	private void drawHearts() {
+		float heartWidth = 50;
+		float padding = 10;
+		float x = Gdx.graphics.getWidth() - (heartWidth + padding) * 5;
+		float y = padding;
+		
+		int playerHealth = entityManager.getPlayer().getPlayerHealth();
+
+        for (int i = 0; i < playerHealth; i++) {
+            batch.draw(health, x + i * (heartWidth + padding), y, heartWidth, heartWidth);
+        }
+
+        if (playerHealth == 0) {
+            // Clear and reset entities
+            entityManager.resetEntities();
+            // Proceed to Game Over Scene once player is dead
+            game.setScreen(new GameOverScene(game));
+            System.out.println("Player is dead");
+        }
+	}
+	
 	@Override
 	public void resize(int width, int height) {
 	}
 	
 	@Override
 	public void pause() {
+		game.setScreen(new PauseScene(game));
 	}
 	
 	@Override
 	public void resume() {
+		game.setScreen(new LevelScene(game));
 	}
 	
 	@Override
