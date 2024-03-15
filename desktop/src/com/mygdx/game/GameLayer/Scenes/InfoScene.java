@@ -70,16 +70,16 @@ public class InfoScene extends SceneManager {
 		});
 
 		//Input processing
-		Gdx.input.setInputProcessor(new InputAdapter() {
-			// Return to menu upon pressing Escape button
-			@Override
-			public boolean keyDown(int keyCode) {
-				if (keyCode == Input.Keys.ESCAPE) {
-					resume();
-				}
-				return true;
-			}
-		});
+//		Gdx.input.setInputProcessor(new InputAdapter() {
+//			// Return to menu upon pressing Escape button
+//			@Override
+//			public boolean keyDown(int keyCode) {
+//				if (keyCode == Input.Keys.ESCAPE) {
+//					resume();
+//				}
+//				return true;
+//			}
+//		});
 
 		table.row().pad(60, 250, 0, 250);;
 		table.add(test);
