@@ -302,7 +302,7 @@ public class EntityManager {
 						}
 						
 						if (alien instanceof Red) {
-							bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 10, 64, 64, alien.getColumn());
+							bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 20, 64, 64, alien.getColumn());
 						}
 						
 						EnemyBulletList.add(bullet);
@@ -335,6 +335,43 @@ public class EntityManager {
 			}
 		}
 	}
+	
+	public void updateGreenBullet(float deltaTime) {
+		for (int i = 0; i < EnemyBulletList.size(); i++) {
+			Bullet enemyBullet = EnemyBulletList.get(i);
+			if (enemyBullet instanceof GreenBullet) {
+				float playerposition = player.getX();
+				if(enemyBullet.getX() > playerposition && enemyBullet.getY()>250) {
+					enemyBullet.setX(enemyBullet.getX() - Math.abs((enemyBullet.getX() - playerposition) / 3));
+				} else if(enemyBullet.getX() < playerposition && enemyBullet.getY()>250) {
+					enemyBullet.setX(enemyBullet.getX() + Math.abs((enemyBullet.getX() - playerposition) / 3));
+				}
+
+			}
+		}
+	}
+	
+	public void updateYellowBullet(float deltaTime) {
+		for (int i = 0; i < EnemyBulletList.size(); i++) {
+			Bullet enemyBullet = EnemyBulletList.get(i);
+			float sectors = (Gdx.graphics.getHeight() - enemyBullet.getY())/4;
+			if (enemyBullet instanceof YellowBullet) {
+				if(enemyBullet.getY()> sectors*4) {
+					enemyBullet.setX(enemyBullet.getX() + enemyBullet.getSpeed());
+				} else if(enemyBullet.getY()> sectors*3) {
+					enemyBullet.setX(enemyBullet.getX() - enemyBullet.getSpeed());
+				} else if(enemyBullet.getY()> sectors*2){
+					enemyBullet.setX(enemyBullet.getX() + enemyBullet.getSpeed());
+				} else {
+					enemyBullet.setX(enemyBullet.getX() - enemyBullet.getSpeed());
+				}
+
+			}
+		}
+	}
+	
+
+	
 	
 	public void respawnEnemies() {
 		enemySpawned = false;

@@ -38,6 +38,7 @@ public class LevelScene extends SceneManager {
 	
 	private float swaptimer = 0;
     private float swapInterval = 5; // 5 seconds
+    private float bulletTimer = 0;
 	
 	public IOManager ioManager = IOManager.getInstance();
 	public BehaviourManager behaviourManager = BehaviourManager.getInstance();
@@ -89,6 +90,7 @@ public class LevelScene extends SceneManager {
 		batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
 		swaptimer += deltaTime;
+		bulletTimer += deltaTime;
 		
 		
 		// Spawn entities (Create objects)
@@ -99,6 +101,8 @@ public class LevelScene extends SceneManager {
 		entityManager.updatePlayerBullet(deltaTime);
 		entityManager.updateEnemies(deltaTime);
 		entityManager.updateEnemyBullet(deltaTime);
+		entityManager.updateGreenBullet(deltaTime);
+		entityManager.updateYellowBullet(deltaTime);
 
 		
 		// entityManager.swapEnemyRow(deltaTime);
