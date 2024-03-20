@@ -31,7 +31,7 @@ public class LevelScene extends SceneManager {
 	private String scoreText = "Score: ";
 	private BitmapFont font;
 	private GlyphLayout layout;
-	public int currentScore;
+	public int currentScore, highScore;
 	private Music playingSong;
 	private Music music;
 	private AudioSettings audioSettings = new AudioSettings();
@@ -120,7 +120,7 @@ public class LevelScene extends SceneManager {
 			// Clear and reset entities
 			entityManager.resetEntities();
 			// Proceed to Game Over Scene once player is dead
-			game.setScreen(new GameOverScene(game, currentScore));
+			game.setScreen(new GameOverScene(game, currentScore, highScore));
 			System.out.println("Player is dead");
 		}
 		

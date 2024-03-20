@@ -7,6 +7,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -28,13 +29,15 @@ public class ScoreScene extends SceneManager {
     private SpriteBatch batch;
     private Skin skin;
     private Texture background;
-    private Label dateLabel;
+    private Label detailLabel;
     private Label scoreLabel;
-    private Label dateValueLabel;
-    private Label scoreValueLabel;
+    private Label currentScoreLabel;
+    private Label highScoreLabel;
+    private Label currentScoreValueLabel;
+    private Label highScoreValueLabel;
     private Music playingSong;
     private AudioSettings audioSettings = new AudioSettings();
-    private int highScore;
+    private int highScore, currentScore;
 
     public EntityManager entityManager = EntityManager.getInstance();
     
@@ -50,9 +53,10 @@ public class ScoreScene extends SceneManager {
     }
 
     // Constructor
-    public ScoreScene(Game game, int highScore) {
+    public ScoreScene(Game game, int currentScore, int highScore) {
         super(game);
         this.highScore = highScore;
+        this.currentScore = currentScore;
         batch = new SpriteBatch();
         stage = new Stage(new ScreenViewport());
         // Load assets
@@ -86,23 +90,26 @@ public class ScoreScene extends SceneManager {
         stage.addActor(table);
 
         // Labels for Date and Score headers
-        dateLabel = new Label("Date", skin);
+        detailLabel = new Label("Details", skin);
         scoreLabel = new Label("Score", skin);
 
-        // Labels for Date and Score values
-        SimpleDateFormat formatter = new SimpleDateFormat("dd MM yyyy");
-        String dateString = formatter.format(new Date(TimeUtils.millis()));
-        dateValueLabel = new Label(dateString, skin);
-        scoreValueLabel = new Label(String.valueOf(highScore), skin);
+        // Labels for Details and Score values
+        currentScoreLabel = new Label("Current Score", skin);
+        currentScoreValueLabel = new Label(String.valueOf(currentScore), skin);
+        highScoreLabel = new Label("High Score", skin);
+        highScoreValueLabel = new Label(String.valueOf(highScore), skin);
 
         // Table setup
         table.pad(100); // offset from corner of the screen
         table.top(); // align table at the top
-        table.add(dateLabel).expandX().left();
+        table.add(detailLabel).expandX().left();
         table.add(scoreLabel).expandX().right();
         table.row();
-        table.add(dateValueLabel).expandX().left();
-        table.add(scoreValueLabel).expandX().right();
+        table.add(currentScoreLabel).expandX().left();
+        table.add(currentScoreValueLabel).expandX().right();
+        table.row();
+        table.add(highScoreLabel).expandX().left();
+        table.add(highScoreValueLabel).expandX().right();
 
         // Input processing
         Gdx.input.setInputProcessor(new InputAdapter() {

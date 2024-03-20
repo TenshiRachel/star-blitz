@@ -43,8 +43,8 @@ public class GameOverScene extends SceneManager {
         batch = new SpriteBatch();
     }
 
-    // Constructor with current score parameter
-    public GameOverScene(Game game, int currentScore) {
+    // Constructor with current score and high score parameter
+    public GameOverScene(Game game, int currentScore, int highscore) {
         super(game);
         this.currentScore = currentScore;
         // Load or initialize high score from preferences
@@ -128,7 +128,7 @@ public class GameOverScene extends SceneManager {
         mainMenu.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new MainMenuScene(game, highScore));
+                game.setScreen(new MainMenuScene(game, currentScore, highScore));
             }
         });
     }
