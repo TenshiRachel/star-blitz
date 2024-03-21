@@ -12,10 +12,14 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.GameEngine.AssetsManager;
@@ -94,34 +98,33 @@ public class ScoreScene extends SceneManager {
         scoreLabel = new Label("Score", skin);
 
         // Labels for Details and Score values
-        currentScoreLabel = new Label("Current Score", skin);
+        currentScoreLabel = new Label("Most recent Score", skin);
         currentScoreValueLabel = new Label(String.valueOf(currentScore), skin);
         highScoreLabel = new Label("High Score", skin);
         highScoreValueLabel = new Label(String.valueOf(highScore), skin);
+        
+        TextButton backButton = new TextButton("Back", skin);
 
         // Table setup
         table.pad(100); // offset from corner of the screen
-        table.top(); // align table at the top
-        table.add(detailLabel).expandX().left();
-        table.add(scoreLabel).expandX().right();
+        table.add(detailLabel).uniformX().left();
+        table.add(scoreLabel).uniformX().right();
         table.row();
-        table.add(currentScoreLabel).expandX().left();
-        table.add(currentScoreValueLabel).expandX().right();
+        table.add(currentScoreLabel).uniformX().left();
+        table.add(currentScoreValueLabel).uniformX().right();
         table.row();
-        table.add(highScoreLabel).expandX().left();
-        table.add(highScoreValueLabel).expandX().right();
+        table.add(highScoreLabel).uniformX().left();
+        table.add(highScoreValueLabel).uniformX().right();
+        table.row();
+        table.add(backButton).fillX().uniformX().left();
 
-        // Input processing
-        Gdx.input.setInputProcessor(new InputAdapter() {
-            // Return to menu upon pressing Escape button
-            @Override
-            public boolean keyDown(int keyCode) {
-                if (keyCode == Input.Keys.ESCAPE) {
-                    game.setScreen(new MainMenuScene(game));
-                }
-                return true;
-            }
-        });
+		// Button event listeners
+        backButton.addListener(new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				game.setScreen(new MainMenuScene(game));
+			}
+		});
     }
 
     @Override

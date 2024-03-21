@@ -52,6 +52,8 @@ public class GameOverScene extends SceneManager {
         this.highScore = prefs.getInteger("highscore", 0);
         stage = new Stage(new ScreenViewport());
         batch = new SpriteBatch();
+		// Clear and reset entities
+		entityManager.resetEntities();
     }
 
     @Override
@@ -82,7 +84,7 @@ public class GameOverScene extends SceneManager {
 
         // Labels setup
         titleLabel = new Label("Game Over", skin);
-        currentScoreLabel = new Label("Score:", skin);
+        currentScoreLabel = new Label("Session score:", skin);
         highScoreLabel = new Label("Highest Score:", skin);
         currentScoreValueLabel = new Label(String.valueOf(currentScore), skin);
         highScoreValueLabel = new Label(String.valueOf(highScore), skin);
