@@ -92,7 +92,7 @@ public class InstructionsScene extends SceneManager {
 		});
 		
 		// Add buttons to table
-		table.row().padTop(600);
+		table.row().padTop(800);
 		table.add(backButton);
 		table.add(homeButton);
 		table.add(nextButton);
