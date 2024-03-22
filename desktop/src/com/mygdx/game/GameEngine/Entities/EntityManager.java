@@ -294,15 +294,15 @@ public class EntityManager {
 				        Bullet bullet = null;
 				        
 						if (alien instanceof Yellow) {
-							bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 10, 64, 64, alien.getColumn());
+							bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 7, 64, 64, alien.getColumn());
 						}
 						
 						if (alien instanceof Green) {
-							bullet = new GreenBullet(new Vector2(alien.getX(), alien.getY()), 10, 64, 64, alien.getColumn());
+							bullet = new GreenBullet(new Vector2(alien.getX(), alien.getY()), 7, 64, 64, alien.getColumn());
 						}
 						
 						if (alien instanceof Red) {
-							bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 20, 64, 64, alien.getColumn());
+							bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 14, 64, 64, alien.getColumn());
 						}
 						
 						EnemyBulletList.add(bullet);
@@ -341,9 +341,9 @@ public class EntityManager {
 			Bullet enemyBullet = EnemyBulletList.get(i);
 			if (enemyBullet instanceof GreenBullet) {
 				float playerposition = player.getX();
-				if(enemyBullet.getX() > playerposition && enemyBullet.getY()>250) {
+				if(enemyBullet.getX() > playerposition && enemyBullet.getY()>400) {
 					enemyBullet.setX(enemyBullet.getX() - Math.abs((enemyBullet.getX() - playerposition) / 3));
-				} else if(enemyBullet.getX() < playerposition && enemyBullet.getY()>250) {
+				} else if(enemyBullet.getX() < playerposition && enemyBullet.getY()>400) {
 					enemyBullet.setX(enemyBullet.getX() + Math.abs((enemyBullet.getX() - playerposition) / 3));
 				}
 
@@ -354,16 +354,18 @@ public class EntityManager {
 	public void updateYellowBullet(float deltaTime) {
 		for (int i = 0; i < EnemyBulletList.size(); i++) {
 			Bullet enemyBullet = EnemyBulletList.get(i);
-			float sectors = (Gdx.graphics.getHeight() - enemyBullet.getY())/4;
+			float sectors = (Gdx.graphics.getHeight()/5);
 			if (enemyBullet instanceof YellowBullet) {
-				if(enemyBullet.getY()> sectors*4) {
+				if(enemyBullet.getY()> sectors*5) {
 					enemyBullet.setX(enemyBullet.getX() + enemyBullet.getSpeed());
-				} else if(enemyBullet.getY()> sectors*3) {
+				} else if(enemyBullet.getY()> sectors*4) {
 					enemyBullet.setX(enemyBullet.getX() - enemyBullet.getSpeed());
+				} else if(enemyBullet.getY()> sectors*3){
+					enemyBullet.setX(enemyBullet.getX() + enemyBullet.getSpeed());
 				} else if(enemyBullet.getY()> sectors*2){
-					enemyBullet.setX(enemyBullet.getX() + enemyBullet.getSpeed());
-				} else {
 					enemyBullet.setX(enemyBullet.getX() - enemyBullet.getSpeed());
+				} else {
+					enemyBullet.setX(enemyBullet.getX() + enemyBullet.getSpeed());
 				}
 
 			}
