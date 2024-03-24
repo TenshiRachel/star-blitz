@@ -33,7 +33,7 @@ public class LevelScene extends SceneManager {
 	private GlyphLayout layout;
 	public int currentScore, highScore;
 	private Music playingSong;
-	private Music music;
+	private Music playerDieSound;
 	private AudioSettings audioSettings = new AudioSettings();
 	
 	private float swaptimer = 0;
@@ -59,8 +59,11 @@ public class LevelScene extends SceneManager {
 	@Override
 	public void show() {
         AssetsManager.queueLevelMusic();
+        AssetsManager.queuePlayerDieMusic();
         AssetsManager.getManager().finishLoading();
+        playerDieSound = AssetsManager.getManager().get(AssetsManager.playerDieSound);
         playingSong = AssetsManager.getManager().get(AssetsManager.playingSongPath);
+        
         playingSong.setVolume(audioSettings.getAudioVolume());
         playingSong.setLooping(true);
         if (audioSettings.isAudioEnabled()) {
@@ -117,6 +120,10 @@ public class LevelScene extends SceneManager {
 		{
 			// Get current score
 			currentScore = entityManager.getPlayer().getScore();
+			playerDieSound.setVolume(audioSettings.getSoundVolume());
+	        if (audioSettings.isSoundEnabled()) {
+	        	playerDieSound.play();
+	        }
 			// Proceed to Game Over Scene once player is dead
 			game.setScreen(new GameOverScene(game, currentScore, highScore));
 			System.out.println("Player is dead");

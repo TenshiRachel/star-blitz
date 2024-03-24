@@ -93,7 +93,7 @@ public class EntityManager {
         if (audioSettings.isSoundEnabled()) {
         	playerShootSound.play();
         }
-		playerbullet = new PlayerBullet(new Vector2(player.getX(), player.getY()), 10, 64, 64);
+		playerbullet = (PlayerBullet) CollidableFactory.getPlayerBullet(player);
 		playerBulletList.add(playerbullet);
 
 	}
@@ -157,45 +157,21 @@ public class EntityManager {
 				int enemyType1 = random.nextInt(3);
 				int enemyType2 = random.nextInt(3);
 				int enemyType3 = random.nextInt(3);
-	
-		        Enemy enemy1 = null;
-		        Enemy enemy2 = null;
-		        Enemy enemy3 = null;
-		        
 		       
 		        // Row 3 Enemy
-		        if (enemyType1 == 0) {
-		            enemy1 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i,Gdx.graphics.getHeight()-170 ), 2, 64, 64, getRandomEnemyType(), column, 3);
-		        } else if(enemyType1 == 1){
-		            enemy1 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getRandomEnemyType(), column, 3);
-		        } else {
-		        	enemy1 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170), 2, 64, 64, getRandomEnemyType(), column, 3);
-		        }
-		        
+		        Enemy enemy1 = (Enemy) CollidableFactory.getAlien(enemyType1, (Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-170, getRandomEnemyType(), column, 3);
 		        enemyList.add(enemy1);
 		        enemy1.setEnemyWord(wordFactory.getRandomWord(enemy1.getEnemyType()));
 		        
 		        // Row 2 Enemy
-		        if (enemyType2 == 0) {
-		            enemy2 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i+100, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType(), column, 2);
-		        } else if(enemyType2 == 1){
-		            enemy2 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i+100, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType(), column, 2);
-		        } else {
-		        	enemy2 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i+100, Gdx.graphics.getHeight()-270), 2, 64, 64, getRandomEnemyType(), column, 2);
-		        }
+		        Enemy enemy2 = (Enemy) CollidableFactory.getAlien(enemyType2, (Gdx.graphics.getWidth() / 10) * i + 100, Gdx.graphics.getHeight()-270, getRandomEnemyType(), column, 2);
 		        
 		        enemyList.add(enemy2);
 		        enemy2.setEnemyWord(wordFactory.getRandomWord(enemy2.getEnemyType()));
 	
 		        
 		        // Row 1 Enemy
-		        if (enemyType3 == 0) {
-		            enemy3 = new Green(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType(), column, 1);
-		        } else if(enemyType3 == 1){
-		            enemy3 = new Yellow(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType(), column, 1);
-		        } else {
-		        	enemy3 = new Red(new Vector2((Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370), 2, 64, 64, getRandomEnemyType(), column, 1);
-		        }
+		        Enemy enemy3 = (Enemy) CollidableFactory.getAlien(enemyType3, (Gdx.graphics.getWidth() / 10) * i, Gdx.graphics.getHeight()-370, getRandomEnemyType(), column, 1);
 		        
 		        enemyList.add(enemy3);
 		        enemy3.setEnemyWord(wordFactory.getRandomWord(enemy3.getEnemyType()));
@@ -291,20 +267,8 @@ public class EntityManager {
 				        if (audioSettings.isSoundEnabled()) {
 				        	alienShootSound.play();
 				        }
-				        Bullet bullet = null;
-				        
-						if (alien instanceof Yellow) {
-							bullet = new YellowBullet(new Vector2(alien.getX(), alien.getY()), 7, 64, 64, alien.getColumn());
-						}
-						
-						if (alien instanceof Green) {
-							bullet = new GreenBullet(new Vector2(alien.getX(), alien.getY()), 7, 64, 64, alien.getColumn());
-						}
-						
-						if (alien instanceof Red) {
-							bullet = new RedBullet(new Vector2(alien.getX(), alien.getY()), 14, 64, 64, alien.getColumn());
-						}
-						
+				        Bullet bullet = (Bullet) CollidableFactory.getEnemyBullet(alien);
+				    	
 						EnemyBulletList.add(bullet);
 						shoottimer = 0;
 						alien.setHasFired(true);

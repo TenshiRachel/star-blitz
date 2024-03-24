@@ -28,11 +28,11 @@ public class CollisionManager {
 	
 	private CollisionManager() {
         AssetsManager.queueAlienHitMusic();
-        // AssetsManager.queuePlayerHitMusic();
+        AssetsManager.queuePlayerHitMusic();
         AssetsManager.getManager().finishLoading();
         
-        alienHitSound = AssetsManager.getManager().get(AssetsManager.alienHitSound);
-        // playerHitSound = AssetsManager.getManager().get(AssetsManager.playerHitSound);
+        alienHitSound = AssetsManager.getManager().get(AssetsManager.hitSound);
+        playerHitSound = AssetsManager.getManager().get(AssetsManager.hitSound);
 	}
 	
 	public static synchronized CollisionManager getInstance() {
@@ -91,6 +91,10 @@ public class CollisionManager {
 		
 		for (int i = 0; i < EnemyBulletList.size(); i++) {
 			if (player.isCollide(EnemyBulletList.get(i))) {
+    			playerHitSound.setVolume(audioSettings.getSoundVolume());
+    	        if (audioSettings.isSoundEnabled()) {
+    	        	playerHitSound.play();
+    	        }
 				player.setPlayerHealth(player.getPlayerHealth() - 1);
 				if (player.getPlayerHealth() < 0) {
 					player.setPlayerHealth(0);

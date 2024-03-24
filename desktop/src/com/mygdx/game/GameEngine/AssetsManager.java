@@ -15,8 +15,7 @@ public class AssetsManager {
     public static final String gameOverPath = "audio/game_over.wav";
     public static final String scoreSongPath = "audio/score.wav";
     public static final String menuSongPath = "audio/menu.wav";
-    public static final String alienHitSound = "audio/alien_hit.wav";
-    public static final String playerHitSound = "audio/player_hit.wav";
+    public static final String hitSound = "audio/hit.wav";
     public static final String alienShootSound = "audio/alien_shoot.wav";
     public static final String playerShootSound = "audio/player_shoot.wav";
     public static final String playerDieSound = "audio/die.wav";
@@ -43,10 +42,10 @@ public class AssetsManager {
     }
     
     public static void queueAlienHitMusic(){
-        manager.load(alienHitSound, Music.class);
+        manager.load(hitSound, Music.class);
     }
     
-    public static void queuePlayerHitMusic(){manager.load(playerHitSound, Music.class);}
+    public static void queuePlayerHitMusic(){manager.load(hitSound, Music.class);}
     
     public static void queueAlienShootMusic(){manager.load(alienShootSound, Music.class);}
     
